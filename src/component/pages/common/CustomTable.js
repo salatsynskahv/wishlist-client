@@ -1,30 +1,69 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
-import {useUsersWishlists} from "../../contexts/UsersWishlistsContext";
+import {useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
 import Linkify from 'react-linkify'
+import axios from "axios";
+import {useLocation} from "react-router-dom";
 
 export default function CustomTable() {
-    // const [currentWishlist, setCurrentWishlist] = useState()
-    const params = useParams()
+    const location = useLocation();
+    const [currentWishlist, setCurrentWishlist] = useState()
+    const [editMode, setEditMode] = useState(false);
+    const params = useParams();
     const wishListId = params.wishListId;
     const {wishlists} = useUsersWishlists();
-    console.log('typeof wishListId' +  typeof wishListId);
+    console.log('typeof wishListId' + typeof wishListId);
 
     console.log('currentWishlist' + JSON.stringify(wishlists))
-    const currentWishlist = wishlists.find(item => {console.log('typeof item._id in find: '+ typeof item._id ); return item._id === wishListId})
-    // useEffect(() => {
-    //     const findList = wishlists.find(item => item._id === wishListId)
-    //     setCurrentWishlist(findList)
-    //     console.log('useEffect: '+ findList)
-    // }, )
+    // const foundItem = wishlists.find(item => {
+    //     console.log('typeof item._id in find: ' + typeof item._id);
+    //     return item._id === wishListId
+    // })
+    useEffect(() => {
+        const findList = wishlists.find(item => item._id === wishListId)
+        setCurrentWishlist(findList)
+        console.log('useEffect: ' + findList)
+    }, [location.pathname])
+    const handleInputTableChange = (index1, field, e) => {
 
+        const row = currentWishlist.content[index1]
+        row[field] = e.target.value
+        setCurrentWishlist(currentWishlist)
+        console.log('setTableData tableContent2' + JSON.stringify(currentWishlist))
+        console.log('row' + JSON.stringify(row))
+    }
+
+    const handleSave = () => {
+        const newItem = {
+            _id: currentWishlist._id,
+            content: currentWishlist.content
+        }
+        console.log('handleSave tableContent2' + JSON.stringify(newItem))
+        axios.post(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
+            .then((response) => {
+                console.log(response)
+            }).catch(function (error) {
+            console.log(error);
+        });
+    }
 
     console.log('currentWishlist' + JSON.stringify(currentWishlist))
     return (
         currentWishlist && <>
             <div className="container">
-                <div>{currentWishlist.name}</div>
-                <div className="table-responsive">
+                <div className="mb-4">
+                    {currentWishlist.name}
+                    <span className="float-end">
+                        <button className="btn btn-primary" hidden={editMode}
+                                onClick={() => setEditMode(true)}> Edit </button>
+                        <button className="btn btn-primary" hidden={!editMode}
+                                onClick={() => {
+                                    setEditMode(false);
+                                    handleSave();
+                                }}> Save </button>
+                    </span>
+                </div>
+                <div className="table-responsive w-100">
                     <table className="table table-bordered">
                         <thead>
                         <tr>{
@@ -33,7 +72,8 @@ export default function CustomTable() {
                                     {field}
                                 </td>)
                             )
-                        }</tr>
+                        }
+                        </tr>
                         </thead>
                         {currentWishlist.content && <tbody className="table-group-divider">
                         {
@@ -42,19 +82,19 @@ export default function CustomTable() {
                                         {currentWishlist.fields.map((field, index2) =>
                                             (<td key={index2}>
                                                 <Linkify component='input'>
-                                                    {/*<input*/}
-                                                    {/*    className="form-control-plaintext"*/}
-                                                    {/*    // onChange={(e) => setTableData(index1, index2, e)}*/}
-                                                    {/*    defaultValue={item[field]}*/}
-                                                    {/*    type='url'/>*/}
-                                                    <span onClick={() => {
+                                                    {editMode && <input
+                                                        className="form-control-plaintext"
+                                                        onChange={(e) => handleInputTableChange(index1, field, e)}
+                                                        defaultValue={item[field]}
+                                                        type='url'/>}
+                                                    {!editMode && <span onClick={() => {
                                                         console.log(index1 + ' ' + index2 + 'clicked')
                                                     }}
-                                                          onMouseLeave={() => {
-                                                              console.log(index1 + ' ' + index2 + 'mouseLeft')
-                                                          }}>
+                                                                        onMouseLeave={() => {
+                                                                            console.log(index1 + ' ' + index2 + 'mouseLeft')
+                                                                        }}>
                                                         {item[field]}
-                                                    </span>
+                                                    </span>}
                                                 </Linkify>
                                             </td>)
                                         )}

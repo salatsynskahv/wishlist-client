@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import {Outlet, useLocation} from "react-router";
+import {Outlet} from "react-router";
 import axios from "axios";
 import {Button} from "@mui/material";
 import {Form, Container} from "react-bootstrap";
-import ListItem from "../helpers/ListItem";
-import {useAuth} from "../../contexts/AuthContext";
-import {UsersWishlistProvider, useUsersWishlists} from "../../contexts/UsersWishlistsContext";
+import ListItem from "../../helpers/ListItem";
+import {useAuth} from "../../../contexts/AuthContext";
+import {UsersWishlistProvider, useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
 
 
 export default function MyWishlists() {
@@ -23,10 +23,10 @@ function MyWishlistsInner() {
     const {setWishlists} = useUsersWishlists();
     // const [wishlists, setWishlists] = useState([])
     const [show, setShow] = useState(false)
-    const headers = {
-        "Content-Type": "application/json"
-    };
-    console.log('MyWishlistsInner: '+ JSON.stringify(wishlists))
+    // const headers = {
+    //     "Content-Type": "application/json"
+    // };
+    console.log('MyWishlistsInner: ' + JSON.stringify(wishlists))
 
     return (
         <div className="my-wishlist-page">
@@ -34,7 +34,7 @@ function MyWishlistsInner() {
             <Button onClick={() => setShow(true)} hidden={show} variant="contained">Add list</Button>
             <NewWishlist rows={wishlists} setRows={setWishlists} show={show} setShow={setShow}/>
 
-            <div className="container"  style={{marginTop: '30px'}}>
+            <div className="container" style={{marginTop: '30px'}}>
                 <div className="row">
                     <div className="col-auto d-flex">
                         <div className="card">
@@ -83,7 +83,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
             user: currentUser.email,
             content: tableContent
         }
-        axios.post('http://localhost:3001/wishlist', newItem)
+        axios.post(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
             .then((response) => {
                 console.log(response)
             }).catch(function (error) {
@@ -147,7 +147,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
                             </Form.Group>
                             <FieldNames addField={addField}/>
                             <div style={{marginTop: '20px'}}>
-                                <Button type="submit"  variant="contained">Add List</Button>
+                                <Button type="submit" variant="contained">Add List</Button>
                                 <Button onClick={() => {
                                     setShow(false)
                                 }}> Close </Button>
@@ -221,21 +221,24 @@ const FieldNames = ({addField}) => {
         <Form.Group className="row g-2">
             <div className="col-auto">
                 <Form.Label htmlFor="fields">Field name:</Form.Label>
-                <Form.Control type="text" className="form-control" id="fields" value={field}
-                              onKeyPress={(event) => {
-                                  console.log('event.key: ' + event.key)
-                                  if (event.key === "Enter") {
-                                      console.log('event.target.value: ' + event.target.value)
+                <div className='input-group'>
+                    <Form.Control type="text" className="form-control" id="fields" value={field}
+                                  onKeyPress={(event) => {
+                                      console.log('event.key: ' + event.key)
+                                      if (event.key === "Enter") {
+                                          console.log('event.target.value: ' + event.target.value)
+                                          setField(event.target.value)
+                                          addCustomField()
+                                      }
+                                  }}
+                                  onChange={(event) => {
                                       setField(event.target.value)
-                                      addCustomField()
-                                  }
-                              }}
-                              onChange={(event) => {
-                                  setField(event.target.value)
-                              }}/>
+                                  }}/>
+                    <button className="btn btn-outline-secondary">Add</button>
+                </div>
             </div>
-            <div className="col-auto d-flex align-items-center" style={{paddingTop: '33px'}}>
-                <button className="btn btn-outline-secondary" onClick={addField}>Add</button>
+            <div className="align-items-center" style={{paddingTop: '33px'}}>
+
             </div>
         </Form.Group>
 

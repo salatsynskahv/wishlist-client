@@ -1,7 +1,8 @@
 import React, {useRef, useState} from 'react'
 import {Alert, Card, Form, Button, Container} from "react-bootstrap";
-import {useAuth} from "../../contexts/AuthContext"
+import {useAuth} from "../../../contexts/AuthContext"
 import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 export default function Signup() {
     const emailRef = useRef()
@@ -24,6 +25,7 @@ export default function Signup() {
             setError("")
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            axios.post()
             navigate("/")
         } catch {
             setError("Failed to create account")

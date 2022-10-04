@@ -1,5 +1,5 @@
 import {Button} from "@mui/material";
-import FacebookIcon from "../../icons/FacebookIcon";
+import FacebookIcon from "../../../icons/FacebookIcon";
 import {useEffect, useState} from 'react';
 import jwt_decode from "jwt-decode";
 

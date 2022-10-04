@@ -1,32 +1,42 @@
 import './App.css';
 import Navbar from "./component/Navbar";
-import MyWishlists from "./component/pages/MyWishlists";
-import Friends from "./component/pages/Friends";
+import MyWishlists from "./component/pages/mywishlist/MyWishlists";
+import Friends from "./component/pages/friends/Friends";
 import {Route, Routes} from "react-router-dom";
 import Home from "./component/pages/Home";
-import styled from "styled-components"
-import WishList from "./component/pages/WishList";
-
-const StyledContainer = styled.div`
-    height: 100vw; 
-    padding: 20px;
-    background: #83a4d4;
-    background: linear-gradient(to left, #b6fbff, #83a4d4);
-    color: #171212;
-`;
-
+import Login from "./component/pages/auth/Login";
+import Signup from "./component/pages/auth/Signup";
+import {AuthProvider} from "./contexts/AuthContext";
+import React from "react";
+import PrivateRoute from "./component/PrivateRoute";
+import ForgotPassword from "./component/pages/auth/ForgotPassword";
+import UpdateProfile from "./component/pages/auth/UpdateProfile";
+import CustomTable from "./component/pages/common/CustomTable";
+import Logout from "./component/pages/auth/Logout";
 
 function App() {
 
     return (
         <div className="App">
-            <Navbar/>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/friends" element={<Friends/>}/>
-                <Route path="/wishlist" element={<MyWishlists/>}/>
-                <Route path="/wishlist/:wishListId" element={<WishList/>}/>
-            </Routes>
+            <AuthProvider>
+                <Navbar/>
+                <Routes>
+                    <Route exact path="/" element={<PrivateRoute/>}>
+                        <Route exact path="/" element={<Home/>}/>
+                    </Route>
+                    <Route exact path="/" element={<PrivateRoute/>}>
+                        <Route exact path="/update-profile" element={<UpdateProfile/>}/>
+                    </Route>
+                    <Route path="/friends" element={<Friends/>}/>
+                    <Route path="/wishlist" element={<MyWishlists/>}>
+                        <Route index path=":wishListId" element={<CustomTable/>}/>
+                    </Route>
+                    <Route path="/signup" element={<Signup/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/forgot-password" element={<ForgotPassword/>}/>
+                    <Route path="/logout" element={<Logout/>}/>
+                </Routes>
+            </AuthProvider>
         </div>
     );
 }

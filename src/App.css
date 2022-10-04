@@ -5,7 +5,7 @@ body{
   margin: 0;
 }
 .nav {
-  background-color: #333;
+  background-color: #6610f2;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -63,5 +63,25 @@ body{
 }
 
 .newtable-th{
-  background-color: lavender;
+  max-width: 100px !important;
+}
+
+.login-form {
+  margin: 20px;
+  width: 250px;
+}
+
+.my-wishlist-page{
+  margin: 20px;
+
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.width-35-per{
+  width: 35%;
 }
