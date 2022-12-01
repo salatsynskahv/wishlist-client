@@ -101,7 +101,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
 
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" value="" id="privateCheck"/>
-                        <label className="form-check-label" for="privateCheck"> Private list </label>
+                        <label className="form-check-label" htmlFor="privateCheck"> Private list </label>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
             <div className="row">
                 <div className="container">
                     <div className="table-responsive">
-                        <table className="table table-bordered">
+                        <table className="table table-bordered wishlist-table">
                             <thead>
                             <tr>{
                                 fields.map((field, index) =>

@@ -1,3 +1,7 @@
 .wishlist-table tr {
-    min-height: 20px;
+    height: 40px;
+}
+
+.wishlist-table tr td .form-control-plaintext{
+    padding: 0;
 }

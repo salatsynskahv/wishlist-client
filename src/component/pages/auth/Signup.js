@@ -25,17 +25,19 @@ export default function Signup() {
             setError("")
             setLoading(true)
             signup(emailRef.current.value, passwordRef.current.value).then((userCreds) => {
-                console.log('userCreds: '+ JSON.stringify(userCreds))
+                console.log('userCreds: ' + JSON.stringify(userCreds))
                 const ObjectID = require("bson-objectid")
                 const user = {_id: ObjectID().toHexString(), ...userCreds.user}
-                console.log('user: '+ JSON.stringify(user))
+                console.log('user: ' + JSON.stringify(user))
                 axios.post(`${process.env.REACT_APP_SERVER_HOST}/user`, user).then(
                     (result) => {
                         console.log('post user after login: ' + result)
                     }
                 )
                 navigate("/")
-            })
+            }, (error) => {
+                setError(error.message);
+            });
 
         } catch {
             setError("Failed to create account")

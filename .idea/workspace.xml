@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="29iAhQfkwdRZh3quyZh9q5XmmN6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../udemy/sings" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\wishlist-client\src\component\pages" />
+      <recent name="C:\Projects\wishlist-client\src\icons" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\wishlist-client\src\component\pages\common" />
+      <recent name="C:\Projects\wishlist-client" />
+      <recent name="C:\Projects\wishlist-client\src\component\api" />
+      <recent name="C:\Projects\wishlist-client\src\component\pages\auth" />
+      <recent name="C:\Projects\wishlist-client\src\component\pages\mywishlist" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="" />
+      <created>1653585651070</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653585651070</updated>
+      <workItem from="1653585654153" duration="3090000" />
+      <workItem from="1654704139113" duration="2598000" />
+      <workItem from="1654789049287" duration="2859000" />
+      <workItem from="1655326676728" duration="794000" />
+      <workItem from="1655496172808" duration="8673000" />
+      <workItem from="1656072657332" duration="12765000" />
+      <workItem from="1656619619753" duration="4591000" />
+      <workItem from="1656676271992" duration="9177000" />
+      <workItem from="1657010092921" duration="2289000" />
+      <workItem from="1657112546399" duration="6131000" />
+      <workItem from="1657654700257" duration="838000" />
+      <workItem from="1657655944207" duration="9828000" />
+      <workItem from="1659470906764" duration="1991000" />
+      <workItem from="1659513095583" duration="626000" />
+      <workItem from="1659732176973" duration="3917000" />
+      <workItem from="1660049232400" duration="987000" />
+      <workItem from="1660072861440" duration="5145000" />
+      <workItem from="1660567898497" duration="594000" />
+      <workItem from="1660649948495" duration="595000" />
+      <workItem from="1660767668596" duration="4022000" />
+      <workItem from="1661168283470" duration="9423000" />
+      <workItem from="1661426929466" duration="19504000" />
+      <workItem from="1662379114985" duration="2185000" />
+      <workItem from="1662387312146" duration="5651000" />
+      <workItem from="1662455688510" duration="13845000" />
+      <workItem from="1662581637531" duration="5798000" />
+      <workItem from="1662837426831" duration="14288000" />
+      <workItem from="1663168683397" duration="19066000" />
+      <workItem from="1663764891151" duration="81000" />
+      <workItem from="1663765115399" duration="9414000" />
+      <workItem from="1663936011506" duration="11293000" />
+      <workItem from="1664049941957" duration="8619000" />
+      <workItem from="1664366778221" duration="26233000" />
+      <workItem from="1664912299796" duration="5206000" />
+      <workItem from="1665059789322" duration="6403000" />
+      <workItem from="1665174532475" duration="3085000" />
+      <workItem from="1665603252898" duration="684000" />
+      <workItem from="1665664530492" duration="7471000" />
+      <workItem from="1666096224539" duration="6354000" />
+      <workItem from="1666355773231" duration="51000" />
+      <workItem from="1666360350124" duration="1571000" />
+      <workItem from="1666382245879" duration="3308000" />
+      <workItem from="1666470539296" duration="4410000" />
+      <workItem from="1666706695365" duration="4569000" />
+      <workItem from="1666877913586" duration="2017000" />
+      <workItem from="1667412780138" duration="10000" />
+      <workItem from="1667654751009" duration="3835000" />
+      <workItem from="1668432587331" duration="7479000" />
+      <workItem from="1668607660333" duration="11000" />
+      <workItem from="1669197124638" duration="8498000" />
+      <workItem from="1669629821941" duration="7728000" />
+      <workItem from="1669886956205" duration="935000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/Navbar.js</url>
+          <line>28</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/icons/FacebookIcon.js</url>
+          <line>10</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/common/CustomTable.js</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/friends/Friends.js</url>
+          <line>127</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/friends/Friends.js</url>
+          <line>124</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

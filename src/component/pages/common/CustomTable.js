@@ -4,6 +4,7 @@ import {useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
 import Linkify from 'react-linkify'
 import axios from "axios";
 import {useLocation} from "react-router-dom";
+import './MyWishlits.css'
 
 export default function CustomTable() {
     const location = useLocation();
@@ -36,10 +37,11 @@ export default function CustomTable() {
     const handleSave = () => {
         const newItem = {
             _id: currentWishlist._id,
+            fields: currentWishlist.fields,
             content: currentWishlist.content
         }
         console.log('handleSave tableContent2' + JSON.stringify(newItem))
-        axios.post(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
+        axios.put(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
             .then((response) => {
                 console.log(response)
             }).catch(function (error) {
@@ -64,7 +66,7 @@ export default function CustomTable() {
                     </span>
                 </div>
                 <div className="table-responsive w-100">
-                    <table className="table table-bordered">
+                    <table className="table table-bordered wishlist-table">
                         <thead>
                         <tr>{
                             currentWishlist.fields.map((field, index) =>
@@ -82,11 +84,11 @@ export default function CustomTable() {
                                         {currentWishlist.fields.map((field, index2) =>
                                             (<td key={index2}>
                                                 <Linkify component='input'>
-                                                    {editMode && <input
-                                                        className="form-control-plaintext"
+                                                    {editMode &&
+                                                    <textarea
+                                                        className="form-control"
                                                         onChange={(e) => handleInputTableChange(index1, field, e)}
-                                                        defaultValue={item[field]}
-                                                        type='url'/>}
+                                                        defaultValue={item[field]}/>}
                                                     {!editMode && <span onClick={() => {
                                                         console.log(index1 + ' ' + index2 + 'clicked')
                                                     }}

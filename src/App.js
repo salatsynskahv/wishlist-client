@@ -27,9 +27,13 @@ function App() {
                     <Route exact path="/" element={<PrivateRoute/>}>
                         <Route exact path="/update-profile" element={<UpdateProfile/>}/>
                     </Route>
-                    <Route path="/friends" element={<Friends/>}/>
-                    <Route path="/wishlist" element={<MyWishlists/>}>
-                        <Route index path=":wishListId" element={<CustomTable/>}/>
+                    <Route exact path="/" element={<PrivateRoute/>}>
+                        <Route path="/friends" element={<Friends/>}/>
+                    </Route>
+                    <Route exact path="/" element={<PrivateRoute/>}>
+                        <Route path="/wishlist" element={<MyWishlists/>}>
+                            <Route index path=":wishListId" element={<CustomTable/>}/>
+                        </Route>
                     </Route>
                     <Route path="/signup" element={<Signup/>}/>
                     <Route path="/login" element={<Login/>}/>

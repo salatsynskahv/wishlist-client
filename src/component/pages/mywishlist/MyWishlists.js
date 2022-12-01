@@ -63,9 +63,8 @@ function MyWishlistsInner() {
                     </div>
                 </div>
             </div>
-
-        </div>)
-
+        </div>
+    )
 }
 
 

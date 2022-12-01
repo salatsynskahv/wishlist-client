@@ -5,7 +5,8 @@ import {Link, useNavigate} from "react-router-dom";
 
 export default function Home() {
     const [error, setError] = useState()
-    const { currentUser, logout } = useAuth()
+    const { currentUser, logout } = useAuth();
+    console.log('currentUser: '+ JSON.stringify(currentUser));
     const navigate = useNavigate()
     async function handleLogout() {
         setError('')

@@ -1,4 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react';
+import backend from "../component/api/backend";
 import axios from "axios";
 
 
@@ -13,7 +14,7 @@ export function UsersWishlistProvider({userEmail, children}) {
     const [wishlists, setWishlists] = useState([])
     useEffect(() => {
         try {
-            axios.get(`http://localhost:3001/wishlists/${userEmail}`, )
+            axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${userEmail}`, )
                 .then((response) => {
                     console.log(response.data)
                     // response.data.forEach((item) => item.key = item.id)

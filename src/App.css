@@ -90,9 +90,3 @@ body{
 .search-friend-modal {
   width: max-content;
 }
-
-.collapse {
-  &:not(.show) {
-    display: none;
-  }
-}

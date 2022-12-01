@@ -1,7 +1,7 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import SearchIcon from "../../../icons/SearchIcon";
 import axios from "axios";
-import {Modal} from "react-bootstrap";
+import {Accordion, Modal} from "react-bootstrap";
 import {Link} from "@mui/material";
 import {useAuth} from "../../../contexts/AuthContext";
 
@@ -9,7 +9,8 @@ export default function Friends() {
     const searchFriendRef = useRef()
     const [show, setShow] = useState(false);
     const [searchResult, setSearchResult] = useState('');
-    const [friendsList, setFriendsList] = useState([])
+    const [friends, setFriends] = useState([])
+    const [currentFriendsList, setCurrentFriendsList] = useState([])
     const {currentUser} = useAuth();
 
     const handleClose = () => {
@@ -21,15 +22,19 @@ export default function Friends() {
     const handleSearchFriend = (e) => {
         e.preventDefault();
         const value = searchFriendRef.current.value
-        axios.get(`http://localhost:3001/friends/?email=${value}`)
+        axios.get(`${process.env.REACT_APP_SERVER_HOST}/friends/?email=${value}`)
             .then((result) => {
                 setSearchResult(result.data);
                 console.log(result)
             })
     }
 
-    function addFriend(value)  {
-        setFriendsList([value, ...friendsList]);
+    useEffect(() => {
+        console.log(`currentUser.friend_ids ${currentUser.friend_ids}`);
+        setFriends(currentUser.friend_ids);
+    }, []);
+
+    function addFriend(value) {
         const updateItem = {
             email: currentUser.email,
             friend: value.email
@@ -37,11 +42,20 @@ export default function Friends() {
         console.log(JSON.stringify(currentUser));
         axios.patch(`${process.env.REACT_APP_SERVER_HOST}/user`, updateItem).then((result) => {
             console.log('user was updated')
+            setFriends([value.email, ...friends]);
         })
 
     }
+
+    const getFriendsWishlists = async (userEmail) => {
+        console.log(`getFriendsWishlists userEMail: ${userEmail}`)
+        const {data} = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${userEmail}`);
+        console.log(data)
+        setCurrentFriendsList(data);
+    }
+
     return (
-        <div className="m-3">
+        <div className="mt-3">
             <div className="container w-50">
 
                 <div className="input-group">
@@ -56,7 +70,7 @@ export default function Friends() {
             </div>
             <Modal show={show} onHide={handleClose} className="search-friend-modal">
                 <Modal.Header closeButton>
-                    <form onSubmit={handleSearchFriend} >
+                    <form onSubmit={handleSearchFriend}>
                         <div className="input-group">
                             <input type="text"
                                    className="form-control"
@@ -111,20 +125,43 @@ export default function Friends() {
                 {/*    </Button>*/}
                 {/*</Modal.Footer>*/}
             </Modal>
-            <div>
-                <h3>My friends </h3>
+            <div className="container m-0">
+                <div className="row">
+                    <div className="col col-auto" style={{maxWidth: '30%'}}>
+                        <div className="card">
+                            <div className="card-header">
+                                <h6>My friends </h6>
+                            </div>
+                            <div className="card-body">
+                                <Accordion>
+                                    {
+                                        friends.map((item, index) => {
+                                            return (
+                                                <Accordion.Item eventKey={index} key={index}>
+                                                    <Accordion.Header onClick={() => getFriendsWishlists(item)}>
+                                                        {item}
+                                                    </Accordion.Header>
+                                                    <Accordion.Body>
+                                                        <ul>
+                                                            {currentFriendsList.map(item => {
+                                                                return (
+                                                                    <li key={item._id}>
+                                                                        <a href="#">{item.name}</a>
+                                                                    </li>
+                                                                )
+                                                            })}
+                                                        </ul>
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            )
+                                        })
+                                    }
+                                </Accordion>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            {
-                <ul>
-                    {
-                        friendsList.map((item) => {
-                            return (<li key={item._id}>
-                                {item.email}
-                            </li>)
-                        })
-                    }
-                </ul>
-            }
-        </div>
-    )
+        </div>);
 }
