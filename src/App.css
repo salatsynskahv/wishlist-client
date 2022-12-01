@@ -1,6 +1,7 @@
 *{
   border-sizing: border-box;
 }
+
 body{
   margin: 0;
 }
@@ -90,3 +91,8 @@ body{
   width: max-content;
 }
 
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
