@@ -34,9 +34,6 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
     }
 
     const setTableData = (index1, index2, e) => {
-        console.log('setTableData tableContent1' + JSON.stringify(tableContent))
-        console.log('setTableData index1 ' + index1)
-        console.log('setTableData index2 ' + index2)
         const row = tableContent[index1]
         const key = Object.keys(row)[index2]
         row[key] = e.target.value
@@ -156,35 +153,38 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
 
 const FieldNames = ({addField}) => {
     const [field, setField] = useState("")
-    const addCustomField = () => {
+    const addCustomField = (event) => {
         addField(field)
-        setField('')
+        setField('');
+        event.preventDefault();
     }
 
     return (<>
-        <Form.Group className="row g-2">
+        <div className="row g-2">
             <div className="col-auto">
-                <Form.Label htmlFor="fields">Field name:</Form.Label>
+                <label htmlFor="fields">Field name:</label>
                 <div className='input-group'>
-                    <Form.Control type="text" className="form-control" id="fields" value={field}
-                                  onKeyPress={(event) => {
-                                      console.log('event.key: ' + event.key)
-                                      if (event.key === "Enter") {
-                                          console.log('event.target.value: ' + event.target.value)
-                                          setField(event.target.value)
-                                          addCustomField()
-                                      }
-                                  }}
-                                  onChange={(event) => {
-                                      setField(event.target.value)
-                                  }}/>
-                    <button className="btn btn-outline-secondary">Add</button>
+                    <input type="text"
+                           className="form-control"
+                           id="fields"
+                           value={field}
+                           onKeyPress={(event) => {
+                               console.log('event.key: ' + event.key)
+                               if (event.key === "Enter") {
+                                   console.log('event.target.value: ' + event.target.value)
+                                   setField(event.target.value)
+                                   addCustomField()
+                               }
+                           }}
+                           onChange={(event) => {
+                               setField(event.target.value)
+                           }}/>
+                    <button onClick={addCustomField} className="btn btn-outline-secondary">Add</button>
                 </div>
             </div>
             <div className="align-items-center" style={{paddingTop: '33px'}}>
-
             </div>
-        </Form.Group>
+        </div>
 
     </>)
 }

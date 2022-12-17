@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
 import {useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
-import Linkify from 'react-linkify'
+
 import axios from "axios";
 import {useLocation} from "react-router-dom";
 import './MyWishlits.css'
+import Linkify from "react-linkify";
+import WishlistTable from "./WishlistTable";
 
 export default function CustomTable() {
     const location = useLocation();
@@ -16,17 +18,13 @@ export default function CustomTable() {
     console.log('typeof wishListId' + typeof wishListId);
 
     console.log('currentWishlist' + JSON.stringify(wishlists))
-    // const foundItem = wishlists.find(item => {
-    //     console.log('typeof item._id in find: ' + typeof item._id);
-    //     return item._id === wishListId
-    // })
     useEffect(() => {
         const findList = wishlists.find(item => item._id === wishListId)
         setCurrentWishlist(findList)
         console.log('useEffect: ' + findList)
     }, [location.pathname])
-    const handleInputTableChange = (index1, field, e) => {
 
+    const handleInputTableChange = (index1, field, e) => {
         const row = currentWishlist.content[index1]
         row[field] = e.target.value
         setCurrentWishlist(currentWishlist)
@@ -49,6 +47,16 @@ export default function CustomTable() {
         });
     }
 
+    const addTableRow = () =>  {
+        const newRow = {};
+        currentWishlist.fields.map(columnName => newRow[columnName] = '')
+        console.log('newRow: ' + JSON.stringify(newRow))
+        setCurrentWishlist({...currentWishlist, content: [
+            ...currentWishlist.content,
+                newRow
+            ]})
+    }
+
     console.log('currentWishlist' + JSON.stringify(currentWishlist))
     return (
         currentWishlist && <>
@@ -66,46 +74,12 @@ export default function CustomTable() {
                     </span>
                 </div>
                 <div className="table-responsive w-100">
-                    <table className="table table-bordered wishlist-table">
-                        <thead>
-                        <tr>{
-                            currentWishlist.fields.map((field, index) =>
-                                (<td key={index}>
-                                    {field}
-                                </td>)
-                            )
-                        }
-                        </tr>
-                        </thead>
-                        {currentWishlist.content && <tbody className="table-group-divider">
-                        {
-                            currentWishlist.content.map((item, index1) =>
-                                (<tr key={index1}>
-                                        {currentWishlist.fields.map((field, index2) =>
-                                            (<td key={index2}>
-                                                <Linkify component='input'>
-                                                    {editMode &&
-                                                    <textarea
-                                                        className="form-control"
-                                                        onChange={(e) => handleInputTableChange(index1, field, e)}
-                                                        defaultValue={item[field]}/>}
-                                                    {!editMode && <span onClick={() => {
-                                                        console.log(index1 + ' ' + index2 + 'clicked')
-                                                    }}
-                                                                        onMouseLeave={() => {
-                                                                            console.log(index1 + ' ' + index2 + 'mouseLeft')
-                                                                        }}>
-                                                        {item[field]}
-                                                    </span>}
-                                                </Linkify>
-                                            </td>)
-                                        )}
-                                    </tr>
-                                )
-                            )
-                        }
-                        </tbody>}
-                    </table>
+                  <WishlistTable wishlist={currentWishlist}
+                                 setWishlist={setCurrentWishlist}
+                                 editMode={editMode}
+                                 setEditMode={setEditMode}
+                                 handleInputTableChange={handleInputTableChange}
+                  />
                 </div>
             </div>
         </>

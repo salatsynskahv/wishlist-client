@@ -4,21 +4,28 @@ import axios from "axios";
 import {Accordion, Modal} from "react-bootstrap";
 import {Link} from "@mui/material";
 import {useAuth} from "../../../contexts/AuthContext";
+import FriendsList from "./FriendsList";
+import FriendsAccordion from "./FriendsAccordion";
+import {useDispatch, useSelector} from "react-redux";
+import {addFriend, deleteFriend, initFriends} from "../../../features/friends/friendsSlice";
+import store from "../../../app/store";
 
 export default function Friends() {
-    const searchFriendRef = useRef()
+    const searchFriendRef = useRef();
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const [searchResult, setSearchResult] = useState('');
-    const [friends, setFriends] = useState([])
+    //todo: replace with redux state
+    const friends = useSelector(state => state.friends.friends);
+    // const [friends, setFriends] = useState([])
     const [currentFriendsList, setCurrentFriendsList] = useState([])
+    const [selectedList, setSelectedList] = useState(undefined)
     const {currentUser} = useAuth();
-
     const handleClose = () => {
         setShow(false);
         setSearchResult('')
     }
     const handleShow = () => setShow(true);
-
     const handleSearchFriend = (e) => {
         e.preventDefault();
         const value = searchFriendRef.current.value
@@ -31,27 +38,38 @@ export default function Friends() {
 
     useEffect(() => {
         console.log(`currentUser.friend_ids ${currentUser.friend_ids}`);
-        setFriends(currentUser.friend_ids);
+        store.dispatch(initFriends({initValue: currentUser.friend_ids}));
     }, []);
 
-    function addFriend(value) {
-        const updateItem = {
-            email: currentUser.email,
-            friend: value.email
-        }
-        console.log(JSON.stringify(currentUser));
-        axios.patch(`${process.env.REACT_APP_SERVER_HOST}/user`, updateItem).then((result) => {
-            console.log('user was updated')
-            setFriends([value.email, ...friends]);
-        })
-
+    function add(item) {
+        store.dispatch(addFriend({newFriend: item, currentUserEmail: currentUser.email}));
     }
 
-    const getFriendsWishlists = async (userEmail) => {
-        console.log(`getFriendsWishlists userEMail: ${userEmail}`)
-        const {data} = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${userEmail}`);
-        console.log(data)
-        setCurrentFriendsList(data);
+
+    function deleteF(item) {
+        dispatch(deleteFriend())
+    }
+
+
+    const addDeleteButton = (item) => {
+
+        console.log("addDeleteButton");
+        console.log(JSON.stringify(friends));
+        console.log(JSON.stringify(item));
+        if (!friends.includes(item.email)) {
+            return (<button className="ms-3 btn btn-outline-primary"
+                            onClick={() => {
+                                add(item)
+                            }}>
+                Add friend
+            </button>)
+        } else {
+            return (<button onClick={() => {
+                deleteF(item)
+            }} className="ms-3 btn btn-outline-primary">
+                Delete friend
+            </button>)
+        }
     }
 
     return (
@@ -97,22 +115,13 @@ export default function Friends() {
                                             (item) => {
                                                 return (<li key={item._id}>
                                                     <Link to="/">{item.email}</Link>
-                                                    <button className="ms-3 btn btn-outline-primary"
-                                                            onClick={() => {
-                                                                addFriend(item)
-                                                            }}>
-                                                        Add friend
-                                                    </button>
-                                                    <button hidden className="ms-3 btn btn-outline-primary">Delete
-                                                        friend
-                                                    </button>
+                                                    {addDeleteButton(item)}
                                                 </li>)
                                             }
                                         )
                                     }
-
-                                        </ul>
-                                        </span>
+                                </ul>
+                            </span>
                         }
                     </div>
                 </Modal.Body>
@@ -125,6 +134,7 @@ export default function Friends() {
                 {/*    </Button>*/}
                 {/*</Modal.Footer>*/}
             </Modal>
+            <br/>
             <div className="container m-0">
                 <div className="row">
                     <div className="col col-auto" style={{maxWidth: '30%'}}>
@@ -133,34 +143,15 @@ export default function Friends() {
                                 <h6>My friends </h6>
                             </div>
                             <div className="card-body">
-                                <Accordion>
-                                    {
-                                        friends.map((item, index) => {
-                                            return (
-                                                <Accordion.Item eventKey={index} key={index}>
-                                                    <Accordion.Header onClick={() => getFriendsWishlists(item)}>
-                                                        {item}
-                                                    </Accordion.Header>
-                                                    <Accordion.Body>
-                                                        <ul>
-                                                            {currentFriendsList.map(item => {
-                                                                return (
-                                                                    <li key={item._id}>
-                                                                        <a href="#">{item.name}</a>
-                                                                    </li>
-                                                                )
-                                                            })}
-                                                        </ul>
-                                                    </Accordion.Body>
-                                                </Accordion.Item>
-                                            )
-                                        })
-                                    }
-                                </Accordion>
+                                <FriendsAccordion
+                                    currentFriendsList={currentFriendsList}
+                                    setCurrentFriendsList={setCurrentFriendsList}
+                                    setSelectedList={setSelectedList}
+                                />
                             </div>
                         </div>
                     </div>
-
+                    <div className="col col-9"><FriendsList wishlist={selectedList}/></div>
                 </div>
             </div>
         </div>);

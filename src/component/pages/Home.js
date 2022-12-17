@@ -5,34 +5,48 @@ import {Link, useNavigate} from "react-router-dom";
 
 export default function Home() {
     const [error, setError] = useState()
-    const { currentUser, logout } = useAuth();
-    console.log('currentUser: '+ JSON.stringify(currentUser));
+    const {currentUser, logout} = useAuth();
+    console.log('currentUser: ' + JSON.stringify(currentUser));
     const navigate = useNavigate()
+
     async function handleLogout() {
         setError('')
-        try{
+        try {
             await logout()
             navigate('/login')
 
-        }catch {
+        } catch {
             setError('Failed to logout')
         }
 
     }
 
-    return (<div className="container">
-        <Card>
-            <Card.Body>
-                {error && <Alert variant="danger"> {error}</Alert>}
-                <h2 className="text-center mb-4">Profile</h2>
-                <strong>Email: </strong> {currentUser.email}
-                <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update profile</Link>
-            </Card.Body>
-        </Card>
-        <Card>
-            <div className="text-center mt-2">
-                <Button variant="link" onClick={handleLogout}>Log out</Button>
+    const aboutUser = !!currentUser ?
+        (<div className="about-user">
+            <h2 className="text-center mb-4">About You</h2>
+            <strong>Email: </strong> {currentUser.email}
+            <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update profile</Link>
+        </div>) : (<p> Please, <Link to='/login'>login </Link> for better user experience</p>)
+
+    return (
+        <>
+            <div className="home-page-banner">
+                <p>
+                    <br/>
+                    <h2 className="home-title"> Create wishlists!  &nbsp; Share with friends!</h2>
+                    <h2 className="home-title">Get what you want! </h2>
+                </p>
             </div>
-        </Card>
-    </div>)
+            <div className="container">
+
+                <aside id="home-aside" className="m-0">
+                    <div className="container">
+                        {error && <Alert variant="danger"> {error}</Alert>}
+                        {aboutUser}
+                    </div>
+                </aside>
+            </div>
+        </>
+    )
+
 }

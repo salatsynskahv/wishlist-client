@@ -21,9 +21,7 @@ function App() {
             <AuthProvider>
                 <Navbar/>
                 <Routes>
-                    <Route exact path="/" element={<PrivateRoute/>}>
-                        <Route exact path="/" element={<Home/>}/>
-                    </Route>
+                    <Route exact path="/" element={<Home/>}/>
                     <Route exact path="/" element={<PrivateRoute/>}>
                         <Route exact path="/update-profile" element={<UpdateProfile/>}/>
                     </Route>
