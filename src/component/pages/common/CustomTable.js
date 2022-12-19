@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
 import {useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
 
-import axios from "axios";
-import {useLocation} from "react-router-dom";
+import axios from "axios"
+import {useLocation} from "react-router-dom"
 import './MyWishlits.css'
-import Linkify from "react-linkify";
-import WishlistTable from "./WishlistTable";
+import WishlistTable from "./WishlistTable"
 
 export default function CustomTable() {
     const location = useLocation();

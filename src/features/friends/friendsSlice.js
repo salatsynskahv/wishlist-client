@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from "axios";
-import {useAuth} from "../../contexts/AuthContext";
 
 export const addFriend = createAsyncThunk('friends/addFriend',
     async (updateItem) => {

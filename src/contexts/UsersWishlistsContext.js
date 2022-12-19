@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import backend from "../component/api/backend";
 import axios from "axios";
 
 

@@ -80,7 +80,7 @@ body{
 
 .login-form {
   margin: 20px;
-  width: 250px;
+  max-width: 250px;
 }
 
 .my-wishlist-page{
@@ -132,4 +132,23 @@ body{
   width: 100em;
   top: 15%;
   left: 20%;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bdr {
+  border-radius: 15px;
+  border-color: grey;
+  overflow: hidden;
+}
+
+.dot3-button{
+}
+.table-cell{
+  display: flex;
+  justify-content: space-between;
 }

@@ -13,6 +13,8 @@ import ForgotPassword from "./component/pages/auth/ForgotPassword";
 import UpdateProfile from "./component/pages/auth/UpdateProfile";
 import CustomTable from "./component/pages/common/CustomTable";
 import Logout from "./component/pages/auth/Logout";
+import Planner from "./component/pages/planner/Planner";
+
 
 function App() {
 
@@ -24,6 +26,9 @@ function App() {
                     <Route exact path="/" element={<Home/>}/>
                     <Route exact path="/" element={<PrivateRoute/>}>
                         <Route exact path="/update-profile" element={<UpdateProfile/>}/>
+                    </Route>
+                    <Route exact path="/" element={<PrivateRoute/>}>
+                        <Route exact path="/planner" element={<Planner/>}/>
                     </Route>
                     <Route exact path="/" element={<PrivateRoute/>}>
                         <Route path="/friends" element={<Friends/>}/>
