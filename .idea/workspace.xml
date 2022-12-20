@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/pages/planner/Planner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/icons/Dots3Icon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/pages/error/Error.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/common/MyWishlits.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/MyWishlits.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/UsersWishlistsContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/UsersWishlistsContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/PrivateRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +148,7 @@
       <workItem from="1671008904452" duration="6555000" />
       <workItem from="1671092078313" duration="5060000" />
       <workItem from="1671200681944" duration="2756000" />
-      <workItem from="1671282877363" duration="21837000" />
+      <workItem from="1671282877363" duration="27172000" />
     </task>
     <servers />
   </component>
@@ -213,6 +204,12 @@
           <url>file://$PROJECT_DIR$/src/component/pages/friends/Friends.js</url>
           <line>74</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/common/WishlistTable.js</url>
+          <line>176</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

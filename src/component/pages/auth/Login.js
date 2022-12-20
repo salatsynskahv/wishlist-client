@@ -6,10 +6,16 @@ import {Link, useNavigate} from "react-router-dom"
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const {login, errorCode} = useAuth()
+    const {login, errorCode, signupWithGoogle} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+
+    function handleGoogle() {
+        signupWithGoogle().then((result) => {
+            navigate('/');
+        })
+    }
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -63,9 +69,9 @@ export default function Login() {
                 </Col>
                 <Col xs={3} className="m-4">
                     <Card>
-                        <button className="btn btn-outline-primary">Login with Google</button>
+                        <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
                         <br/>
-                        <button className="btn btn-outline-primary">Login with Facebook</button>
+                        <button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>
                     </Card>
                 </Col>
             </div>
