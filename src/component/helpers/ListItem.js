@@ -1,27 +1,24 @@
 import React from "react";
 import DeleteIcon from "../../icons/DeleteIcon";
 import {Link} from "react-router-dom";
-import axios from "axios";
 
-const ListItem = ({row, rows, setRows, path}) => {
-    const headers = {
-        "Content-Type": "application/json"
-    }
-    const deleteHandler = () => {
-        axios.delete(`http://localhost:3001/wishlist/${row._id}`, headers).then(
-            (response) => {
-                console.log(row._id + 'was deleted')
-                const newTodo = rows.filter((el) => el._id !== row._id);
-                setRows(newTodo)
-            }
-        )
+const ListItem = ({row, setSelectedRow, path}) => {
 
-    }
 
     return (<div className="todo">
         <li>
             <Link to={path}>{row.name}</Link>
-            <span className="delete-button" onClick={deleteHandler}> <DeleteIcon/> </span>
+            <button id="deleteButton"
+                    className="delete-button"
+                    data-bs-toggle="modal"
+                    data-bs-target={`#deleteModal`}
+                    onClick={() => {
+                        setSelectedRow(row)
+                    }}
+            >
+                <DeleteIcon/>
+            </button>
+
         </li>
     </div>);
 }

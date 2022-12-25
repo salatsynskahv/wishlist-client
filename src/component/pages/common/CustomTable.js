@@ -6,23 +6,43 @@ import axios from "axios"
 import {useLocation} from "react-router-dom"
 import './MyWishlits.css'
 import WishlistTable from "./WishlistTable"
+import {useAuth} from "../../../contexts/AuthContext";
 
 export default function CustomTable() {
     const location = useLocation();
-    const [currentWishlist, setCurrentWishlist] = useState()
+    const [currentWishlist, setCurrentWishlist] = useState(undefined)
     const [editMode, setEditMode] = useState(false);
     const params = useParams();
     const wishListId = params.wishListId;
-    const {wishlists} = useUsersWishlists();
+    let {wishlists} = useUsersWishlists();
+    const {currentUser} = useAuth();
+    console.log('currentUser.email: ' + currentUser.email);
     console.log('typeof wishListId' + typeof wishListId);
 
-    console.log('currentWishlist' + JSON.stringify(wishlists))
+    console.log('currentWishlist: ' + JSON.stringify(wishListId))
     useEffect(() => {
-        const findList = wishlists.find(item => item._id === wishListId)
-        setCurrentWishlist(findList)
-        console.log('useEffect: ' + findList)
+        console.log('wishlists before: ' + JSON.stringify(wishlists))
+        //todo: solve problem with context
+        if (wishlists.length < 1) {
+            wishlists = getWishlistFromServer().then(
+                (repsonse) => {
+                    wishlists = repsonse.data;
+                    const findList = wishlists.find(item => item._id === wishListId)
+                    setCurrentWishlist(findList)
+                    console.log('useEffect: ' + findList)
+                }
+            )
+        } else {
+            const findList = wishlists.find(item => item._id === wishListId)
+            setCurrentWishlist(findList)
+            console.log('useEffect: ' + findList)
+        }
+
     }, [location.pathname])
 
+    const getWishlistFromServer = () => {
+        return axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${currentUser.email}`);
+    }
     const handleInputTableChange = (index1, field, e) => {
         const row = currentWishlist.content[index1]
         row[field] = e.target.value
@@ -46,14 +66,16 @@ export default function CustomTable() {
         });
     }
 
-    const addTableRow = () =>  {
+    const addTableRow = () => {
         const newRow = {};
         currentWishlist.fields.map(columnName => newRow[columnName] = '')
         console.log('newRow: ' + JSON.stringify(newRow))
-        setCurrentWishlist({...currentWishlist, content: [
-            ...currentWishlist.content,
+        setCurrentWishlist({
+            ...currentWishlist, content: [
+                ...currentWishlist.content,
                 newRow
-            ]})
+            ]
+        })
     }
 
     console.log('currentWishlist' + JSON.stringify(currentWishlist))
@@ -73,12 +95,12 @@ export default function CustomTable() {
                     </span>
                 </div>
                 <div className="table-responsive w-100">
-                  <WishlistTable wishlist={currentWishlist}
-                                 setWishlist={setCurrentWishlist}
-                                 editMode={editMode}
-                                 setEditMode={setEditMode}
-                                 handleInputTableChange={handleInputTableChange}
-                  />
+                    <WishlistTable wishlist={currentWishlist}
+                                   setWishlist={setCurrentWishlist}
+                                   editMode={editMode}
+                                   setEditMode={setEditMode}
+                                   handleInputTableChange={handleInputTableChange}
+                    />
                 </div>
             </div>
         </>

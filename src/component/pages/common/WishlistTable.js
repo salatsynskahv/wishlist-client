@@ -111,7 +111,16 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
                     <td key={index2}
                         onMouseOver={(e) => setDotsVisible(index1, index2)}
                         onMouseLeave={(e) => setDotsHidden(index1, index2)}>
-                        <Linkify component='input'>
+                        <Linkify
+                            componentDecorator={(
+                                decoratedHref,
+                                decoratedText,
+                                key) => (
+                                <a href={decoratedHref} key={key} target="_blank">
+                                    {decoratedText}
+                                </a>
+                            )}
+                        >
                             {
                                 editMode &&
                                 <textarea

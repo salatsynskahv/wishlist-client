@@ -1,5 +1,7 @@
 *{
   border-sizing: border-box;
+  margin: 0;
+  padding:0;
 }
 
 body{
@@ -72,6 +74,13 @@ body{
 
 .delete-button {
   align-items: flex-end;
+  border: none;
+  background: #fff;
+}
+
+.delete-modal-content{
+  display: block;
+  text-align: center;
 }
 
 .newtable-th{
@@ -151,4 +160,15 @@ body{
 .table-cell{
   display: flex;
   justify-content: space-between;
+}
+
+.wishlist-menu {
+  list-style: none;
+  padding: 10px 5px;
+}
+
+.wishlist-menu li a{
+  color: #5c636a;
+  text-decoration: none;
+
 }

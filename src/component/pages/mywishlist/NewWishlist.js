@@ -63,9 +63,9 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
     }
 
     return (show &&
-        <Container className="align-items-start">
-            <div className="row">
-                <div className="col-auto">
+        <div className="align-items-start d-block overflow-auto m-3">
+            <div style={{float: 'left'}}>
+                <div>
                     <Container className="d-flex align-items-start">
                         <form onSubmit={createWishList}>
                             <Form.Group>
@@ -79,38 +79,37 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
                                               }}
                                 />
                             </Form.Group>
+                            <br/>
+                            <Button onClick={createDefaultColumns}>Create default table</Button>
+                            <br/>
                             <FieldNames addField={addField}/>
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" value="" id="privateCheck"/>
+                                <label className="form-check-label" htmlFor="privateCheck"> Private list </label>
+                            </div>
                             <div style={{marginTop: '20px'}}>
                                 <Button type="submit" variant="contained">
                                     Save
                                 </Button>
                                 <Button onClick={() => {
                                     setShow(false)
-                                }}> Close </Button>
+                                }}>Close </Button>
                             </div>
                         </form>
 
                         <br/>
                     </Container>
                 </div>
-                <div className="col-auto">
-                    <Button onClick={createDefaultColumns}>Create default table</Button>
-
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="privateCheck"/>
-                        <label className="form-check-label" htmlFor="privateCheck"> Private list </label>
-                    </div>
-                </div>
             </div>
-            <div className="row">
+            <div>
                 <div className="align-items-center">
                     <div className=" align-items-center width-35-per shadow-sm p-3 mb-5 bg-body rounded">
                         <h4 className=""><strong>{name}</strong></h4>
                     </div>
                 </div>
             </div>
-            <div className="row">
-                <div className="container">
+            <div>
+                <div>
                     <div className="table-responsive">
                         <table className="table table-bordered wishlist-table">
                             <thead>
@@ -146,7 +145,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
                     </div>
                 </div>
             </div>
-        </Container>
+        </div>
 
     )
 }
@@ -162,7 +161,7 @@ const FieldNames = ({addField}) => {
     return (<>
         <div className="row g-2">
             <div className="col-auto">
-                <label htmlFor="fields">Field name:</label>
+                <label htmlFor="fields">Add custom column:</label>
                 <div className='input-group'>
                     <input type="text"
                            className="form-control"
