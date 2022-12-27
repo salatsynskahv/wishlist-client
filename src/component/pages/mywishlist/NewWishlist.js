@@ -63,7 +63,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
     }
 
     return (show &&
-        <div className="align-items-start d-block overflow-auto m-3">
+        <div className="align-items-start d-block m-3">
             <div style={{float: 'left'}}>
                 <div>
                     <Container className="d-flex align-items-start">
@@ -103,9 +103,9 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
             </div>
             <div>
                 <div className="align-items-center">
-                    <div className=" align-items-center width-35-per shadow-sm p-3 mb-5 bg-body rounded">
-                        <h4 className=""><strong>{name}</strong></h4>
-                    </div>
+                    {name && <div className=" align-items-center width-35-per">
+                        <h4><strong>{name}</strong></h4>
+                    </div>}
                 </div>
             </div>
             <div>

@@ -94,14 +94,14 @@ export default function CustomTable() {
                                 }}> Save </button>
                     </span>
                 </div>
-                <div className="table-responsive w-100">
+                {/*<div className="table-responsive w-100">*/}
                     <WishlistTable wishlist={currentWishlist}
                                    setWishlist={setCurrentWishlist}
                                    editMode={editMode}
                                    setEditMode={setEditMode}
                                    handleInputTableChange={handleInputTableChange}
                     />
-                </div>
+                {/*</div>*/}
             </div>
         </>
     )

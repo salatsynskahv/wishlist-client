@@ -64,7 +64,7 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
         if (lastColumn) {
             return (
                 <td key={index}>
-                    <div className="table-header">
+                    <div>
                         {field}
                         <div className="btn-group">
                             <button type="button" className="btn btn-primary" data-bs-toggle="dropdown"
@@ -82,7 +82,7 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
         } else {
             return (
                 <td key={index}>
-                    <div className="table-header">
+                    <div>
                         {field}
                     </div>
                 </td>
@@ -137,21 +137,34 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
                                         visibilityDotsMatrix &&
                                         <div className="btn-group">
                                             <button type="button"
-                                                    className="btn btn-link dot3-button dropdown-toggle"
-                                                    data-toggle="dropdown"
-                                                    aria-haspopup="true"
+                                                    className="btn btn-link"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false"
-                                                    hidden={visibilityDotsMatrix[index1][index2]}
-                                            >
+                                                    hidden={visibilityDotsMatrix[index1][index2]}>
                                                 <Dot3Icon/>
                                             </button>
                                             <ul className="dropdown-menu">
                                                 <li><a className="dropdown-item" href="#" onClick={addTableRow}> Add row below</a></li>
-                                                <li><a className="dropdown-item" href="#">Add column after</a></li>
+                                                 <li><a className="dropdown-item" href="#">Add column after</a></li>
                                                 <li><a className="dropdown-item" href="#">Change cell type</a></li>
                                             </ul>
                                         </div>
+                                        // <div className="btn-group">
+                                        //     <button type="button"
+                                        //             className="btn btn-link dot3-button dropdown-toggle"
+                                        //             data-toggle="dropdown"
+                                        //             aria-haspopup="true"
+                                        //             aria-expanded="false">
+                                        //         <Dot3Icon/>
+                                        //     </button>
+                                        //     <ul className="dropdown-menu">
+                                        //         <li><a className="dropdown-item" href="#" onClick={addTableRow}> Add row below</a></li>
+                                        //         <li><a className="dropdown-item" href="#">Add column after</a></li>
+                                        //         <li><a className="dropdown-item" href="#">Change cell type</a></li>
+                                        //     </ul>
+                                        //  </div>
                                     }
+
                                 </div>
 
                             }
@@ -165,9 +178,9 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
     }
     return (
         <>
-            <table className="table table-bordered rounded rounded-3 overflow-hidden wishlist-table">
+            <table className="wishlist-table bordered">
                 <thead>
-                <tr>
+                <tr className="wishlist-table-body">
                     {
                         wishlist.fields.map((field, index) => {
                                 return tableHeader(index === (wishlist.fields.length - 1), index, field)
