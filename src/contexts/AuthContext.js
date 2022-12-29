@@ -81,8 +81,9 @@ export function AuthProvider({children}) {
                         console.log(JSON.stringify(resultUser));
                         setCurrentUser(resultUser)
                     } catch (error) {
+
                         console.log(error)
-                        setErrorCode(error.code)
+                        setErrorCode(error.code);
                     }
                 }
                 setLoading(false)
@@ -103,7 +104,8 @@ export function AuthProvider({children}) {
         resetPassword,
         changeEmail,
         changePassword,
-        signupWithGoogle
+        signupWithGoogle,
+        errorCode
     }
 
 

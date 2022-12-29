@@ -1,3 +1,23 @@
+/* Color variables */
+$font-family-sans-serif: "Poppins",
+sans-serif;
+$primary: #8EBFDF;
+$secondary: #E2E4E3;
+
+$theme-colors: (
+        "primary":    $primary,
+        //"secondary":  $secondary,
+        //"success":    $success,
+        //"info":       $info,
+        //"warning":    $warning,
+        //"danger":     $danger,
+        //"light":      $light,
+        //"dark":       $dark
+);
+
+
+@import '~bootstrap/scss/bootstrap.scss';
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +29,7 @@ body {
 }
 
 .nav {
-    background-color: #7e7ec6;
+    background-color: #866EE1;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -31,7 +51,7 @@ body {
 }
 
 .nav li:hover {
-    background-color: #777;
+    background-color: $primary;
 }
 
 .nav a {
@@ -126,7 +146,7 @@ body {
     display: inline-block;
     padding: 100px;
     margin-left: 15%;
-    width: 60em;
+    width: 70em;
 }
 
 #home-aside {
@@ -183,10 +203,10 @@ table {
 }
 .bordered th {
     background-color: #ECECEC;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ECECEC));
-    background-image: -webkit-linear-gradient(top, #F8F8F8, #ECECEC);
-    background-image: -moz-linear-gradient(top, #F8F8F8, #ECECEC);
-    background-image: linear-gradient(top, #F8F8F8, #ECECEC);
+    //background-image: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ECECEC));
+    //background-image: -webkit-linear-gradient(top, #F8F8F8, #ECECEC);
+    //background-image: -moz-linear-gradient(top, #F8F8F8, #ECECEC);
+    //background-image: linear-gradient(top, #F8F8F8, #ECECEC);
     -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
     -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
     box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
@@ -236,6 +256,9 @@ table {
     list-style: none;
     padding: 10px 5px;
 }
+.wishlist-menu li {
+    padding: 5px 0;
+}
 
 .wishlist-menu li a {
     color: #5c636a;
@@ -254,4 +277,8 @@ table {
 
 .wishlist-table-body {
     border: 1px solid grey;
+}
+
+.error {
+    color: red;
 }

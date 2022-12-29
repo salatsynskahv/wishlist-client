@@ -58,16 +58,26 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
                 newRow
             ]
         });
+        const copyVisibilityMatrix = [...visibilityDotsMatrix];
+        const newVisibilityRow = [];
+        wishlist.fields.forEach((item, index) => newVisibilityRow[index] = true);
+        console.log("New Visibilty Row: " + newVisibilityRow)
+        copyVisibilityMatrix[wishlist.content.length] = newVisibilityRow
+        setVisibilityDotsMatrix(copyVisibilityMatrix);
+        setEditMode(false)
+
     }
 
     const tableHeader = (lastColumn, index, field) => {
         if (lastColumn) {
             return (
                 <td key={index}>
-                    <div>
+                    <div className="table-cell">
                         {field}
                         <div className="btn-group">
-                            <button type="button" className="btn btn-primary" data-bs-toggle="dropdown"
+                            <button type="button"
+                                    className="btn btn-link"
+                                    data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                 <PlusCircleDotted/>
                             </button>
@@ -102,6 +112,10 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
 
     const setDotsHidden = (index1, index2) => {
         changeVisibility(index1, index2, true)
+    }
+    const deleteTableRow = (inputIndex) => {
+        const filteredContent = wishlist.content.filter((item, index) => index !== inputIndex)
+        setWishlist({...wishlist, content: filteredContent})
     }
 
     const tableRow = (wishlist, item, index1) => {
@@ -144,9 +158,13 @@ const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, ha
                                                 <Dot3Icon/>
                                             </button>
                                             <ul className="dropdown-menu">
-                                                <li><a className="dropdown-item" href="#" onClick={addTableRow}> Add row below</a></li>
-                                                 <li><a className="dropdown-item" href="#">Add column after</a></li>
-                                                <li><a className="dropdown-item" href="#">Change cell type</a></li>
+                                                <li><a className="dropdown-item" href="#" onClick={addTableRow}> Add row
+                                                    below</a></li>
+                                                <li><a className="dropdown-item" href="#"
+                                                       onClick={() => deleteTableRow(index1)}> Delete current row </a>
+                                                </li>
+                                                {/*<li><a className="dropdown-item" href="#">Add column after</a></li>*/}
+                                                {/*<li><a className="dropdown-item" href="#">Change cell type</a></li>*/}
                                             </ul>
                                         </div>
                                         // <div className="btn-group">
