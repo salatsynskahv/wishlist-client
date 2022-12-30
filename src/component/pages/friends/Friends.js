@@ -135,23 +135,23 @@ export default function Friends() {
                 {/*</Modal.Footer>*/}
             </Modal>
             <br/>
-            <div className="container m-0">
-                <div className="row">
-                    <div className="col col-auto" style={{maxWidth: '30%'}}>
-                        <div className="card">
-                            <div className="card-header">
-                                <h6>My friends </h6>
-                            </div>
-                            <div className="card-body">
-                                <FriendsAccordion
-                                    currentFriendsList={currentFriendsList}
-                                    setCurrentFriendsList={setCurrentFriendsList}
-                                    setSelectedList={setSelectedList}
-                                />
-                            </div>
+            <div>
+                <div className="box" style={{maxWidth: '30%'}}>
+                    <div className="card">
+                        <div className="card-header">
+                            <h6>My friends </h6>
+                        </div>
+                        <div className="card-body">
+                            <FriendsAccordion
+                                currentFriendsList={currentFriendsList}
+                                setCurrentFriendsList={setCurrentFriendsList}
+                                setSelectedList={setSelectedList}
+                            />
                         </div>
                     </div>
-                    <div className="col col-9"><FriendsList wishlist={selectedList}/></div>
+                </div>
+                <div className="box" style={{width: '68%'}}>
+                    <FriendsList wishlist={selectedList}/>
                 </div>
             </div>
         </div>);

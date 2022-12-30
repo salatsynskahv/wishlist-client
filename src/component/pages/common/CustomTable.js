@@ -11,6 +11,7 @@ import {useAuth} from "../../../contexts/AuthContext";
 export default function CustomTable() {
     const location = useLocation();
     const [currentWishlist, setCurrentWishlist] = useState(undefined)
+    const [visibilityDotsMatrix, setVisibilityDotsMatrix] = useState();
     const [editMode, setEditMode] = useState(false);
     const params = useParams();
     const wishListId = params.wishListId;
@@ -18,6 +19,26 @@ export default function CustomTable() {
     const {currentUser} = useAuth();
     console.log('currentUser.email: ' + currentUser.email);
     console.log('typeof wishListId' + typeof wishListId);
+
+    const initVisibilityMatrix = (currentWishlist) => {
+        console.log("Wishlist TABLE !!!! on mount")
+        if (!currentWishlist) return;
+        const newMatrix = []
+        currentWishlist.content.forEach(
+            (item, index1) => {
+                console.log(Object.keys(item))
+                newMatrix[index1] = []
+                item && Object.keys(item).forEach(
+                    (key, index2) => {
+                        newMatrix[index1][index2] = true;
+                    }
+                )
+            }
+        )
+
+        setVisibilityDotsMatrix(newMatrix);
+        console.log("visibilityMatrix: " + newMatrix)
+    }
 
     console.log('currentWishlist: ' + JSON.stringify(wishListId))
     useEffect(() => {
@@ -30,13 +51,17 @@ export default function CustomTable() {
                     const findList = wishlists.find(item => item._id === wishListId)
                     setCurrentWishlist(findList)
                     console.log('useEffect: ' + findList)
+                    initVisibilityMatrix(findList)
                 }
             )
         } else {
             const findList = wishlists.find(item => item._id === wishListId)
             setCurrentWishlist(findList)
+            initVisibilityMatrix(findList)
             console.log('useEffect: ' + findList)
         }
+
+
 
     }, [location.pathname])
 
@@ -100,6 +125,8 @@ export default function CustomTable() {
                                    editMode={editMode}
                                    setEditMode={setEditMode}
                                    handleInputTableChange={handleInputTableChange}
+                                   visibilityDotsMatrix={visibilityDotsMatrix}
+                                   setVisibilityDotsMatrix={setVisibilityDotsMatrix}
                     />
                 {/*</div>*/}
             </div>

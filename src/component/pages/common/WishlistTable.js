@@ -2,46 +2,40 @@ import React, {useEffect, useState} from "react";
 import Linkify from "react-linkify";
 import Dot3Icon from "../../../icons/Dots3Icon";
 import PlusCircleDotted from "../../../icons/PlusCircleDotted";
+import {useLocation} from "react-router-dom";
 
-const WishlistTable = ({wishlist, setWishlist, editMode = false, setEditMode, handleInputTableChange}) => {
-    const [visibilityDotsMatrix, setVisibilityDotsMatrix] = useState();
-
-    useEffect(() => {
-        if (!wishlist) return;
-        const newMatrix = []
-        wishlist.content.forEach(
-            (item, index1) => {
-                console.log(Object.keys(item))
-                newMatrix[index1] = []
-                item && Object.keys(item).forEach(
-                    (key, index2) => {
-                        newMatrix[index1][index2] = true;
-                    }
-                )
-            }
-        )
-
-        setVisibilityDotsMatrix(newMatrix);
-        console.log("visilityMatrix: " + newMatrix)
+const WishlistTable = ({
+                           wishlist,
+                           setWishlist,
+                           editMode = false,
+                           setEditMode,
+                           handleInputTableChange,
+                           visibilityDotsMatrix,
+                           setVisibilityDotsMatrix
+                       }) => {
 
 
-        return () => {
-            // if (!wishlist) return;
-            //
-            // const newItem = {
-            //     _id: wishlist._id,
-            //     fields: wishlist.fields,
-            //     content: wishlist.content
-            // }
-            // // console.log('handleSave tableContent2' + JSON.stringify(newItem))
-            // axios.put(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
-            //     .then((response) => {
-            //         console.log(response)
-            //     }).catch(function (error) {
-            //     console.log(error);
-            // });
-        }
-    }, [])
+    // useEffect(() => {
+    //
+    //
+    //
+    //     return () => {
+    //         // if (!wishlist) return;
+    //         //
+    //         // const newItem = {
+    //         //     _id: wishlist._id,
+    //         //     fields: wishlist.fields,
+    //         //     content: wishlist.content
+    //         // }
+    //         // // console.log('handleSave tableContent2' + JSON.stringify(newItem))
+    //         // axios.put(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
+    //         //     .then((response) => {
+    //         //         console.log(response)
+    //         //     }).catch(function (error) {
+    //         //     console.log(error);
+    //         // });
+    //     }
+    // }, [])
 
     if (!wishlist) {
         return <div>Select table first</div>
