@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {useAuth} from "../../../contexts/AuthContext";
 import axios from "axios";
 import {Container, Form} from "react-bootstrap";
@@ -7,6 +7,7 @@ import {Button} from "@mui/material";
 const NewWishlist = ({rows, setRows, show, setShow}) => {
     const ObjectID = require("bson-objectid")
     const {currentUser} = useAuth()
+    const defaultNewTableBtnRef = useRef(null);
     const [name, setName] = React.useState("");
     const [fields, setFields] = React.useState([])
     const [tableContent, setTableContent] = React.useState([{}])
@@ -52,19 +53,27 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
     }
 
     const createDefaultColumns = () => {
+        if (fields.length > 1) {
+            return;
+        }
         setFields([...fields, 'name', 'link', 'comment'])
         console.log(fields)
         const newTable = tableContent.map(item => {
             return {...item, ...{name: '', link: '', comment: ''}}
         })
         setTableContent(newTable)
+        defaultNewTableBtnRef.current.disabled = true;
         console.log(fields)
         console.log("tableContent: " + JSON.stringify(tableContent))
     }
 
+    const closeHandler = () => {
+        setShow(false)
+    }
+
     return (show &&
         <div className="align-items-start d-block m-3">
-            <div style={{float: 'left'}}>
+            <div className="fl-left">
                 <div>
                     <Container className="d-flex align-items-start">
                         <form onSubmit={createWishList}>
@@ -80,7 +89,13 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
                                 />
                             </Form.Group>
                             <br/>
-                            <Button onClick={createDefaultColumns}>Create default table</Button>
+                            <button
+                                onClick={createDefaultColumns}
+                                ref={defaultNewTableBtnRef}
+                                className="btn btn-link"
+                            >
+                                Create default table
+                            </button>
                             <br/>
                             <FieldNames addField={addField}/>
                             <div className="form-check">
@@ -91,9 +106,7 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
                                 <Button type="submit" variant="contained">
                                     Save
                                 </Button>
-                                <Button onClick={() => {
-                                    setShow(false)
-                                }}>Close </Button>
+                                <Button onClick={closeHandler}>Close </Button>
                             </div>
                         </form>
 
@@ -108,41 +121,39 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
                     </div>}
                 </div>
             </div>
-            <div>
+            <div className="fl-right">
                 <div>
-                    <div className="table-responsive">
-                        <table className="table table-bordered wishlist-table">
-                            <thead>
-                            <tr>{
-                                fields.map((field, index) =>
-                                    (<td key={index}>
-                                        {field}
-                                    </td>)
+                    <table className="wishlist-table bordered">
+                        <thead>
+                        <tr className="wishlist-table-body">{
+                            fields.map((field, index) =>
+                                (<td key={index}>
+                                    {field}
+                                </td>)
+                            )
+                        }</tr>
+                        </thead>
+                        <tbody className="table-group-divider">
+                        {
+                            tableContent.map((item, index1) =>
+                                (<tr key={index1}>
+                                        {fields.map((field, index2) => {
+                                                return (
+                                                    <td key={index2}>
+                                                        <input
+                                                            className="form-control-plaintext"
+                                                            onChange={(e) => setTableData(index1, index2, e)}
+                                                            type='text'/>
+                                                    </td>
+                                                )
+                                            }
+                                        )}
+                                    </tr>
                                 )
-                            }</tr>
-                            </thead>
-                            <tbody className="table-group-divider">
-                            {
-                                tableContent.map((item, index1) =>
-                                    (<tr key={index1}>
-                                            {fields.map((field, index2) => {
-                                                    return (
-                                                        <td key={index2}>
-                                                            <input
-                                                                className="form-control-plaintext"
-                                                                onChange={(e) => setTableData(index1, index2, e)}
-                                                                type='text'/>
-                                                        </td>
-                                                    )
-                                                }
-                                            )}
-                                        </tr>
-                                    )
-                                )
-                            }
-                            </tbody>
-                        </table>
-                    </div>
+                            )
+                        }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

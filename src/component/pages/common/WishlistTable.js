@@ -148,7 +148,7 @@ const WishlistTable = ({
                                                     className="btn btn-link"
                                                     data-bs-toggle="dropdown"
                                                     aria-expanded="false"
-                                                    hidden={visibilityDotsMatrix[index1][index2]}>
+                                                    style={{visibility: visibilityDotsMatrix[index1][index2] ? 'hidden' : 'visible'}}>
                                                 <Dot3Icon/>
                                             </button>
                                             <ul className="dropdown-menu">

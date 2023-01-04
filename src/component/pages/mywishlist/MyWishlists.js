@@ -21,10 +21,10 @@ function MyWishlistsInner() {
     const [show, setShow] = useState(false)
     return (
         <>
-            <div className="container my-wishlist-page">
+            <div className="container my-wishlist-page d-block">
                 <NewWishlist rows={wishlists} setRows={setWishlists} show={show} setShow={setShow}/>
             </div>
-            <div className="container">
+            <div className="container my-wishlist-menu">
                 <WishlistMenu wishlists={wishlists} setWishlists={setWishlists} show={show} setShow={setShow}/>
             </div>
 

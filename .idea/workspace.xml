@@ -4,9 +4,9 @@
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +158,7 @@
       <workItem from="1672216610539" duration="3070000" />
       <workItem from="1672231789044" duration="5430000" />
       <workItem from="1672345099799" duration="5649000" />
-      <workItem from="1672388198401" duration="1283000" />
+      <workItem from="1672388198401" duration="9682000" />
     </task>
     <servers />
   </component>
@@ -217,7 +217,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
-          <line>67</line>
+          <line>76</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
