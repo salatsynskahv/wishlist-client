@@ -3,16 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/helpers/ListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/helpers/ListItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/planner/Planner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/planner/Planner.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,15 +65,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -167,7 +157,8 @@
       <workItem from="1672231789044" duration="5430000" />
       <workItem from="1672345099799" duration="5649000" />
       <workItem from="1672388198401" duration="16316000" />
-      <workItem from="1673011499737" duration="15235000" />
+      <workItem from="1673011499737" duration="16472000" />
+      <workItem from="1673294596463" duration="5174000" />
     </task>
     <servers />
   </component>

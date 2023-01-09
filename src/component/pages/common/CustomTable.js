@@ -66,13 +66,7 @@ export default function CustomTable() {
     const getWishlistFromServer = () => {
         return axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${currentUser.email}`);
     }
-    const handleInputTableChange = (index1, field, e) => {
-        const row = currentWishlist.content[index1]
-        row[field] = e.target.value
-        setCurrentWishlist(currentWishlist)
-        // console.log('setTableData tableContent2' + JSON.stringify(currentWishlist))
-        // console.log('row' + JSON.stringify(row))
-    }
+
 
 
 
@@ -87,7 +81,6 @@ export default function CustomTable() {
                 <WishlistTable
                     wishlist={currentWishlist}
                     setWishlist={setCurrentWishlist}
-                    handleInputTableChange={handleInputTableChange}
                     visibilityDotsMatrix={visibilityDotsMatrix}
                     setVisibilityDotsMatrix={setVisibilityDotsMatrix}
                 />

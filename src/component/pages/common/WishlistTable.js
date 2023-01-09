@@ -7,13 +7,15 @@ import axios from "axios";
 const WishlistTable = ({
                            wishlist,
                            setWishlist,
-                           handleInputTableChange,
                            visibilityDotsMatrix,
                            setVisibilityDotsMatrix
                        }) => {
 
 
     const [currentFocusValue, setCurrentFocusValue] = useState();
+    const [cellToEdit, setCellToEdit] = useState({})
+    const [needTableSave, setNeedTableSave] = useState(false);
+    console.log(cellToEdit)
     const newColumnNameInputRef = useRef();
 
     if (!wishlist) {
@@ -34,11 +36,22 @@ const WishlistTable = ({
             console.log(error);
         });
     }
+    const handleInputTableChange = (index1, field, e) => {
+        const newContent = [...wishlist.content];
+        newContent[index1][field] = e.target.value
+        setWishlist({
+                ...wishlist,
+                content: newContent
+            }
+        )
+        setNeedTableSave(true);
+        console.log('setTableData tableContent2' + JSON.stringify(wishlist))
+        // console.log('row' + JSON.stringify(row))
+    }
 
     const updateVisibilityMatrix = () => {
         const copyVisibilityMatrix = [...visibilityDotsMatrix];
         const newVisibilityRow = [];
-        console.log("updateVisibilityMatrix: " + JSON.stringify(wishlist))
         wishlist.fields.forEach((item, index) => newVisibilityRow[index] = true);
         console.log("New Visibilty Row: " + newVisibilityRow)
         copyVisibilityMatrix[wishlist.content.length] = newVisibilityRow
@@ -55,14 +68,13 @@ const WishlistTable = ({
             content: newContent
         }
         handleUpdateAndSave(newWishlist);
-        updateVisibilityMatrix(newWishlist)
     }
 
     const deleteTableRow = (inputIndex) => {
         const filteredContent = wishlist.content.filter((item, index) => index !== inputIndex)
         const newWishlist = {...wishlist, content: filteredContent}
         handleUpdateAndSave(newWishlist)
-        updateVisibilityMatrix(newWishlist)
+        // updateVisibilityMatrix(newWishlist)
     }
 
     const addTableColumn = (e) => {
@@ -148,76 +160,96 @@ const WishlistTable = ({
                 (
                     <td key={index2}
                         onMouseOver={(e) => setDotsVisible(index1, index2)}
-                        onMouseLeave={(e) => setDotsHidden(index1, index2)}>
-                        <Linkify
-                            componentDecorator={(
-                                decoratedHref,
-                                decoratedText,
-                                key) => (
-                                <a href={decoratedHref} key={key} target="_blank">
-                                    {decoratedText}
-                                </a>
-                            )}
-                        >
-                            {/*{*/}
-                            {/*    editMode &&*/}
-                            {/*    <textarea*/}
-                            {/*        className="form-control"*/}
-                            {/*        onChange={(e) => handleInputTableChange(index1, field, e)}*/}
-                            {/*        defaultValue={item[field]}/>}*/}
-                            {/*{*/}
-                            <div className="table-cell">
+                        onMouseLeave={(e) => {
+                            // setDotsHidden(index1, index2);
+                            setCellToEdit({});
+                            if (needTableSave) {
+                                handleUpdateAndSave(wishlist)
+                            }
+                            setNeedTableSave(false)
+                        }}
+                        onClick={() => setCellToEdit({index1: index1, index2: index2})}
+                    >
+                        {
+                            !(cellToEdit.index1 === index1 && cellToEdit.index2 === index2) &&
+                            <Linkify
+                                componentDecorator={(
+                                    decoratedHref,
+                                    decoratedText,
+                                    key) => (
+                                    <a href={decoratedHref} key={key} target="_blank">
+                                        {decoratedText}
+                                    </a>
+                                )}>
+
+                                <div className="table-cell">
                                     <span>
                                         {item[field]}
                                     </span>
-                                {
-                                    visibilityDotsMatrix &&
-                                    <div className="btn-group">
-                                        <button type="button"
-                                                className="btn btn-link"
-                                                data-bs-toggle="dropdown"
-                                                aria-expanded="false"
-                                                style={{visibility: visibilityDotsMatrix[index1][index2] ? 'hidden' : 'visible'}}>
-                                            <Dot3Icon/>
-                                        </button>
-                                        <ul className="dropdown-menu">
-                                            <li>
-                                                <a className="dropdown-item" href="#"
-                                                   onClick={
-                                                       () => addTableRow(index1)
-                                                   }>
-                                                    Add row below
-                                                </a>
-                                            </li>
-                                            <li><a className="dropdown-item" href="#"
-                                                   onClick={() => deleteTableRow(index1)}> Delete current row </a>
-                                            </li>
-                                            {/*<li><a className="dropdown-item" href="#">Add column after</a></li>*/}
-                                            {/*<li><a className="dropdown-item" href="#">Change cell type</a></li>*/}
-                                        </ul>
-                                    </div>
-                                    // <div className="btn-group">
-                                    //     <button type="button"
-                                    //             className="btn btn-link dot3-button dropdown-toggle"
-                                    //             data-toggle="dropdown"
-                                    //             aria-haspopup="true"
-                                    //             aria-expanded="false">
-                                    //         <Dot3Icon/>
-                                    //     </button>
-                                    //     <ul className="dropdown-menu">
-                                    //         <li><a className="dropdown-item" href="#" onClick={addTableRow}> Add row below</a></li>
-                                    //         <li><a className="dropdown-item" href="#">Add column after</a></li>
-                                    //         <li><a className="dropdown-item" href="#">Change cell type</a></li>
-                                    //     </ul>
-                                    //  </div>
-                                }
+                                    {/*{*/}
+                                    {/*    visibilityDotsMatrix &&*/}
+                                    {/*    <div className="btn-group">*/}
+                                    {/*        <button type="button"*/}
+                                    {/*                className="btn btn-link"*/}
+                                    {/*                data-bs-toggle="dropdown"*/}
+                                    {/*                aria-expanded="false"*/}
+                                    {/*                style={{visibility: visibilityDotsMatrix[index1][index2] ? 'hidden' : 'visible'}}>*/}
+                                    {/*            <Dot3Icon/>*/}
+                                    {/*        </button>*/}
+                                    {/*        <ul className="dropdown-menu">*/}
+                                    {/*            <li>*/}
+                                    {/*                <a className="dropdown-item" href="#"*/}
+                                    {/*                   onClick={() => addTableRow(index1)}>*/}
+                                    {/*                    Add row below*/}
+                                    {/*                </a>*/}
+                                    {/*            </li>*/}
+                                    {/*            <li><a className="dropdown-item" href="#"*/}
+                                    {/*                   onClick={() => deleteTableRow(index1)}> Delete current row </a>*/}
+                                    {/*            </li>*/}
+                                    {/*            /!*<li><a className="dropdown-item" href="#">Add column after</a></li>*!/*/}
+                                    {/*            /!*<li><a className="dropdown-item" href="#">Change cell type</a></li>*!/*/}
+                                    {/*        </ul>*/}
+                                    {/*    </div>*/}
+                                    {/*}*/}
 
-                            </div>
-                        </Linkify>
+                                </div>
+                            </Linkify>
+                        }
+                        {
+                            cellToEdit.index1 === index1 && cellToEdit.index2 === index2 &&
+                            <input
+                                className="form-control-plaintext"
+                                onChange={(e) => handleInputTableChange(index1, field, e)}
+                                defaultValue={item[field]}
+                            />
+                        }
                     </td>
                 )
             )
             }
+            <td>
+                <div className="btn-group">
+                    <button type="button"
+                            className="btn btn-link"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <Dot3Icon/>
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li>
+                            <a className="dropdown-item" href="#"
+                               onClick={() => addTableRow(index1)}>
+                                Add row below
+                            </a>
+                        </li>
+                        <li><a className="dropdown-item" href="#"
+                               onClick={() => deleteTableRow(index1)}> Delete current row </a>
+                        </li>
+                        {/*<li><a className="dropdown-item" href="#">Add column after</a></li>*/}
+                        {/*<li><a className="dropdown-item" href="#">Change cell type</a></li>*/}
+                    </ul>
+                </div>
+            </td>
         </tr>
 
     }
@@ -259,6 +291,7 @@ const WishlistTable = ({
                             }
                         )
                     }
+                    <th></th>
                 </tr>
                 </thead>
                 {
