@@ -13,7 +13,7 @@ const WishlistMenu = ({wishlists, setWishlists, show, setShow}) => {
 
     const deleteHandler = () => {
         console.log(`Deleting ${JSON.stringify(selectedRow)}`)
-        axios.delete(`http://localhost:3001/wishlist/${selectedRow._id}`, headers).then(
+        axios.delete(`${process.env.REACT_APP_SERVER_HOST}/wishlist/${selectedRow._id}`, headers).then(
             (response) => {
                 console.log(selectedRow._id + 'was deleted')
                 const newWishlist = wishlists.filter((el) => el._id !== selectedRow._id);

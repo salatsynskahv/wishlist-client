@@ -11,7 +11,7 @@ const ListItem = ({row, setSelectedRow, path}) => {
             <button id="deleteButton"
                     className="delete-button"
                     data-bs-toggle="modal"
-                    data-bs-target={`#deleteModal`}
+                    data-bs-target='#deleteModal'
                     onClick={() => {
                         setSelectedRow(row)
                     }}

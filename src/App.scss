@@ -17,6 +17,10 @@ $theme-colors: (
 );
 
 
+.modal-footer {
+  justify-content: center;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
 
 * {
@@ -136,7 +140,7 @@ body {
 }
 
 .home-page-banner {
-  height: 20em;
+  height: 50vh;
   background: #9796f0; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #fbc7d4, #9796f0); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #fbc7d4, #9796f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -257,7 +261,7 @@ table {
 }
 
 .table-cell {
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
@@ -308,7 +312,7 @@ table {
 }
 
 .fl-right {
-  display: block;
+  display: inline-block;
   float: right;
 }
 

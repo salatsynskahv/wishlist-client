@@ -28,9 +28,9 @@ function App() {
                         <Route exact path="/" element={<PrivateRoute/>}>
                             <Route exact path="/update-profile" element={<UpdateProfile/>}/>
                         </Route>
-                        <Route exact path="/" element={<PrivateRoute/>}>
-                            <Route exact path="/planner" element={<Planner/>}/>
-                        </Route>
+                        {/*<Route exact path="/" element={<PrivateRoute/>}>*/}
+                            {/*<Route exact path="/planner" element={<Planner/>}/>*/}
+                        {/*</Route>*/}
                         <Route exact path="/" element={<PrivateRoute/>}>
                             <Route path="/friends" element={<Friends/>}/>
                         </Route>

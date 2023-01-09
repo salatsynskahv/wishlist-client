@@ -11,7 +11,7 @@ export default function Navbar() {
             Wishlist
         </a>
         <ul>
-            <CustomLink to="/planner">Planner</CustomLink>
+            {/*<CustomLink to="/planner">Planner</CustomLink>*/}
             <CustomLink to="/wishlist"><span>My wishlist</span></CustomLink>
             <CustomLink to="/friends"><span>Friends</span></CustomLink>
             {!currentUser && <CustomLink to="/login"><span>Login</span></CustomLink>}

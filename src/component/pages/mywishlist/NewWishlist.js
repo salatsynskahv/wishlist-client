@@ -44,6 +44,9 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
     }
 
     const addField = (field) => {
+        if(!field) {
+            return;
+        }
         setFields([...fields, field])
         const newTable = tableContent.map(item => {
             return {...item, ...{[field]: ''}}
