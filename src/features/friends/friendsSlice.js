@@ -6,7 +6,7 @@ export const addFriend = createAsyncThunk('friends/addFriend',
         const result = axios.patch(`${process.env.REACT_APP_SERVER_HOST}/user`, updateItem)
         return result.data;
 
-    })
+})
 
 
 export const friendsSlice = createSlice({

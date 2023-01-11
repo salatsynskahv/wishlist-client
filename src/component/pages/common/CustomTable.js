@@ -1,43 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
 import {useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
-
 import axios from "axios"
 import {useLocation} from "react-router-dom"
-import './MyWishlits.css'
 import WishlistTable from "./WishlistTable"
 import {useAuth} from "../../../contexts/AuthContext";
+import {useSelector} from "react-redux";
 
 export default function CustomTable() {
     const location = useLocation();
     const [currentWishlist, setCurrentWishlist] = useState(undefined)
-    const [visibilityDotsMatrix, setVisibilityDotsMatrix] = useState();
-    const params = useParams();
+    const params =  useParams();
     const wishListId = params.wishListId;
-    let {wishlists} = useUsersWishlists();
+    let wishlists = useSelector(state => state.wishlists.wishlists);
     const {currentUser} = useAuth();
     // console.log('currentUser.email: ' + currentUser.email);
     // console.log('typeof wishListId' + typeof wishListId);
-
-    const initVisibilityMatrix = (currentWishlist) => {
-        console.log("Wishlist TABLE !!!! on mount")
-        if (!currentWishlist) return;
-        const newMatrix = []
-        currentWishlist.content.forEach(
-            (item, index1) => {
-                // console.log(Object.keys(item))
-                newMatrix[index1] = []
-                item && Object.keys(item).forEach(
-                    (key, index2) => {
-                        newMatrix[index1][index2] = true;
-                    }
-                )
-            }
-        )
-
-        setVisibilityDotsMatrix(newMatrix);
-        // console.log("visibilityMatrix: " + newMatrix)
-    }
 
     // console.log('currentWishlist: ' + JSON.stringify(wishListId))
     useEffect(() => {
@@ -56,10 +34,8 @@ export default function CustomTable() {
         } else {
             const findList = wishlists.find(item => item._id === wishListId)
             setCurrentWishlist(findList)
-            initVisibilityMatrix(findList)
             // console.log('useEffect: ' + findList)
         }
-
 
     }, [location.pathname])
 
@@ -81,8 +57,6 @@ export default function CustomTable() {
                 <WishlistTable
                     wishlist={currentWishlist}
                     setWishlist={setCurrentWishlist}
-                    visibilityDotsMatrix={visibilityDotsMatrix}
-                    setVisibilityDotsMatrix={setVisibilityDotsMatrix}
                 />
             </div>
         </>

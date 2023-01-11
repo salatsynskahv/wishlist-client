@@ -4,6 +4,7 @@ import {UsersWishlistProvider, useUsersWishlists} from "../../../contexts/UsersW
 import NewWishlist from "./NewWishlist";
 
 import WishlistMenu from "./WishlistMenu";
+import {useSelector} from "react-redux";
 
 
 export default function MyWishlists() {
@@ -17,15 +18,19 @@ export default function MyWishlists() {
 }
 
 function MyWishlistsInner() {
-    const {wishlists, setWishlists} = useUsersWishlists();
-    const [show, setShow] = useState(false)
+    const wishlists = useSelector(state => state.wishlists.wishlists);
+    const [showCreateNewWishlist, setShowCreateNewWishlist] = useState(false)
     return (
         <>
-            <div className="container my-wishlist-page d-block">
-                <NewWishlist rows={wishlists} setRows={setWishlists} show={show} setShow={setShow}/>
-            </div>
+            {/*<div className="container my-wishlist-page d-block">*/}
+            {/*    <NewWishlist rows={wishlists} setRows={setWishlists} show={show} setShow={setShow}/>*/}
+            {/*</div>*/}
             <div className="container my-wishlist-menu">
-                <WishlistMenu wishlists={wishlists} setWishlists={setWishlists} show={show} setShow={setShow}/>
+                <WishlistMenu
+                    wishlists={wishlists}
+                    show={showCreateNewWishlist}
+                    setShow={setShowCreateNewWishlist}
+                />
             </div>
 
         </>

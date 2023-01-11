@@ -159,7 +159,6 @@ const WishlistTable = ({
             {wishlist.fields.map((field, index2) =>
                 (
                     <td key={index2}
-                        onMouseOver={(e) => setDotsVisible(index1, index2)}
                         onMouseLeave={(e) => {
                             // setDotsHidden(index1, index2);
                             setCellToEdit({});
@@ -168,7 +167,7 @@ const WishlistTable = ({
                             }
                             setNeedTableSave(false)
                         }}
-                        onClick={() => setCellToEdit({index1: index1, index2: index2})}
+                        onDoubleClick={() => setCellToEdit({index1: index1, index2: index2})}
                     >
                         {
                             !(cellToEdit.index1 === index1 && cellToEdit.index2 === index2) &&

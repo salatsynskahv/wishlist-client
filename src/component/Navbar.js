@@ -12,9 +12,9 @@ export default function Navbar() {
         </a>
         <ul>
             {/*<CustomLink to="/planner">Planner</CustomLink>*/}
-            <CustomLink to="/wishlist"><span>My wishlist</span></CustomLink>
-            <CustomLink to="/friends"><span>Friends</span></CustomLink>
-            {!currentUser && <CustomLink to="/login"><span>Login</span></CustomLink>}
+            <Link to="/wishlist"><span>My wishlist</span></Link>
+            <Link to="/friends"><span>Friends</span></Link>
+            {!currentUser && <Link to="/login"><span>Login</span></Link>}
             {!!currentUser && <Link to="/logout"><span>Logout</span></Link>}
         </ul>
 
