@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
-import {useUsersWishlists} from "../../../contexts/UsersWishlistsContext";
 import axios from "axios"
 import {useLocation} from "react-router-dom"
 import WishlistTable from "./WishlistTable"
@@ -28,7 +27,7 @@ export default function CustomTable() {
                     const findList = wishlists.find(item => item._id === wishListId)
                     setCurrentWishlist(findList)
                     // console.log('useEffect: ' + findList)
-                    initVisibilityMatrix(findList)
+                    // initVisibilityMatrix(findList)
                 }
             )
         } else {
@@ -42,10 +41,6 @@ export default function CustomTable() {
     const getWishlistFromServer = () => {
         return axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${currentUser.email}`);
     }
-
-
-
-
 
     // console.log('currentWishlist' + JSON.stringify(currentWishlist))
     return (
