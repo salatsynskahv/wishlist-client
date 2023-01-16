@@ -78,7 +78,7 @@ export function AuthProvider({children}) {
                         const userFormDB = await axios.get(`${process.env.REACT_APP_SERVER_HOST}/user/${user.email}`);
                         console.log(`userFormDB user: ${JSON.stringify(userFormDB)}`);
                         const resultUser = {...user, ...userFormDB.data};
-                        console.log(JSON.stringify(resultUser));
+                        // console.log(JSON.stringify(resultUser));
                         setCurrentUser(resultUser)
                     } catch (error) {
 

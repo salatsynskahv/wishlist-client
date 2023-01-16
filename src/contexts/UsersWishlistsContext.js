@@ -13,6 +13,7 @@ export function UsersWishlistProvider({userEmail, children}) {
     const [wishlists, setWishlists] = useState([])
     useEffect(() => {
         try {
+            console.log("GET TO DB FOR WISHLISTS")
             axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${userEmail}`, )
                 .then((response) => {
                     console.log(response.data)

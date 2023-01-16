@@ -2,25 +2,21 @@ import React, {useState} from 'react';
 import PlusCircleDotted from "../../../icons/PlusCircleDotted";
 import ListItem from "../../helpers/ListItem";
 import {Outlet} from "react-router";
-import axios from "axios";
+import store from "../../../app/store";
+import {deleteWishlist} from "../../../features/wishlists/wishlistsSlice";
+import {useDispatch, useSelector} from "react-redux";
 
-const WishlistMenu = ({wishlists, setWishlists, show, setShow}) => {
+const WishlistMenu = ({wishlists, show, setShow}) => {
+    const dispatch = useDispatch();
     const [selectedRow, setSelectedRow] = useState({});
 
-    const headers = {
-        "Content-Type": "application/json"
-    }
-
-    const deleteHandler = () => {
-        console.log(`Deleting ${JSON.stringify(selectedRow)}`)
-        axios.delete(`${process.env.REACT_APP_SERVER_HOST}/wishlist/${selectedRow._id}`, headers).then(
-            (response) => {
-                console.log(selectedRow._id + 'was deleted')
-                const newWishlist = wishlists.filter((el) => el._id !== selectedRow._id);
-                setWishlists(newWishlist)
-            }
-        )
-
+    const wishlistStatus = useSelector(state => state.wishlists.status)
+    console.log("rerender wishlistMenu")
+    const deleteHandler = async () => {
+        await dispatch(deleteWishlist({
+            _id: selectedRow._id
+        })).unwrap();
+        setSelectedRow({})
     }
 
     return (

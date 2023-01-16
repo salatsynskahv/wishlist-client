@@ -3,8 +3,10 @@ import {useAuth} from "../../../contexts/AuthContext";
 import axios from "axios";
 import {Container, Form} from "react-bootstrap";
 import {Button} from "@mui/material";
+import store from "../../../app/store";
+import {createWishlist} from "../../../features/wishlists/wishlistsSlice";
 
-const NewWishlist = ({rows, setRows, show, setShow}) => {
+const NewWishlist = ({show, setShow}) => {
     const ObjectID = require("bson-objectid")
     const {currentUser} = useAuth()
     const defaultNewTableBtnRef = useRef(null);
@@ -14,23 +16,16 @@ const NewWishlist = ({rows, setRows, show, setShow}) => {
     const createWishList = () => {
         console.log("submit form - save row")
         const newItemId = ObjectID();
-        const newItem = {
+        const newList = {
             _id: newItemId.toHexString(),
             name: name,
             fields: fields,
             user: currentUser.email,
             content: tableContent
         }
-        axios.post(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, newItem)
-            .then((response) => {
-                console.log(response)
-            }).catch(function (error) {
-            console.log(error);
-        });
-        setRows([...rows, {...newItem}])
-        setName("")
-        setFields([])
-        setTableContent([{}])
+        store.dispatch(createWishlist({
+            newList
+        }))
         setShow(false)
     }
 

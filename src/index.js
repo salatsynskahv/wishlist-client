@@ -29,11 +29,13 @@ const router = createBrowserRouter([
             },
             {
                 path: '/wishlist',
-                element: <MyWishlists/>
-            },
-            {
-                path: '/wishlist/:wishListId',
-                element: <CustomTable/>
+                element: <MyWishlists/>,
+                children: [
+                    {
+                        path: '/wishlist/:wishListId',
+                        element: <CustomTable/>
+                    }
+                ]
             },
             {
                 path: '/signup',

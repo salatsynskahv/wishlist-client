@@ -1,10 +1,10 @@
 import React from "react";
-import WishlistTable from "../common/WishlistTable";
+import {WishlistTable} from "../common/CustomTable";
 
 const FriendsList = ({wishlist}) => {
     return (
         <div>
-            <WishlistTable wishlist={wishlist}/>
+            {/*<WishlistTable wishlist={wishlist}/>*/}
         </div>)
 }
 

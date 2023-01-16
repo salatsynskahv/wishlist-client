@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const addFriend = createAsyncThunk('friends/addFriend',
     async (updateItem) => {
-        const result = axios.patch(`${process.env.REACT_APP_SERVER_HOST}/user`, updateItem)
+        const result = await axios.patch(`${process.env.REACT_APP_SERVER_HOST}/user`, updateItem)
         return result.data;
 
 })
