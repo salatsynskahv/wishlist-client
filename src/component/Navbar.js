@@ -8,9 +8,9 @@ export default function Navbar() {
 
     return (
         <nav className="nav">
-            <a href="/" className="site-title">
+            <Link to="/home" className="site-title">
                 Wishlist
-            </a>
+            </Link>
             <ul>
                 <li><Link to="/wishlist"><span>My wishlist</span></Link></li>
                 {/*<CustomLink to="/planner">Planner</CustomLink>*/}

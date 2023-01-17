@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/images/cccloud.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/homepage.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/mask-wave.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/wave.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/common/WishlistTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/FriendsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/FriendsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/UsersWishlistsContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/UsersWishlistsContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/wishlists/wishlistsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/wishlists/wishlistsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +50,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../udemy/seasons" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -63,6 +60,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\wishlist-client\src\images" />
       <recent name="C:\Projects\wishlist-client\src\component\pages" />
       <recent name="C:\Projects\wishlist-client\src\icons" />
     </key>
@@ -73,6 +71,19 @@
       <recent name="C:\Projects\wishlist-client\src\component\pages\auth" />
       <recent name="C:\Projects\wishlist-client\src\component\pages\mywishlist" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -159,7 +170,7 @@
       <workItem from="1673382427153" duration="2879000" />
       <workItem from="1673425940270" duration="17077000" />
       <workItem from="1673620464870" duration="17110000" />
-      <workItem from="1673791720902" duration="10820000" />
+      <workItem from="1673791720902" duration="19882000" />
     </task>
     <servers />
   </component>
@@ -225,6 +236,12 @@
           <url>file://$PROJECT_DIR$/src/component/pages/common/CustomTable.js</url>
           <line>59</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/Home.js</url>
+          <line>40</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

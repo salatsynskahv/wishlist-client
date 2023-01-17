@@ -13,12 +13,17 @@ import Signup from "./component/pages/auth/Signup";
 import Login from "./component/pages/auth/Login";
 import ForgotPassword from "./component/pages/auth/ForgotPassword";
 import Logout from "./component/pages/auth/Logout";
+import Home from "./component/pages/Home";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App/>,
         children: [
+            {
+                path: '/home',
+                element: <Home/>
+            },
             {
                 path: '/update-profile',
                 element: <UpdateProfile/>

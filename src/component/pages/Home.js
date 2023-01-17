@@ -1,26 +1,12 @@
 import React, {useState} from "react"
-import {Card, Button, Alert, Dropdown} from 'react-bootstrap'
 import {useAuth} from "../../contexts/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
-import {red} from "@mui/material/colors";
+import homepage from '../../images/homepage.jpg'
 
 export default function Home() {
-    const [error, setError] = useState()
     const {currentUser, logout, errorCode} = useAuth();
     console.log('currentUser: ' + JSON.stringify(currentUser));
     const navigate = useNavigate()
-
-    async function handleLogout() {
-        setError('')
-        try {
-            await logout()
-            navigate('/login')
-
-        } catch {
-            setError('Failed to logout')
-        }
-
-    }
 
     const aboutUser = !!currentUser ?
         (<div className="about-user">
@@ -31,28 +17,39 @@ export default function Home() {
 
     return (
         <>
-            <div className="home-page-banner">
-                <p>
-                    <br/>
-                    <h2 className="home-title"> Create wishlists!  &nbsp; Share with friends!</h2>
-                    <h2 className="home-title">Get what you want! </h2>
-                </p>
-            </div>
-            {
-                errorCode &&
-                <div>
-                    <h1 className="error"> Some error occurred </h1>
-                </div>
-            }
-            <div className="container">
-
-                <aside id="home-aside" className="m-0">
-                    <div className="container">
-                        {error && <Alert variant="danger"> {error}</Alert>}
-                        {aboutUser}
+            <section className="home-section">
+                <div className="home-page-banner">
+                    <div className="fl-left">
+                        <p>
+                            <br/>
+                            <h2 className="home-title"> Create wishlists! </h2>
+                            <br/>
+                            <h2 className="home-title"> Share with friends!</h2>
+                            <br/>
+                            <h2 className="home-title">Get what you want! </h2>
+                        </p>
                     </div>
-                </aside>
-            </div>
+                    <div id="homepage-image" className="fl-right mask1">
+                        <img src={homepage} alt="image"/>
+                    </div>
+                </div>
+
+            </section>
+
+            {/*{*/}
+            {/*    errorCode &&*/}
+            {/*    <div>*/}
+            {/*        <h1 className="error"> Some error occurred </h1>*/}
+            {/*    </div>*/}
+            {/*}*/}
+            {/*<div className="container">*/}
+
+            {/*    <aside id="home-aside" className="m-0">*/}
+            {/*        <div className="container">*/}
+            {/*            {aboutUser}*/}
+            {/*        </div>*/}
+            {/*    </aside>*/}
+            {/*</div>*/}
         </>
     )
 
