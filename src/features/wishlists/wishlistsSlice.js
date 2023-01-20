@@ -10,15 +10,11 @@ export const createWishlist =
         });
 
 
-export const updateWishlist = () => {
-};
-
-//     createAsyncThunk('wishlists/updateWishlist',
-//     async (payload) => {
-//         const response = await axios.put(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, payload.newWishlist);
-//         return response.data;
-//     }
-// )
+export const updateWishlist = createAsyncThunk('wishlists/updateWishlist',
+    async (payload) => {
+        const response = await axios.put(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, payload.newWishlist);
+        return response.data;
+    });
 
 export const deleteWishlist = createAsyncThunk('wishlists/deleteWishlist',
     async (payload) => {
@@ -79,6 +75,11 @@ export const wishlistsSlice = createSlice(
                 state.wishlists[currentWishlistIndex].fields.splice(columnIndex + 1, 0, columnName);
             },
 
+            deleteColumnInCurrentWishlist(state, action) {
+                const { currentWishlistIndex, columnIndex} = action.payload;
+                state.wishlists[currentWishlistIndex].fields.splice(columnIndex, 1);
+            }
+
         },
         extraReducers: (builder) => {
             builder.addCase(deleteWishlist.fulfilled, (state, action) => {
@@ -103,7 +104,8 @@ export const {
     updateValueInCurrentWishlist,
     addRowBelowInCurrentWishlist,
     deleteRowInCurrentWishlist,
-    addColumnAfterInCurrentWishlist
+    addColumnAfterInCurrentWishlist,
+    deleteColumnInCurrentWishlist
 } = wishlistsSlice.actions;
 
 export default wishlistsSlice.reducer;

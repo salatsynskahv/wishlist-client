@@ -10,7 +10,7 @@ import PlusCircleDotted from "../../../icons/PlusCircleDotted";
 import store from "../../../app/store";
 import {
     addColumnAfterInCurrentWishlist,
-    addRowBelowInCurrentWishlist,
+    addRowBelowInCurrentWishlist, deleteColumnInCurrentWishlist,
     deleteRowInCurrentWishlist,
     updateValueInCurrentWishlist,
     updateWishlist
@@ -74,8 +74,8 @@ const WishlistTable = ({
                            currentWishlistIndex
                        }) => {
 
-
     const wishlist = useSelector(state => state.wishlists.wishlists[currentWishlistIndex]);
+    console.log('rerender wishlist: ' + JSON.stringify(wishlist))
     const [currentFocusValue, setCurrentFocusValue] = useState();
     const [cellToEdit, setCellToEdit] = useState({})
     const [needTableSave, setNeedTableSave] = useState(false);
@@ -88,8 +88,6 @@ const WishlistTable = ({
                 currentWishlistIndex: currentWishlistIndex
             }))
         setNeedTableSave(false);
-
-        // console.log('handleSave tableContent2' + JSON.stringify(newItem))
     }
 
     const handleInputTableChange = (index1, field, e) => {
@@ -134,28 +132,20 @@ const WishlistTable = ({
                 columnName: newColumnNameInputRef.current.value
             }
         ));
-        e.preventDefault();
+        setNeedTableSave(true);
         newColumnNameInputRef.current.value = '';
     }
 
-    const insertAfterIndexField = (index, value) => {
-        const newFields = [...wishlist.fields];
-        newFields.splice(index + 1, 0, value)
-        console.log(value)
-        handleUpdateAndSave({
-            ...wishlist,
-            fields: newFields
-        })
-    }
-
     const deleteTableColumn = (rowIndex) => {
-        store.dispatch(deleteRowInCurrentWishlist(
+        console.log('deleteColumnInCurrentWishlist start')
+        store.dispatch(deleteColumnInCurrentWishlist(
             {
                 currentWishlistIndex,
                 rowIndex
             }
         ));
-        // setNeedTableSave(true);
+        console.log('deleteColumnInCurrentWishlist end' )
+        setNeedTableSave(true);
     }
 
     const tableHeader = (index, field) => {
@@ -229,11 +219,11 @@ const WishlistTable = ({
                     <td key={index2}
                         onMouseLeave={(e) => {
                             // setDotsHidden(index1, index2);
-                            setCellToEdit({});
                             if (needTableSave) {
+                                setCellToEdit({});
                                 handleUpdateAndSave(wishlist)
+                                setNeedTableSave(false)
                             }
-                            setNeedTableSave(false)
                         }}
                         onDoubleClick={() => setCellToEdit({index1: index1, index2: index2})}
                     >

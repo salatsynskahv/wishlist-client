@@ -30,7 +30,7 @@ export default function Home() {
                         </p>
                     </div>
                     <div id="homepage-image" className="fl-right mask1">
-                        <img src={homepage} alt="image"/>
+                        <img src={homepage} alt="image" style={{height: '500px'}}/>
                     </div>
                 </div>
 
