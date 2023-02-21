@@ -4,37 +4,40 @@ import {Link, useNavigate} from "react-router-dom";
 import homepage from '../../images/homepage.jpg'
 
 export default function Home() {
-    const {currentUser, logout, errorCode} = useAuth();
+    const {currentUser} = useAuth();
     console.log('currentUser: ' + JSON.stringify(currentUser));
     const navigate = useNavigate()
 
-    const aboutUser = !!currentUser ?
-        (<div className="about-user">
-            <h2 className="text-center mb-4">About You</h2>
-            <strong>Email: </strong> {currentUser.email}
-            <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update profile</Link>
-        </div>) : (<p> Please, <Link to='/login'>login </Link> for better user experience</p>)
+    const elBannerButtons = !currentUser ? (
+        <div className="logged-banner">
+            <button className="btn btn-primary">
+                Log in to Get More
+            </button>
+        </div>
+        ) :
+        (<div className="logged-banner">
+            <button className="btn btn-primary" onClick={ () => navigate('/wishlist') }> Create Your Wishlists</button>
+            <button className="btn btn-primary" onClick={ () => navigate('/friends') }> Find Friends Wishlists</button>
+        </div>);
 
     return (
         <>
             <section className="home-section">
                 <div className="home-page-banner">
-                    <div className="fl-left">
-                        <p>
-                            <br/>
-                            <h2 className="home-title"> Create wishlists! </h2>
-                            <br/>
-                            <h2 className="home-title"> Share with friends!</h2>
-                            <br/>
-                            <h2 className="home-title">Get what you want! </h2>
-                        </p>
-                    </div>
-                    <div id="homepage-image" className="fl-right mask1">
-                        <img src={homepage} alt="image" style={{height: '500px'}}/>
-                    </div>
+                    <p>
+                        <br/>
+                        <h1 className="home-title"><i>Create</i> custom detailed wishlist easy </h1>
+                        <br/>
+                        <h2 className="home-title"><i>Find</i> friends wishlists and <i>Share</i> yours </h2>
+                    </p>
+                    {
+                        elBannerButtons
+                    }
                 </div>
 
+
             </section>
+
 
             {/*{*/}
             {/*    errorCode &&*/}

@@ -10,13 +10,14 @@ import NewWishlist from "./NewWishlist";
 
 
 export default function MyWishlists() {
-    const {currentUser} = useAuth();
+    const { currentUser } = useAuth();
     const wishlists = useSelector(state => state.wishlists.wishlists);
     const [showCreateNewWishlist, setShowCreateNewWishlist] = useState(false);
 
     useEffect(() => {
         console.log(wishlists)
-        if (!wishlists) {
+        //TODO: AFTER FIX remove currentUser FROM Condition
+        if (!wishlists && currentUser) {
             axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${currentUser.email}`,)
                 .then((response) => {
                     console.log('response.data: ' + JSON.stringify(response.data))
@@ -27,9 +28,8 @@ export default function MyWishlists() {
 
     return (
         <>
-            <div className="container my-wishlist-page d-block">
-                <NewWishlist show={showCreateNewWishlist} setShow={setShowCreateNewWishlist}/>
-            </div>
+
+            <NewWishlist show={showCreateNewWishlist} setShow={setShowCreateNewWishlist}/>
             <div className="container my-wishlist-menu">
                 {wishlists &&
                 <WishlistMenu

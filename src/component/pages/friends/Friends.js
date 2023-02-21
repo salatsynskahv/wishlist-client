@@ -4,7 +4,7 @@ import axios from "axios";
 import {Accordion, Modal} from "react-bootstrap";
 import {Link} from "@mui/material";
 import {useAuth} from "../../../contexts/AuthContext";
-import FriendsList from "./FriendsList";
+import FriendsWishlist from "./FriendsWishlist";
 import FriendsAccordion from "./FriendsAccordion";
 import {useDispatch, useSelector} from "react-redux";
 import {addFriend, deleteFriend, initFriends} from "../../../features/friends/friendsSlice";
@@ -151,7 +151,8 @@ export default function Friends() {
                     </div>
                 </div>
                 <div className="box" style={{width: '68%'}}>
-                    <FriendsList wishlist={selectedList}/>
+                    {!selectedList && <div> No lists </div>}
+                    {selectedList && <FriendsWishlist wishlist={selectedList}/>}
                 </div>
             </div>
         </div>);

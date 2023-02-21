@@ -2,12 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/images/auto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/horizontal-wave.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/wave-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/wave-footer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/Mobile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/wishlists/wishlistsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/wishlists/wishlistsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/FriendsAccordion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/FriendsAccordion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/FriendsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/FriendsWishlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/DeleteIcon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/DeleteIcon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,21 +75,23 @@
       <recent name="C:\Projects\wishlist-client\src\icons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\wishlist-client\src\styles" />
       <recent name="C:\Projects\wishlist-client\src\component\pages\common" />
       <recent name="C:\Projects\wishlist-client" />
       <recent name="C:\Projects\wishlist-client\src\component\api" />
       <recent name="C:\Projects\wishlist-client\src\component\pages\auth" />
-      <recent name="C:\Projects\wishlist-client\src\component\pages\mywishlist" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,7 +182,13 @@
       <workItem from="1673382427153" duration="2879000" />
       <workItem from="1673425940270" duration="17077000" />
       <workItem from="1673620464870" duration="17110000" />
-      <workItem from="1673791720902" duration="26816000" />
+      <workItem from="1673791720902" duration="32257000" />
+      <workItem from="1674377996979" duration="5233000" />
+      <workItem from="1674914172630" duration="3446000" />
+      <workItem from="1674971414628" duration="8911000" />
+      <workItem from="1675331744961" duration="16587000" />
+      <workItem from="1675716393715" duration="11158000" />
+      <workItem from="1676559481316" duration="13468000" />
     </task>
     <servers />
   </component>
@@ -196,7 +218,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/Navbar.js</url>
-          <line>30</line>
+          <line>40</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -224,20 +246,19 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
-          <line>74</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/common/CustomTable.js</url>
           <line>59</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/Home.js</url>
-          <line>40</line>
-          <properties lambdaOrdinal="-1" />
+          <line>43</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js</url>
+          <line>50</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

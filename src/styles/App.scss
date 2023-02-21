@@ -1,6 +1,6 @@
 /* Color variables */
-$font-family-sans-serif: "Poppins",
-sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;1,300&display=swap');
+$font-family-sans-serif: "Barlow Semi Condensed", sans-serif;
 $primary: #8EBFDF;
 $secondary: #e4e2e4;
 $success: #ffd2dd;
@@ -21,16 +21,13 @@ $theme-colors: (
   justify-content: center;
 }
 
-@import '~bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap/scss/bootstrap';
 
-* {
-  margin: 0;
-  padding: 0;
-}
 
 body {
   margin: 0;
-  background-color: #fafaff !important;
+  //background-color: #fafaff !important;
+  background: rgba(243, 238, 239, 0.2);
 }
 
 .nav {
@@ -67,19 +64,28 @@ body {
   display: flex;
   align-items: center;
   padding: .25rem;
+  font-size: 1.25rem;
 
 }
 
 .site-title {
-  font-size: 2em;
+  box-sizing: content-box;
+  width: 100%;
+  background: #39265b;
+  border-radius: 40%;
+  font-size: 2rem;
 }
 
 .home-title {
   color: #604b86;
-  /*font-size: clamp(2.5rem, 10vw + 0.5rem, 6rem);*/
+  font-family: $font-family-sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  word-spacing: 6px;
   line-height: 1;
-  font-weight: 900;
-  text-transform: uppercase;
+  //font-weight: 500;
+  //text-transform: uppercase;
   position: relative;
 }
 
@@ -101,6 +107,7 @@ body {
 }
 
 .delete-button {
+  padding: 0 5px;
   align-items: flex-end;
   border: none;
   background: #fff;
@@ -125,12 +132,6 @@ body {
 
 }
 
-.align-items-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .width-35-per {
   width: 35%;
 }
@@ -140,36 +141,52 @@ body {
 }
 
 .home-page-banner {
-  width: 100%;
-  height: 100%;
-  background: rgb(243, 223, 228, 0.2) ; /* fallback for old browsers */
+  height: 90vh;
+  background: rgba(245, 243, 243, 0.2); /* fallback for old browsers */
 }
 
-#homepage-image{
-  height: 100%;
+.logged-banner {
+  display: flex;
+  justify-content: center;
+}
+
+.logged-banner button {
+  padding: 25px 40px;
+  margin: 0 40px;
+  font-size: 30px;
+}
+
+#homepage-image {
   width: 30%;
-  //opacity: 75%;
+  opacity: 75%;
 }
-.mask1 {
-  -webkit-mask-image: url(images/cccloud.svg);
-  mask-image: url(images/cccloud.svg);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
+
+//.mask1 {
+//  -webkit-mask-image: url(../images/auto.png);
+//  mask-image: url(../images/auto.png);
+//  -webkit-mask-repeat: no-repeat;
+//  mask-repeat: no-repeat;
+//  mask-size: 100%;
+//}
+//
+//.mask-footer {
+//  -webkit-mask-image: url(../images/wave-footer.png);
+//  mask-image: url(../images/wave-footer.png);
+//  mask-size: 100%;
+//}
+
+
 
 .home-section {
-  background: rgb(243, 223, 228, 0.2) ;
+  background: rgb(243, 223, 228, 0.2);
+  //height: 100vh;
+  box-sizing: content-box;
 }
 
 .home-page-banner p {
   display: inline-block;
   padding: 100px;
   margin-left: 15%;
-}
-
-.home-page-banner div {
-  display: inline-block;
-  width: 50%;
 }
 
 #home-aside {
@@ -300,9 +317,74 @@ table {
 
 }
 
+.default-table-btn {
+  display: block;
+  padding: 12px 0;
+}
+
+.w-label {
+  font-weight: 500;
+}
+
+.created-table {
+  display: flex;
+  justify-content: center;
+}
+
+.new-wl-container {
+  display: flex;
+  //height: 100%;
+}
+
+.new-wl-container form {
+  justify-self: start;
+  padding-left: 20px;
+}
+
+.new-wl-item {
+  flex-grow: 2;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  //flex-wrap: wrap;
+}
+
+.new-wl-item div {
+  display: flex;
+  justify-content: center;
+}
+
+.new-wl-item div:first-child {
+  justify-items: start;
+}
+
+/*fwl - friends wishlist*/
+
+.fwl-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fwl-item {
+  padding: 20px;
+  border: $secondary 0.5px solid;
+}
+
+.flw-header-item {
+  border: 1px solid gray;
+  padding: 20px 50px;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
 .wishlist-table {
-  width: 100%;
-  height: auto;
+  //width: 100%;
+  //height: auto;
   /*border: 1px solid grey;*/
   /*border-collapse: separate;*/
   /*border-radius: 5px;*/
@@ -325,6 +407,7 @@ table {
 
 .my-wishlist-menu {
   margin-top: 30px;
+  margin-bottom: 50px;
   display: block;
   float: left;
 }
@@ -341,9 +424,40 @@ table {
 
 .footer {
   position: fixed;
+  margin-top: 50px;
   left: 0;
   bottom: 0;
   background: $primary;
-  height: 8%;
-  width: 100%;
+  height: 6%;
+  width: 100vw;
+  z-index: -10;
+}
+
+.footer div {
+  position: absolute;
+  left: 10%;
+  bottom: 0;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.fwl-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.fwl-column {
+  display: flex;
+  flex-direction: column;
+}
+
+//.test-img {
+//  background-image: url("../images/footer-wave.svg") center/cover;
+//}
+
+.flex-item {
+  display: flex;
+  align-self: flex-start;
 }

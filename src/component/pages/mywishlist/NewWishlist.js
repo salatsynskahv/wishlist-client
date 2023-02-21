@@ -10,6 +10,7 @@ const NewWishlist = ({show, setShow}) => {
     const ObjectID = require("bson-objectid")
     const {currentUser} = useAuth()
     const defaultNewTableBtnRef = useRef(null);
+    const wishlistNameRef = useRef(null);
     const [name, setName] = React.useState("");
     const [fields, setFields] = React.useState([])
     const [tableContent, setTableContent] = React.useState([{}])
@@ -39,7 +40,7 @@ const NewWishlist = ({show, setShow}) => {
     }
 
     const addField = (field) => {
-        if(!field) {
+        if (!field) {
             return;
         }
         setFields([...fields, field])
@@ -65,63 +66,66 @@ const NewWishlist = ({show, setShow}) => {
         console.log("tableContent: " + JSON.stringify(tableContent))
     }
 
+    const resetTable = () => {
+        setName('');
+        setFields([]);
+        setTableContent([]);
+    }
+
     const closeHandler = () => {
-        setShow(false)
+        setShow(false);
+        resetTable();
     }
 
     return (show &&
-        <div className="align-items-start d-block m-3">
-            <div className="fl-left">
-                <div>
-                    <Container className="d-flex align-items-start">
-                        <form onSubmit={createWishList}>
-                            <Form.Group>
-                                <Form.Label htmlFor="name">List Name</Form.Label>
-                                <Form.Control type="text"
-                                              required
-                                              id="name"
-                                              value={name}
-                                              onChange={(event) => {
-                                                  setName(event.target.value)
-                                              }}
-                                />
-                            </Form.Group>
-                            <br/>
-                            <button
-                                onClick={createDefaultColumns}
-                                ref={defaultNewTableBtnRef}
-                                className="btn btn-link"
-                            >
-                                Create default table
-                            </button>
-                            <br/>
-                            <FieldNames addField={addField}/>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="privateCheck"/>
-                                <label className="form-check-label" htmlFor="privateCheck"> Private list </label>
-                            </div>
-                            <div style={{marginTop: '20px'}}>
-                                <Button type="submit" variant="contained">
-                                    Save
-                                </Button>
-                                <Button onClick={closeHandler}>Close </Button>
-                            </div>
-                        </form>
-
-                        <br/>
-                    </Container>
+        <div className="new-wl-container m-3">
+            <form onSubmit={createWishList}>
+                <Form.Group>
+                    <button
+                        onClick={createDefaultColumns}
+                        ref={defaultNewTableBtnRef}
+                        className="btn btn-link default-table-btn"
+                    >
+                        Create default table
+                    </button>
+                    <label htmlFor="name" className="w-label" ref={wishlistNameRef}>Wishlist Name</label>
+                    <input type="text"
+                           required
+                           id="name"
+                           className="form-control"
+                           value={name}
+                           onChange={(event) => {
+                               setName(event.target.value)
+                           }}
+                    />
+                </Form.Group>
+                <br/>
+                <FieldNames addField={addField}/>
+                <div className="form-check">
+                    <input className="form-check-input" type="checkbox" value="" id="privateCheck"/>
+                    <label className="form-check-label" htmlFor="privateCheck"> Private list </label>
                 </div>
-            </div>
-            <div>
-                <div className="align-items-center">
-                    {name && <div className=" align-items-center width-35-per">
-                        <h4><strong>{name}</strong></h4>
-                    </div>}
+                <div style={{marginTop: '20px'}}>
+                    <Button type="submit" variant="contained">
+                        Save
+                    </Button>
+                    <Button onClick={closeHandler}> Close </Button>
                 </div>
-            </div>
-            <div className="fl-right">
+            </form>
+            <div className="new-wl-item">
                 <div>
-                    <table className="wishlist-table bordered">
+                    {
+                        <div onClick={
+                            () => {
+                                wishlistNameRef.current.focus();
+                            }
+                        }>
+                            <h4><strong>{!name  ? "Please, enter Wishlist Name" : name}</strong></h4>
+                        </div>
+                    }
+                </div>
+                <div>
+                    {fields.length > 0 && <table className="wishlist-table bordered">
                         <thead>
                         <tr className="wishlist-table-body">{
                             fields.map((field, index) =>
@@ -152,7 +156,9 @@ const NewWishlist = ({show, setShow}) => {
                         }
                         </tbody>
                     </table>
+                    }
                 </div>
+
             </div>
         </div>
 
@@ -170,7 +176,10 @@ const FieldNames = ({addField}) => {
     return (<>
         <div className="row g-2">
             <div className="col-auto">
-                <label htmlFor="fields">Add custom column:</label>
+                <label htmlFor="fields"
+                       className="w-label">
+                    Add custom column:
+                </label>
                 <div className='input-group'>
                     <input type="text"
                            className="form-control"
@@ -190,8 +199,8 @@ const FieldNames = ({addField}) => {
                     <button onClick={addCustomField} className="btn btn-outline-secondary">Add</button>
                 </div>
             </div>
-            <div className="align-items-center" style={{paddingTop: '33px'}}>
-            </div>
+            {/*<div className="align-items-center" style={{paddingTop: '33px'}}>*/}
+            {/*</div>*/}
         </div>
 
     </>)

@@ -33,7 +33,7 @@ export default function CustomTable() {
             console.log(foundWishlistIndex);
             setCurrentWishlistIndex(foundWishlistIndex);
             setWishlist(currentWishlist);
-        }
+          }
         // console.log('wishlists before: ' + JSON.stringify(wishlists))
         //todo: solve problem with context
         // if (wishlists.length < 1) {
@@ -70,9 +70,7 @@ export default function CustomTable() {
 
 }
 
-const WishlistTable = ({
-                           currentWishlistIndex
-                       }) => {
+const WishlistTable = ({currentWishlistIndex}) => {
 
     const wishlist = useSelector(state => state.wishlists.wishlists[currentWishlistIndex]);
     console.log('rerender wishlist: ' + JSON.stringify(wishlist))
@@ -81,7 +79,7 @@ const WishlistTable = ({
     const [needTableSave, setNeedTableSave] = useState(false);
     const newColumnNameInputRef = useRef();
 
-    const handleUpdateAndSave = (newWishlist) => {
+    const handleUpdateAndSave = () => {
         store.dispatch(updateWishlist(
             {
                 newWishlist: wishlist,
@@ -144,7 +142,7 @@ const WishlistTable = ({
                 rowIndex
             }
         ));
-        console.log('deleteColumnInCurrentWishlist end' )
+        console.log('deleteColumnInCurrentWishlist end')
         setNeedTableSave(true);
     }
 

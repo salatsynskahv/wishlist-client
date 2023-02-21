@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
-import './App.scss';
 import UpdateProfile from "./component/pages/auth/UpdateProfile";
 import Friends from "./component/pages/friends/Friends";
 import MyWishlists from "./component/pages/mywishlist/MyWishlists";

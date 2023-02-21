@@ -1,4 +1,4 @@
-import './App.scss';
+import './styles/App.scss';
 import Navbar from "./component/Navbar";
 import {AuthProvider} from "./contexts/AuthContext";
 import React from "react";
@@ -9,6 +9,7 @@ import Home from "./component/pages/Home";
 
 function App() {
     const location = useLocation();
+    console.log("APPLICATION STARTED")
     console.log('location: ' + JSON.stringify(location))
 
     return (
@@ -24,7 +25,6 @@ function App() {
                     {   location.pathname !== '/' && <Outlet/>
                     }
                     <footer className="footer">
-                        <div>All rights reserved</div>
                     </footer>
                 </Provider>
             </AuthProvider>
