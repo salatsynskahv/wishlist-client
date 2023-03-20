@@ -7,8 +7,9 @@ import {useAuth} from "../../../contexts/AuthContext";
 import FriendsWishlist from "./FriendsWishlist";
 import FriendsAccordion from "./FriendsAccordion";
 import {useDispatch, useSelector} from "react-redux";
-import {addFriend, deleteFriend, initFriends} from "../../../features/friends/friendsSlice";
-import store from "../../../app/store";
+import {addFriend, deleteFriend} from "../../../redux/redux-features/friends/friendsSlice";
+import store from "../../../redux/store";
+import {selectUser} from "../../../redux/redux-features/user/userSlice";
 
 export default function Friends() {
     const searchFriendRef = useRef();
@@ -17,10 +18,9 @@ export default function Friends() {
     const [searchResult, setSearchResult] = useState('');
     //todo: replace with redux state
     const friends = useSelector(state => state.friends.friends);
-    // const [friends, setFriends] = useState([])
     const [currentFriendsList, setCurrentFriendsList] = useState([])
     const [selectedList, setSelectedList] = useState(undefined)
-    const {currentUser} = useAuth();
+    const currentUser = useSelector(selectUser);
     const handleClose = () => {
         setShow(false);
         setSearchResult('')
@@ -35,11 +35,6 @@ export default function Friends() {
                 console.log(result)
             })
     }
-
-    useEffect(() => {
-        console.log(`currentUser.friend_ids ${currentUser.friend_ids}`);
-        store.dispatch(initFriends({initValue: currentUser.friend_ids}));
-    }, []);
 
     function add(item) {
         store.dispatch(addFriend({newFriend: item, currentUserEmail: currentUser.email}));

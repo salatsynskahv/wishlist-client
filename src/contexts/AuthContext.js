@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {GoogleAuthProvider, createUserWithEmailAndPassword,
+import {createUserWithEmailAndPassword,
     signInWithPopup, signInWithEmailAndPassword, updateEmail, updatePassword} from "firebase/auth";
 import {auth, googleProvider} from "../firebase"
 import axios from "axios";

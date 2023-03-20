@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {useAuth} from "../../../contexts/AuthContext";
-import store from "../../../app/store";
+import store from "../../../redux/store";
 
 import WishlistMenu from "./WishlistMenu";
 import {useSelector} from "react-redux";
-import {initWishlists} from "../../../features/wishlists/wishlistsSlice";
+import {initWishlists} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 import axios from "axios";
 import NewWishlist from "./NewWishlist";
+import {selectUser} from "../../../redux/redux-features/user/userSlice";
 
 
 export default function MyWishlists() {
-    const { currentUser } = useAuth();
+    const currentUser  = useSelector(selectUser);
     const wishlists = useSelector(state => state.wishlists.wishlists);
     const [showCreateNewWishlist, setShowCreateNewWishlist] = useState(false);
 

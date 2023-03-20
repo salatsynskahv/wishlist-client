@@ -3,7 +3,7 @@ import {Accordion} from "react-bootstrap";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import DeleteIcon from "../../../icons/DeleteIcon";
-import {deleteFriend} from "../../../features/friends/friendsSlice";
+import {deleteFriend} from "../../../redux/redux-features/friends/friendsSlice";
 import {useAuth} from "../../../contexts/AuthContext";
 
 const FriendsAccordion = ({currentFriendsList, setCurrentFriendsList, setSelectedList}) => {

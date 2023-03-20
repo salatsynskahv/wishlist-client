@@ -1,14 +1,15 @@
 import React, {useRef, useState} from "react";
-import {useAuth} from "../../../contexts/AuthContext";
-import axios from "axios";
-import {Container, Form} from "react-bootstrap";
+import {Form} from "react-bootstrap";
 import {Button} from "@mui/material";
-import store from "../../../app/store";
-import {createWishlist} from "../../../features/wishlists/wishlistsSlice";
+import store from "../../../redux/store";
+import {createWishlist} from "../../../redux/redux-features/wishlists/wishlistsSlice";
+import {useSelector} from "react-redux";
+import {selectUser} from "../../../redux/redux-features/user/userSlice";
+import PlusCircleDotted from "../../../icons/PlusCircleDotted";
 
 const NewWishlist = ({show, setShow}) => {
-    const ObjectID = require("bson-objectid")
-    const {currentUser} = useAuth()
+    const ObjectID = require("bson-objectid");
+    const currentUser = useSelector(selectUser);
     const defaultNewTableBtnRef = useRef(null);
     const wishlistNameRef = useRef(null);
     const [name, setName] = React.useState("");
@@ -120,42 +121,12 @@ const NewWishlist = ({show, setShow}) => {
                                 wishlistNameRef.current.focus();
                             }
                         }>
-                            <h4><strong>{!name  ? "Please, enter Wishlist Name" : name}</strong></h4>
+                            <h4><strong>{!name ? "Please, enter Wishlist Name" : name}</strong></h4>
                         </div>
                     }
                 </div>
                 <div>
-                    {fields.length > 0 && <table className="wishlist-table bordered">
-                        <thead>
-                        <tr className="wishlist-table-body">{
-                            fields.map((field, index) =>
-                                (<td key={index}>
-                                    {field}
-                                </td>)
-                            )
-                        }</tr>
-                        </thead>
-                        <tbody className="table-group-divider">
-                        {
-                            tableContent.map((item, index1) =>
-                                (<tr key={index1}>
-                                        {fields.map((field, index2) => {
-                                                return (
-                                                    <td key={index2}>
-                                                        <input
-                                                            className="form-control-plaintext"
-                                                            onChange={(e) => setTableData(index1, index2, e)}
-                                                            type='text'/>
-                                                    </td>
-                                                )
-                                            }
-                                        )}
-                                    </tr>
-                                )
-                            )
-                        }
-                        </tbody>
-                    </table>
+                    {fields.length > 0 && <NewWishlistTable fields={fields}/>
                     }
                 </div>
 
@@ -206,4 +177,48 @@ const FieldNames = ({addField}) => {
     </>)
 }
 
+
+const NewWishlistTable = ({fields}) => {
+    const [headers, setHeaders] = useState(fields);
+    const [content, setContent] = useState([])
+    console.log(JSON.stringify(fields));
+    const editHeader = (e, index) => {
+        headers[index] = e.target.value;
+        setHeaders(headers);
+    }
+
+    const addRow = () => {
+
+    }
+    return (
+        <div className="new-wl-table">
+        <table>
+            <thead>
+            <tr>
+                {/*todo: add onChange*/}
+                {headers.map((header, index) =>
+                    (
+                        <td>
+                            <input
+                                type="text"
+                                onChange={(e) => editHeader(e, index)}
+                                defaultValue={header}
+                            />
+                        </td>
+                    ))}
+
+                    <span className="addRow"
+                        onClick={addRow}>
+                        <PlusCircleDotted/>
+                    </span>
+            </tr>
+            </thead>
+            <tr>
+
+            </tr>
+        </table>
+
+    </div>)
+
+}
 export default NewWishlist;

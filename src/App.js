@@ -1,33 +1,48 @@
 import './styles/App.scss';
 import Navbar from "./component/Navbar";
-import {AuthProvider} from "./contexts/AuthContext";
-import React from "react";
+import React, {useEffect} from "react";
 import {Outlet, useLocation} from "react-router-dom";
-import {Provider} from "react-redux";
-import store from "./app/store";
-import Home from "./component/pages/Home";
+import {useDispatch} from "react-redux";
+import Home from "./component/pages/Home"
+import {login, logout} from "./redux/redux-features/user/userSlice";
+import {auth, onAuthStateChanged} from "./firebase";
 
 function App() {
     const location = useLocation();
+    const dispatch = useDispatch();
     console.log("APPLICATION STARTED")
-    console.log('location: ' + JSON.stringify(location))
+    console.log('location: ' + JSON.stringify(location));
+    useEffect(() => {
+        onAuthStateChanged(auth, (userAuth) => {
+            if (userAuth) {
+                dispatch(login({
+                    email: userAuth.email,
+                    uid: userAuth.uid,
+                    displayName: userAuth.displayName,
+                    photoUrl: userAuth.photoUrl
+                }))
+            } else {
+                dispatch(logout())
+            }
+        })
+    })
 
     return (
         <div className="App">
-            <AuthProvider>
-                <Provider store={store}>
-                    <header>
-                        <Navbar/>
-                    </header>
-                    {
-                        location.pathname === '/' && <Home/>
-                    }
-                    {   location.pathname !== '/' && <Outlet/>
-                    }
-                    <footer className="footer">
-                    </footer>
-                </Provider>
-            </AuthProvider>
+            {/*<AuthProvider>*/}
+
+            <header>
+                <Navbar/>
+            </header>
+            {/*todo: FIX this*/}
+            {
+                location.pathname === '/' && <Home/>
+            }
+            {location.pathname !== '/' && <Outlet/>
+            }
+            <footer className="footer">
+            </footer>
+            {/*</AuthProvider>*/}
         </div>
     );
 }

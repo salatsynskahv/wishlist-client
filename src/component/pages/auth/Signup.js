@@ -1,15 +1,13 @@
 import React, {useRef, useState} from 'react'
 import {Alert, Card, Form, Button, Container} from "react-bootstrap";
-import {useAuth} from "../../../contexts/AuthContext"
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export default function Signup() {
     const emailRef = useRef()
     const passwordConfirmRef = useRef()
     const passwordRef = useRef()
-    const {signup} = useAuth()
-    console.log(JSON.stringify(useAuth()))
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -24,7 +22,7 @@ export default function Signup() {
         try {
             setError("")
             setLoading(true)
-            signup(emailRef.current.value, passwordRef.current.value).then((userCreds) => {
+            createUserWithEmailAndPassword(emailRef.current.value, passwordRef.current.value).then((userCreds) => {
                 console.log('userCreds: ' + JSON.stringify(userCreds))
                 const ObjectID = require("bson-objectid")
                 const user = {_id: ObjectID().toHexString(), ...userCreds.user}

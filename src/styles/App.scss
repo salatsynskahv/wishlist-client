@@ -1,9 +1,9 @@
 /* Color variables */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;1,300&display=swap');
 $font-family-sans-serif: "Barlow Semi Condensed", sans-serif;
-$primary: #8EBFDF;
+$primary: #8ecae6;
 $secondary: #e4e2e4;
-$success: #ffd2dd;
+$success: #efdbe4;
 
 $theme-colors: (
         "primary": $primary,
@@ -26,13 +26,11 @@ $theme-colors: (
 
 body {
   margin: 0;
-  //background-color: #fafaff !important;
-  background: rgba(243, 238, 239, 0.2);
 }
 
-.nav {
-  background-color: #866EE1;
-  color: white;
+.nav{
+  background-color: #f0f0f0 ;
+  //color: $success;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -56,8 +54,8 @@ body {
   background-color: $primary;
 }
 
-.nav a {
-  color: inherit;
+.nav .menu a {
+  color: #000;
   text-decoration: none;
   text-transform: uppercase;
   height: 100%;
@@ -68,16 +66,12 @@ body {
 
 }
 
-.site-title {
-  box-sizing: content-box;
-  width: 100%;
-  background: #39265b;
-  border-radius: 40%;
-  font-size: 2rem;
+span.user {
+  margin-left: 20px;
 }
 
 .home-title {
-  color: #604b86;
+  color: #6d6875;
   font-family: $font-family-sans-serif;
   font-size: 3rem;
   font-weight: bold;
@@ -89,23 +83,6 @@ body {
   position: relative;
 }
 
-.trash-btn,
-.complete-btn {
-  color: white;
-  border: none;
-  padding: 1rem;
-  cursor: pointer;
-  width: 30px;
-}
-
-.complete-btn {
-  background: rgb(11, 212, 162);
-}
-
-.todo-item {
-  padding: 0rem 0.5rem;
-}
-
 .delete-button {
   padding: 0 5px;
   align-items: flex-end;
@@ -113,36 +90,24 @@ body {
   background: #fff;
 }
 
-.delete-modal-content {
-  display: block;
-  text-align: center;
-}
-
-.newtable-th {
-  max-width: 100px !important;
-}
-
-.login-form {
-  margin: 20px;
-  max-width: 250px;
-}
-
-.my-wishlist-page {
-  margin: 20px;
-
-}
-
-.width-35-per {
-  width: 35%;
-}
-
 .search-friend-modal {
   width: max-content;
 }
 
 .home-page-banner {
-  height: 90vh;
-  background: rgba(245, 243, 243, 0.2); /* fallback for old browsers */
+  //height: 100vh;
+}
+
+.home-page-banner:before {
+  content: "";
+  background: url("../images/leaf.jpg") no-repeat center center/cover;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .logged-banner {
@@ -154,11 +119,6 @@ body {
   padding: 25px 40px;
   margin: 0 40px;
   font-size: 30px;
-}
-
-#homepage-image {
-  width: 30%;
-  opacity: 75%;
 }
 
 //.mask1 {
@@ -178,15 +138,16 @@ body {
 
 
 .home-section {
-  background: rgb(243, 223, 228, 0.2);
+  //background: rgb(243, 223, 228, 0.2);
   //height: 100vh;
   box-sizing: content-box;
 }
 
-.home-page-banner p {
-  display: inline-block;
+.home-page-banner .inner {
+  display: flex;
+  align-content: center;
+  justify-content: center;
   padding: 100px;
-  margin-left: 15%;
 }
 
 #home-aside {
@@ -206,12 +167,6 @@ body {
   width: 100em;
   top: 15%;
   left: 20%;
-}
-
-.table-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 table {
@@ -292,9 +247,6 @@ table {
   border-radius: 0 0 6px 0;
 }
 
-.dot3-button {
-}
-
 .table-cell {
   display: inline-flex;
   justify-content: space-between;
@@ -326,10 +278,6 @@ table {
   font-weight: 500;
 }
 
-.created-table {
-  display: flex;
-  justify-content: center;
-}
 
 .new-wl-container {
   display: flex;
@@ -358,6 +306,49 @@ table {
   justify-items: start;
 }
 
+.new-wl-table {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+
+.new-wl-table table {
+  border-collapse: collapse;
+  width: 100%;
+  cursor: pointer;
+}
+
+.new-wl-table tr th {
+  font-size: 18px;
+  padding: 12px;
+  border: 1px solid #eeeeee;
+  text-align: left;
+  background-color: rgba(217, 221, 146, 0.2);
+}
+
+.new-wl-table tr td {
+  border: 1px solid #eeeeee;
+  text-align: left;
+  cursor: none;
+}
+
+.new-wl-table input {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  width: 91%;
+  padding: 12px 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.new-wl-table .addRow {
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /*fwl - friends wishlist*/
 
 .fwl-container {
@@ -375,11 +366,6 @@ table {
 .flw-header-item {
   border: 1px solid gray;
   padding: 20px 50px;
-}
-
-.break {
-  flex-basis: 100%;
-  height: 0;
 }
 
 .wishlist-table {
@@ -451,13 +437,4 @@ table {
 .fwl-column {
   display: flex;
   flex-direction: column;
-}
-
-//.test-img {
-//  background-image: url("../images/footer-wave.svg") center/cover;
-//}
-
-.flex-item {
-  display: flex;
-  align-self: flex-start;
 }

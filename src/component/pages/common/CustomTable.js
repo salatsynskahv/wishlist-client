@@ -7,14 +7,14 @@ import {useSelector} from "react-redux";
 import Linkify from "react-linkify";
 import Dot3Icon from "../../../icons/Dots3Icon";
 import PlusCircleDotted from "../../../icons/PlusCircleDotted";
-import store from "../../../app/store";
+import store from "../../../redux/store";
 import {
     addColumnAfterInCurrentWishlist,
     addRowBelowInCurrentWishlist, deleteColumnInCurrentWishlist,
     deleteRowInCurrentWishlist,
     updateValueInCurrentWishlist,
     updateWishlist
-} from "../../../features/wishlists/wishlistsSlice";
+} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 
 export default function CustomTable() {
     const location = useLocation();
