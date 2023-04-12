@@ -1,7 +1,9 @@
 /* Color variables */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;1,300&display=swap');
+
 $font-family-sans-serif: "Barlow Semi Condensed", sans-serif;
 $primary: #8ecae6;
+$primary-bold: #0d5877;
 $secondary: #e4e2e4;
 $success: #efdbe4;
 
@@ -24,12 +26,13 @@ $theme-colors: (
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 
-body {
+* {
   margin: 0;
+  padding: 0;
 }
 
-.nav{
-  background-color: #f0f0f0 ;
+.nav {
+  background-color: #f0f0f0;
   //color: $success;
   display: flex;
   justify-content: space-between;
@@ -94,32 +97,79 @@ span.user {
   width: max-content;
 }
 
-.home-page-banner {
-  //height: 100vh;
+
+.home-page {
+  .section {
+    height: 55vh;
+
+    &-a {
+
+      .home-page-banner {
+        margin: 0;
+      }
+
+      .home-page-banner:before {
+        content: "";
+        background: url("../images/sectionA-back.jpg") no-repeat center center/cover;
+        opacity: 0.3;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+    }
+
+    &-b {
+      background: #021a4c;
+      color: #fff;
+      margin: 0;
+      overflow: hidden;
+
+      div {
+        height: 100px;
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.6em;
+        margin: 50px 20px;
+        padding: 20px;
+
+        p {
+          margin: 25px;
+        }
+
+        button {
+          padding: 10px 10px;
+          margin: 0 10px;
+          font-size: 16px;
+        }
+      }
+
+      div:nth-child(even) {
+        margin: auto;
+      }
+
+      div:nth-child(odd) {
+        margin-left: 10%;
+      }
+    }
+  }
+
+  .home-page-banner .inner {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 100px;
+  }
 }
 
-.home-page-banner:before {
-  content: "";
-  background: url("../images/leaf.jpg") no-repeat center center/cover;
-  opacity: 0.3;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
 
-.logged-banner {
-  display: flex;
-  justify-content: center;
-}
+//todo: chose image
 
-.logged-banner button {
-  padding: 25px 40px;
-  margin: 0 40px;
-  font-size: 30px;
-}
 
 //.mask1 {
 //  -webkit-mask-image: url(../images/auto.png);
@@ -135,20 +185,6 @@ span.user {
 //  mask-size: 100%;
 //}
 
-
-
-.home-section {
-  //background: rgb(243, 223, 228, 0.2);
-  //height: 100vh;
-  box-sizing: content-box;
-}
-
-.home-page-banner .inner {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 100px;
-}
 
 #home-aside {
   width: 25em;
@@ -294,10 +330,12 @@ table {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
+  margin-top: 10px;
   //flex-wrap: wrap;
 }
 
-.new-wl-item div {
+.new-wl-item .inner {
   display: flex;
   justify-content: center;
 }
@@ -307,17 +345,38 @@ table {
 }
 
 .new-wl-table {
-  width: 100%;
   max-width: 800px;
   padding: 0 10px;
-  margin: 0 auto;
-  margin-top: 70px;
+  margin: 30px auto;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
 }
 
-.new-wl-table table {
-  border-collapse: collapse;
+.new-wl-header {
+
+}
+
+.btn-add {
+  font-weight: 550;
+  color: $primary-bold;
+}
+
+.new-wl-row {
+  border-top: 1px solid lightgrey;
+}
+
+textarea {
   width: 100%;
-  cursor: pointer;
+  resize: none;
+  height: 54px;
+  outline: none;
+  padding: 15px;
+  max-height: 300px;
+  border: none;
+}
+
+textarea::-webkit-scrollbar {
+  width: 0px;
 }
 
 .new-wl-table tr th {
@@ -338,15 +397,22 @@ table {
   font-size: 16px;
   background-color: transparent;
   border: none;
-  width: 91%;
   padding: 12px 12px;
   font-family: 'Poppins', sans-serif;
 }
 
 .new-wl-table .addRow {
   border: none;
+  margin-right: 20px;
+  display: inline-block;
   text-decoration: none;
   cursor: pointer;
+}
+
+.btn-popover {
+  border: none;
+  background: none;
+
 }
 
 /*fwl - friends wishlist*/

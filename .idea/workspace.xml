@@ -2,30 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/images/home-banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/leaf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/redux-features/user/userSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/icons/InfoCircleIcon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/sectionA-back.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/PrivateRoute.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/FriendsAccordion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/FriendsAccordion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/UsersWishlistsContext.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/friends/friendsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-features/friends/friendsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/wishlists/wishlistsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-features/wishlists/wishlistsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/homepage.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/horizontal-wave.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/leaf.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/leaf.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +39,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="29iAhQfkwdRZh3quyZh9q5XmmN6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -65,12 +55,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/fintech" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -86,19 +79,6 @@
       <recent name="C:\Projects\wishlist-client" />
       <recent name="C:\Projects\wishlist-client\src\component\api" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -197,6 +177,16 @@
       <workItem from="1678224344779" duration="488000" />
       <workItem from="1678870973959" duration="16515000" />
       <workItem from="1679064447539" duration="28000" />
+      <workItem from="1679316094857" duration="734000" />
+      <workItem from="1679486633646" duration="5387000" />
+      <workItem from="1679546652815" duration="4458000" />
+      <workItem from="1680097375087" duration="5384000" />
+      <workItem from="1680349947271" duration="10176000" />
+      <workItem from="1680602609813" duration="8379000" />
+      <workItem from="1680900848501" duration="338000" />
+      <workItem from="1680955654968" duration="5035000" />
+      <workItem from="1681212483417" duration="10971000" />
+      <workItem from="1681326938484" duration="454000" />
     </task>
     <servers />
   </component>
@@ -256,7 +246,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/Home.js</url>
-          <line>45</line>
+          <line>64</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -268,6 +258,11 @@
           <url>file://$PROJECT_DIR$/src/component/pages/auth/Login.js</url>
           <line>44</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/common/CustomTable.js</url>
+          <line>72</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

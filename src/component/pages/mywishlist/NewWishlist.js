@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Form} from "react-bootstrap";
 import {Button} from "@mui/material";
 import store from "../../../redux/store";
@@ -13,8 +13,9 @@ const NewWishlist = ({show, setShow}) => {
     const defaultNewTableBtnRef = useRef(null);
     const wishlistNameRef = useRef(null);
     const [name, setName] = React.useState("");
-    const [fields, setFields] = React.useState([])
-    const [tableContent, setTableContent] = React.useState([{}])
+    const [fields, setFields] = useState([])
+    const [tableContent, setTableContent] = useState([])
+    console.log(fields);
     const createWishList = () => {
         console.log("submit form - save row")
         const newItemId = ObjectID();
@@ -28,16 +29,8 @@ const NewWishlist = ({show, setShow}) => {
         store.dispatch(createWishlist({
             newList
         }))
-        setShow(false)
-    }
-
-    const setTableData = (index1, index2, e) => {
-        const row = tableContent[index1]
-        const key = Object.keys(row)[index2]
-        row[key] = e.target.value
-        setTableContent(tableContent)
-        console.log('setTableData tableContent2' + JSON.stringify(tableContent))
-        console.log('row' + JSON.stringify(row))
+        setShow(false);
+        resetTable();
     }
 
     const addField = (field) => {
@@ -49,21 +42,6 @@ const NewWishlist = ({show, setShow}) => {
             return {...item, ...{[field]: ''}}
         })
         setTableContent(newTable)
-        console.log("tableContent: " + JSON.stringify(tableContent))
-    }
-
-    const createDefaultColumns = () => {
-        if (fields.length > 1) {
-            return;
-        }
-        setFields([...fields, 'name', 'link', 'comment'])
-        console.log(fields)
-        const newTable = tableContent.map(item => {
-            return {...item, ...{name: '', link: '', comment: ''}}
-        })
-        setTableContent(newTable)
-        defaultNewTableBtnRef.current.disabled = true;
-        console.log(fields)
         console.log("tableContent: " + JSON.stringify(tableContent))
     }
 
@@ -82,13 +60,13 @@ const NewWishlist = ({show, setShow}) => {
         <div className="new-wl-container m-3">
             <form onSubmit={createWishList}>
                 <Form.Group>
-                    <button
-                        onClick={createDefaultColumns}
-                        ref={defaultNewTableBtnRef}
-                        className="btn btn-link default-table-btn"
-                    >
-                        Create default table
-                    </button>
+                    {/*<button*/}
+                    {/*    onClick={createDefaultColumns}*/}
+                    {/*    ref={defaultNewTableBtnRef}*/}
+                    {/*    className="btn btn-link default-table-btn"*/}
+                    {/*>*/}
+                    {/*    Create default table*/}
+                    {/*</button>*/}
                     <label htmlFor="name" className="w-label" ref={wishlistNameRef}>Wishlist Name</label>
                     <input type="text"
                            required
@@ -102,9 +80,15 @@ const NewWishlist = ({show, setShow}) => {
                 </Form.Group>
                 <br/>
                 <FieldNames addField={addField}/>
-                <div className="form-check">
+                <div style={{marginTop: '20px'}} className="form-check">
                     <input className="form-check-input" type="checkbox" value="" id="privateCheck"/>
                     <label className="form-check-label" htmlFor="privateCheck"> Private list </label>
+                    {/*todo: fix, does not work popover*/}
+                    {/*<button type="button" className="btn-popover" data-container="body" data-toggle="popover"*/}
+                    {/*        data-placement="top"*/}
+                    {/*        data-content="Private list will not appear in search results of your friends">*/}
+                    {/*   <InfoCircleIcon/>*/}
+                    {/*</button>*/}
                 </div>
                 <div style={{marginTop: '20px'}}>
                     <Button type="submit" variant="contained">
@@ -114,7 +98,7 @@ const NewWishlist = ({show, setShow}) => {
                 </div>
             </form>
             <div className="new-wl-item">
-                <div>
+                <div className="inner">
                     {
                         <div onClick={
                             () => {
@@ -126,7 +110,13 @@ const NewWishlist = ({show, setShow}) => {
                     }
                 </div>
                 <div>
-                    {fields.length > 0 && <NewWishlistTable fields={fields}/>
+                    {
+                    <NewWishlistTable
+                        fields={['Name', 'Link', 'Available/Booked']}
+                        setFields={setFields}
+                        tableContent={tableContent}
+                        setTableContent={setTableContent}
+                    />
                     }
                 </div>
 
@@ -167,7 +157,7 @@ const FieldNames = ({addField}) => {
                            onChange={(event) => {
                                setField(event.target.value)
                            }}/>
-                    <button onClick={addCustomField} className="btn btn-outline-secondary">Add</button>
+                    <button onClick={addCustomField} className="btn btn-outline-primary btn-add">Add</button>
                 </div>
             </div>
             {/*<div className="align-items-center" style={{paddingTop: '33px'}}>*/}
@@ -178,47 +168,102 @@ const FieldNames = ({addField}) => {
 }
 
 
-const NewWishlistTable = ({fields}) => {
-    const [headers, setHeaders] = useState(fields);
-    const [content, setContent] = useState([])
-    console.log(JSON.stringify(fields));
+const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) => {
+    // const [headers, setHeaders] = useState(fields);
+    // const [content, setContent] = useState([])
+    const [columnWidths, setColumnWidths] = useState([]);
+    useEffect( () => {
+        addNewRow();
+    }, []);
+
+    useEffect(()=> {
+        console.log('rerender columnWidth')
+        const newValue = [];
+        fields.forEach(() => newValue.push(95/fields.length));
+        setColumnWidths(newValue);
+        console.log('columnW: ' + columnWidths);
+    }, [fields])
+
     const editHeader = (e, index) => {
-        headers[index] = e.target.value;
-        setHeaders(headers);
+        console.log('e.target.value: ' + e.target.value);
+        // if(e.target.value === ''){
+        //     console.log('remove');
+        //     setFields(fields.splice(index, 1));
+        //     console.log('after delete: ' + fields.length);
+        //     return
+        // }
+        fields[index] = e.target.value;
+        setFields(fields);
     }
 
-    const addRow = () => {
-
+    const addNewRow = () => {
+        const newRow = {}
+        fields.forEach(item => newRow[item] = '')
+        setTableContent([...tableContent, newRow]);
     }
+
+    const editRowContent = (index1, index2, e) => {
+        console.log('index1: ' + index1);
+        console.log('index2: ' + index2);
+        const row = tableContent[index1]
+        const key = Object.keys(row)[index2]
+        row[key] = e.target.value
+        setTableContent(tableContent)
+        console.log('setTableData tableContent2' + JSON.stringify(tableContent))
+        console.log('row' + JSON.stringify(row))
+    }
+
+    const resizeTextarea = (e) => {
+        e.target.style.height = '50px';
+        e.target.style.height = `${e.target.scrollHeight}px`;
+    }
+
     return (
         <div className="new-wl-table">
-        <table>
-            <thead>
-            <tr>
+            {/*<table>*/}
+            {/*    <thead>*/}
+            <div className="new-wl-header">
                 {/*todo: add onChange*/}
-                {headers.map((header, index) =>
+                {fields.map((header, index) =>
                     (
-                        <td>
-                            <input
-                                type="text"
-                                onChange={(e) => editHeader(e, index)}
-                                defaultValue={header}
-                            />
-                        </td>
+                        <input
+                            type="text"
+                            style={{width: `${columnWidths[index]}%`}}
+                            onChange={(e) => editHeader(e, index)}
+                            defaultValue={header}
+                        />
                     ))}
 
-                    <span className="addRow"
-                        onClick={addRow}>
+                <span className="addRow"
+                      onClick={addNewRow}>
                         <PlusCircleDotted/>
                     </span>
-            </tr>
-            </thead>
-            <tr>
+            </div>
+            <div>
+                {
+                    tableContent.map((row, index1) =>
+                        <div className="new-wl-row">
+                            {
+                                fields.map((field, index2) =>
+                                    <textarea
+                                        style={{width: `${columnWidths[index2]}%`}}
+                                        defaultValue={row[field]}
+                                        onChange={e => editRowContent(index1, index2, e)}
+                                        onKeyUp={e => resizeTextarea(e)}
+                                    />
+                                )
+                            }
+                        </div>
+                    )
+                }
+            </div>
+            {/*    </thead>*/}
+            {/*    <tr>*/}
 
-            </tr>
-        </table>
+            {/*    </tr>*/}
+            {/*</table>*/}
 
-    </div>)
+        </div>)
 
 }
 export default NewWishlist;

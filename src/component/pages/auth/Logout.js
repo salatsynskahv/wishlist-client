@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {logout} from "../../../redux/redux-features/user/userSlice";
@@ -7,6 +7,7 @@ import {signOut} from "firebase/auth";
 export default function Logout() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [error, setError] = useState('');
 
     useEffect(() => {
         setTimeout(handleLogout, 1000)
@@ -18,9 +19,10 @@ export default function Logout() {
                 dispatch(logout);
             })
             navigate('/login');
-        } catch {
+        } catch (e) {
             //todo: make nice error message
-            console.log('Failed logout')
+            console.log('Failed logout' + e);
+            setError(e.message);
         }
 
     }
@@ -28,6 +30,7 @@ export default function Logout() {
     return (
         <div className="container">
             <span>Logging out ... </span>
+            {error && <p>{error}</p>}
         </div>
     )
 }

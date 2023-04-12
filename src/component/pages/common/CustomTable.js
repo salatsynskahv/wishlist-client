@@ -210,6 +210,11 @@ const WishlistTable = ({currentWishlistIndex}) => {
         );
     }
 
+    const resizeTextarea = (e) => {
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight}px`;
+    }
+
     const tableRow = (wishlist, item, index1) => {
         return <tr key={index1}>
             {wishlist.fields.map((field, index2) =>
@@ -223,7 +228,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
                                 setNeedTableSave(false)
                             }
                         }}
-                        onDoubleClick={() => setCellToEdit({index1: index1, index2: index2})}
+                        onClick={() => setCellToEdit({index1: index1, index2: index2})}
                     >
                         {
                             !(cellToEdit.index1 === index1 && cellToEdit.index2 === index2) &&
@@ -246,9 +251,10 @@ const WishlistTable = ({currentWishlistIndex}) => {
                         }
                         {
                             cellToEdit.index1 === index1 && cellToEdit.index2 === index2 &&
-                            <input
+                            <textarea
                                 className="form-control-plaintext"
                                 onChange={(e) => handleInputTableChange(index1, field, e)}
+                                onKeyUp={e => resizeTextarea(e)}
                                 defaultValue={item[field]}
                             />
                         }
