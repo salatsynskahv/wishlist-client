@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {logout} from "../../../redux/redux-features/user/userSlice";
 import {signOut} from "firebase/auth";
+import {auth} from "../../../firebase";
 
 export default function Logout() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Logout() {
 
     async function handleLogout() {
         try {
-            signOut().then(() => {
+            auth.signOut().then(() => {
                 dispatch(logout);
             })
             navigate('/login');

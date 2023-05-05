@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import PlusCircleDotted from "../../../icons/PlusCircleDotted";
 import ListItem from "../../helpers/ListItem";
 import {Outlet} from "react-router";
-import store from "../../../redux/store";
 import {deleteWishlist} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 import {useDispatch, useSelector} from "react-redux";
 

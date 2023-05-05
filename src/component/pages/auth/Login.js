@@ -62,43 +62,29 @@ export default function Login() {
     }
 
     return (
-        <div className="login-container">
-            <div className="row login-row">
-                <Col xs={4} >
-                    <Card className="m-4">
-                        <Card.Body>
-                            <h2 className="text-center mb-4">Login</h2>
-                            {error && <Alert variant="danger"> {error}</Alert>}
-                            <Form onSubmit={handleSubmit}>
-                                <Form.Group id="email">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" ref={emailRef} required>
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group id="password">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" ref={passwordRef} required>
-                                    </Form.Control>
-                                </Form.Group>
-                                <br/>
-                                <Button disabled={loading} type="submit" className="w-100">Log in</Button>
-                            </Form>
-                            <div className="w-100 text-center mt-3">
-                                <Link to="/forgot-password">Forgot password?</Link>
-                            </div>
-                        </Card.Body>
-                    </Card>
-
-                    <div className="w-100 text-center mt-2"> Need an account? <Link to="/signup"> Sign up</Link>
-                    </div>
-                </Col>
-                <Col xs={3} className="m-4">
-                    <Card>
-                        <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
+        <div className="login-main">
+            <div className="login-container">
+                    <h2 className="text-center mb-4"> Login </h2>
+                    {error && <Alert variant="danger"> {error} </Alert>}
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group id="email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" ref={emailRef} required>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group id="password">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" ref={passwordRef} required>
+                            </Form.Control>
+                        </Form.Group>
                         <br/>
+                        <Button disabled={loading} type="submit" className="w-100">Log in</Button>
+                    </Form>
+
+                    <div className="social-login">
+                        <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
                         <button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>
-                    </Card>
-                </Col>
+                    </div>
             </div>
         </div>)
 }

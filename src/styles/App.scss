@@ -1,15 +1,16 @@
 /* Color variables */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;1,300&display=swap');
 
-$font-family-sans-serif: "Barlow Semi Condensed", sans-serif;
-$primary: #8ecae6;
-$primary-bold: #0d5877;
-$secondary: #e4e2e4;
+$font-family-sans-serif: "Open Sans", sans-serif;
+$primary: #2C3E50;
+$secondary-blue: #85C1E9;
+$secondary-orange: #F39C12;
+$secondary-gray: #BDC3C7;
 $success: #efdbe4;
 
 $theme-colors: (
         "primary": $primary,
-        "secondary": $secondary,
+        "secondary": $secondary-blue,
         "success": $success,
   //"info":       $info,
   //"warning":    $warning,
@@ -31,14 +32,22 @@ $theme-colors: (
   padding: 0;
 }
 
+
 .nav {
-  background-color: #f0f0f0;
+  background-color: #fff;
   //color: $success;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   gap: 2em;
   padding: 0 1rem;
+
+  .wishlist-logo {
+    margin: 15px;
+    width: 50px;
+    height: 50px;
+    background: url("../images/wish-list-icon.svg") no-repeat center center/cover;
+  }
 }
 
 .nav ul {
@@ -55,27 +64,53 @@ $theme-colors: (
 
 .nav li:hover {
   background-color: $primary;
+  border-radius: 3px;
+  a {
+    color: #fff;
+  }
+
+}
+
+
+.home-logo {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 5px;
+  left: 30px;
+}
+
+.menu {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  align-content: space-around;
+  justify-content: center;
+
+}
+.menu li {
+  display: block;
 }
 
 .nav .menu a {
+  display: inline-block;
   color: #000;
   text-decoration: none;
+  text-align: center;
   text-transform: uppercase;
   height: 100%;
-  display: flex;
-  align-items: center;
-  padding: .25rem;
-  font-size: 1.25rem;
-
+  padding: 30px 0.25rem;
+  font-size: 1.4rem;
 }
 
 span.user {
+  display: inline-block;
   margin-left: 20px;
+  font-size: 1.2rem;
 }
 
 .home-title {
-  color: #6d6875;
-  font-family: $font-family-sans-serif;
+  color: $primary;
   font-size: 3rem;
   font-weight: bold;
   letter-spacing: 2px;
@@ -100,9 +135,10 @@ span.user {
 
 .home-page {
   .section {
-    height: 55vh;
+
 
     &-a {
+      height: 80vh;
 
       .home-page-banner {
         margin: 0;
@@ -110,7 +146,7 @@ span.user {
 
       .home-page-banner:before {
         content: "";
-        background: url("../images/sectionA-back.jpg") no-repeat center center/cover;
+        background: url("../images/sectionA-background.jpg") no-repeat center center/cover;
         opacity: 0.3;
         position: absolute;
         top: 0;
@@ -123,19 +159,18 @@ span.user {
     }
 
     &-b {
-      background: #021a4c;
+      background: $primary;
       color: #fff;
-      margin: 0;
-      overflow: hidden;
+      overflow: auto;
+      //margin: -1px;
 
       div {
-        height: 100px;
-        width: 60%;
-        display: flex;
+        width: 70%;
+        display: grid;
         justify-content: center;
         align-items: center;
-        font-size: 1.6em;
-        margin: 50px 20px;
+        font-size: 1.5em;
+        margin: 40px 20px;
         padding: 20px;
 
         p {
@@ -146,15 +181,18 @@ span.user {
           padding: 10px 10px;
           margin: 0 10px;
           font-size: 16px;
+          background: $secondary-blue;
         }
       }
 
       div:nth-child(even) {
         margin: auto;
+        grid-template-columns: 1fr 4fr;
       }
 
       div:nth-child(odd) {
         margin-left: 10%;
+        grid-template-columns: 4fr 1fr;
       }
     }
   }
@@ -194,9 +232,43 @@ span.user {
   float: right;
 }
 
-.login-container {
-  position: relative;
+.login-main {
+  height: 90vh;
+  background-color: #fbfbfe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .login-container {
+    width: 40%;
+    background-color: #fff;
+    //border: #b1b2c4 solid 1px;
+    border-radius: 15px;
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: center;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 2px 2px .4em #b1b2c4, -2px -2px .4em #b1b2c4;
+
+
+
+    .social-login {
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        width: 80%;
+        margin-top: 20px;
+      }
+    }
+  }
+
 }
+
 
 .login-row {
   position: absolute;
@@ -345,7 +417,6 @@ table {
 }
 
 .new-wl-table {
-  max-width: 800px;
   padding: 0 10px;
   margin: 30px auto;
   border: 1px solid lightgrey;
@@ -358,7 +429,7 @@ table {
 
 .btn-add {
   font-weight: 550;
-  color: $primary-bold;
+  color: $secondary-blue;
 }
 
 .new-wl-row {
@@ -435,16 +506,17 @@ textarea::-webkit-scrollbar {
 }
 
 .wishlist-table {
-  //width: 100%;
-  //height: auto;
-  /*border: 1px solid grey;*/
-  /*border-collapse: separate;*/
-  /*border-radius: 5px;*/
-
+  display: grid;
+  align-items: center;
+  margin: auto;
 }
 
-.wishlist-table-body {
-  border: 1px solid grey;
+.editable-div {
+  border-bottom: 1px solid #f0f0f0 ;
+  border-right: 1px dotted #f0f0f0;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  padding: 5px 5px;
 }
 
 .error {
@@ -458,8 +530,8 @@ textarea::-webkit-scrollbar {
 }
 
 .my-wishlist-menu {
-  margin-top: 30px;
-  margin-bottom: 50px;
+  width: 95%;
+  margin: 30px 40px 40px 40px;
   display: block;
   float: left;
 }

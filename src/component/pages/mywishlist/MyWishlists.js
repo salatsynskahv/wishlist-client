@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import store from "../../../redux/store";
+import {v4 as uuidv4} from 'uuid';
 
 import WishlistMenu from "./WishlistMenu";
 import {useSelector} from "react-redux";
@@ -10,7 +11,7 @@ import {selectUser} from "../../../redux/redux-features/user/userSlice";
 
 
 export default function MyWishlists() {
-    const currentUser  = useSelector(selectUser);
+    const currentUser = useSelector(selectUser);
     const wishlists = useSelector(state => state.wishlists.wishlists);
     const [showCreateNewWishlist, setShowCreateNewWishlist] = useState(false);
 
@@ -20,10 +21,34 @@ export default function MyWishlists() {
         if (!wishlists && currentUser) {
             axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${currentUser.email}`,)
                 .then((response) => {
-                    console.log('response.data: ' + JSON.stringify(response.data))
                     store.dispatch(initWishlists({initValue: response.data}));
                 });
         }
+        //TODO: TEMPORARY
+
+        if(wishlists) {
+            for (let i = 0; i < wishlists.length; i++) {
+                const wl = wishlists[i];
+                if (typeof wl.fields[0] === "string") {
+                    const newFields = wl.fields.map(field => {
+                        return {
+                            id: generateFieldID(field),
+                            name: field
+                        }
+                    });
+                    const newWL = {...wl, fields: newFields}
+                    console.log('new WL ' + JSON.stringify(newWL));
+                }
+            }
+
+            function generateFieldID(field) {
+                const result = uuidv4().substr(0, 16);
+                console.log('result uuidv4' + result);
+                return result;
+            }
+        }
+
+
     }, [])
 
     return (

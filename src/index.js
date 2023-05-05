@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
+import {
+    createBrowserRouter,
+    RouterProvider,
+    createRoutesFromElements,
+    Route
+} from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import UpdateProfile from "./component/pages/auth/UpdateProfile";
 import Friends from "./component/pages/friends/Friends";
 import MyWishlists from "./component/pages/mywishlist/MyWishlists";
@@ -16,52 +21,20 @@ import Home from "./component/pages/Home";
 import {Provider} from "react-redux";
 import store from "./redux/store";
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App/>,
-        children: [
-            {
-                path: '/home',
-                element: <Home/>
-            },
-            {
-                path: '/update-profile',
-                element: <UpdateProfile/>
-            },
-            {
-                path: '/friends',
-                element: <Friends/>
-            },
-            {
-                path: '/wishlist',
-                element: <MyWishlists/>,
-                children: [
-                    {
-                        path: '/wishlist/:wishListId',
-                        element: <CustomTable/>
-                    }
-                ]
-            },
-            {
-                path: '/signup',
-                element: <Signup/>
-            },
-            {
-                path: '/login',
-                element: <Login/>
-            },
-            {
-                path: '/forgot-password',
-                element: <ForgotPassword/>
-            },
-            {
-                path: '/logout',
-                element: <Logout/>
-            }
-        ]
-    }
-])
+const router = createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<App/>}>
+        <Route index element={<Home/>}/>
+        <Route path='/update-profile' element={<UpdateProfile/>}/>
+        <Route path='/friends' element={<Friends/>}/>
+        <Route path='/wishlist' element={<MyWishlists/>}>
+            <Route path='/wishlist/:wishListId' element={<CustomTable/>}/>
+        </Route>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
+        <Route path='/logout' element={<Logout/>}/>
+    </Route>
+));
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

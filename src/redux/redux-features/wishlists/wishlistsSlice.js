@@ -44,21 +44,21 @@ export const wishlistsSlice = createSlice(
             },
 
             updateValueInCurrentWishlist(state, action) {
+                console.log('updateValueInCurrentWishlist action.payload : ' + JSON.stringify(action.payload));
                 const indexOfWishlist = action.payload.currentWishlistIndex;
                 const newValue = action.payload.newValue;
-                const index1 = action.payload.index1;
-                const field = action.payload.field;
-                state.wishlists[indexOfWishlist].content[index1][field] = newValue;
+                const rowIndex = action.payload.index;
+                const fieldId = action.payload.field.id;
+                state.wishlists[indexOfWishlist].content[rowIndex][fieldId] = newValue;
             },
-            //
-            // updateWishlist(state, action) {
-            //     const updatedWishlist = action.updatedWishlist;
-            //     const index = state.wishlists.findIndex((item) => item._id === updatedWishlist._id);
-            //     console.log("index: " + index);
-            //     if (index) {
-            //         state.wishlists[index] = updatedWishlist;
-            //     }
-            // },
+
+            updateFieldNameInCurrentWishlist(state, action) {
+                const indexOfWishlist = action.payload.currentWishlistIndex;
+                const newValue = action.payload.newValue;
+                const columnIndex = action.payload.columnIndex;
+                console.log('columnIndex: ' + columnIndex);
+                state.wishlists[indexOfWishlist].fields[columnIndex] = newValue;
+            },
 
             addRowBelowInCurrentWishlist(state, action) {
                 state.wishlists[action.payload.currentWishlistIndex]
@@ -105,7 +105,8 @@ export const {
     addRowBelowInCurrentWishlist,
     deleteRowInCurrentWishlist,
     addColumnAfterInCurrentWishlist,
-    deleteColumnInCurrentWishlist
+    deleteColumnInCurrentWishlist,
+    updateFieldNameInCurrentWishlist
 } = wishlistsSlice.actions;
 
 export default wishlistsSlice.reducer;

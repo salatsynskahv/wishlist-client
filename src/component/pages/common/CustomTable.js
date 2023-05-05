@@ -1,20 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {useParams} from "react-router-dom";
 import axios from "axios"
 import {useLocation} from "react-router-dom"
 import {useAuth} from "../../../contexts/AuthContext";
 import {useSelector} from "react-redux";
-import Linkify from "react-linkify";
 import Dot3Icon from "../../../icons/Dots3Icon";
 import PlusCircleDotted from "../../../icons/PlusCircleDotted";
 import store from "../../../redux/store";
 import {
     addColumnAfterInCurrentWishlist,
     addRowBelowInCurrentWishlist, deleteColumnInCurrentWishlist,
-    deleteRowInCurrentWishlist,
+    deleteRowInCurrentWishlist, updateFieldNameInCurrentWishlist,
     updateValueInCurrentWishlist,
     updateWishlist
 } from "../../../redux/redux-features/wishlists/wishlistsSlice";
+import ContentEditable from "react-contenteditable";
+import Editable from "./Editable";
 
 export default function CustomTable() {
     const location = useLocation();
@@ -27,13 +28,13 @@ export default function CustomTable() {
     const {currentUser} = useAuth();
 
     useEffect(() => {
-        if (wishlists.length > 1) {
+        if (wishlists.length > 0) {
             console.log(wishlists)
             const foundWishlistIndex = wishlists.findIndex(item => item._id === wishListId);
             console.log(foundWishlistIndex);
             setCurrentWishlistIndex(foundWishlistIndex);
             setWishlist(currentWishlist);
-          }
+        }
         // console.log('wishlists before: ' + JSON.stringify(wishlists))
         //todo: solve problem with context
         // if (wishlists.length < 1) {
@@ -56,16 +57,13 @@ export default function CustomTable() {
 
     // console.log('currentWishlist' + JSON.stringify(currentWishlist))
     return (
-        wishlist && <>
-            <div className="container">
+        wishlist &&
+        <WishlistTable
+            wishlist={wishlist}
+            setWishlist={setWishlist}
+            currentWishlistIndex={currentWishlistIndex}
+        />
 
-                <WishlistTable
-                    wishlist={wishlist}
-                    setWishlist={setWishlist}
-                    currentWishlistIndex={currentWishlistIndex}
-                />
-            </div>
-        </>
     )
 
 }
@@ -73,32 +71,55 @@ export default function CustomTable() {
 const WishlistTable = ({currentWishlistIndex}) => {
 
     const wishlist = useSelector(state => state.wishlists.wishlists[currentWishlistIndex]);
-    console.log('rerender wishlist: ' + JSON.stringify(wishlist))
+    // console.log('rerender wishlist: ' + JSON.stringify(wishlist))
     const [currentFocusValue, setCurrentFocusValue] = useState();
     const [cellToEdit, setCellToEdit] = useState({})
     const [needTableSave, setNeedTableSave] = useState(false);
     const newColumnNameInputRef = useRef();
 
     const handleUpdateAndSave = () => {
-        store.dispatch(updateWishlist(
-            {
-                newWishlist: wishlist,
-                currentWishlistIndex: currentWishlistIndex
-            }))
-        setNeedTableSave(false);
+        if (needTableSave) {
+            console.log("handle save");
+            store.dispatch(updateWishlist(
+                {
+                    newWishlist: wishlist,
+                    currentWishlistIndex: currentWishlistIndex
+                }))
+            setNeedTableSave(false);
+        }
     }
 
-    const handleInputTableChange = (index1, field, e) => {
+    const handleInputTableChange = (rowIndex, columnIndex, field, e) => {
+        // console.log('e: ' + e.target.value);
+        // console.log('wishlist.content[columnIndex][rowIndex]: ' + wishlist.content[rowIndex][field]);
+        // console.log('columnIndex: ' + columnIndex);
+        // console.log('rowIndex: ' + rowIndex);
+
+        if (e.target.value === wishlist.content[rowIndex][field.id]) {
+            return;
+        }
+
 
         store.dispatch(updateValueInCurrentWishlist(
             {
                 newValue: e.target.value,
                 currentWishlistIndex,
-                index1,
+                index: rowIndex,
                 field
             }
         ));
         setNeedTableSave(true)
+    }
+
+    const handleFieldNameChange = (columnIndex, e) => {
+        store.dispatch(updateFieldNameInCurrentWishlist(
+            {
+                newValue: e.target.value,
+                currentWishlistIndex,
+                columnIndex
+            }
+        ));
+        setNeedTableSave(true);
     }
 
     const addTableRow = (rowIndex) => {
@@ -147,40 +168,12 @@ const WishlistTable = ({currentWishlistIndex}) => {
     }
 
     const tableHeader = (index, field) => {
+        const handleChange = (e) => handleFieldNameChange(index, e);
         return (
-            <td key={index}>
-                <div className="table-cell">
-                    {field}
-                </div>
-                <div className="btn-group fl-right">
-                    <button type="button"
-                            className="btn btn-link"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        <PlusCircleDotted/>
-                    </button>
-                    <ul className="dropdown-menu">
-                        <li>
-                            <a
-                                className="dropdown-item"
-                                data-bs-toggle="modal"
-                                data-bs-target='#addColumnModal'
-                                href="#"
-                                onClick={() => setCurrentFocusValue(index)}
-                            >
-                                Add Column After
-                            </a>
-                        </li>
-                        <li>
-                            <a className="dropdown-item"
-                               href="#"
-                               onClick={() => deleteTableColumn(index)}>
-                                Delete Current Column
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </td>
+            <Editable
+                html={field.name}
+                handleChange={handleChange}
+            />
         )
     }
 
@@ -215,62 +208,27 @@ const WishlistTable = ({currentWishlistIndex}) => {
         e.target.style.height = `${e.target.scrollHeight}px`;
     }
 
-    const tableRow = (wishlist, item, index1) => {
-        return <tr key={index1}>
-            {wishlist.fields.map((field, index2) =>
-                (
-                    <td key={index2}
-                        onMouseLeave={(e) => {
-                            // setDotsHidden(index1, index2);
-                            if (needTableSave) {
-                                setCellToEdit({});
-                                handleUpdateAndSave(wishlist)
-                                setNeedTableSave(false)
-                            }
-                        }}
-                        onClick={() => setCellToEdit({index1: index1, index2: index2})}
-                    >
-                        {
-                            !(cellToEdit.index1 === index1 && cellToEdit.index2 === index2) &&
-                            <Linkify
-                                componentDecorator={(
-                                    decoratedHref,
-                                    decoratedText,
-                                    key) => (
-                                    <a href={decoratedHref} key={key} target="_blank">
-                                        {decoratedText}
-                                    </a>
-                                )}>
+    const tableRow = (wishlist, item, columnIndex) => {
 
-                                <div className="table-cell">
-                                    <span>
-                                        {item[field]}
-                                    </span>
-                                </div>
-                            </Linkify>
-                        }
-                        {
-                            cellToEdit.index1 === index1 && cellToEdit.index2 === index2 &&
-                            <textarea
-                                className="form-control-plaintext"
-                                onChange={(e) => handleInputTableChange(index1, field, e)}
-                                onKeyUp={e => resizeTextarea(e)}
-                                defaultValue={item[field]}
-                            />
-                        }
-                    </td>
+        return <>
+            {wishlist.fields.map((field, rowIndex) =>
+                (
+                    <Editable
+                        html={item[field.id]}
+                        field={field.name}
+                        index1={columnIndex}
+                        handleChange={(e) => handleInputTableChange(columnIndex, rowIndex, field, e)}
+                    />
                 )
             )
             }
-            <td> {rowMenuCell(index1)}</td>
-
-        </tr>
-
+        </>
     }
+
     return (
         <>
             <div className="mb-4">
-                <h3 className="align-items-center fw-bold"> {wishlist.name} </h3>
+                <h3 className="align-items-center fw-bold"> {wishlist && wishlist.name} </h3>
             </div>
             <div className="modal fade" id="addColumnModal" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog">
@@ -299,29 +257,22 @@ const WishlistTable = ({currentWishlistIndex}) => {
                     </div>
                 </div>
             </div>
-            <table className="wishlist-table bordered">
-                <thead>
-                <tr className="wishlist-table-body">
-                    {
-                        wishlist.fields.map((field, index) => {
-                                return tableHeader(index, field)
-                            }
-                        )
-                    }
-                    <th></th>
-                </tr>
-                </thead>
+            <div className="wishlist-table bordered"
+                 onMouseLeave={(e) => handleUpdateAndSave()}
+                 style={{gridTemplateColumns: `repeat( ${wishlist.fields.length} ,auto)`}}
+            >
                 {
-                    wishlist.content &&
-                    <tbody className="table-group-divider">
-                    {
-                        wishlist.content.map((item, index1) => {
-                            return tableRow(wishlist, item, index1)
-                        })
-                    }
-                    </tbody>
+                    wishlist.fields.map((field, index) => {
+                            return tableHeader(index, field)
+                        }
+                    )
                 }
-            </table>
+                {
+                    wishlist.content && wishlist.content.map((item, index1) => {
+                        return tableRow(wishlist, item, index1)
+                    })
+                }
+            </div>
         </>
     )
 }

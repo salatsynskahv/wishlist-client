@@ -6,6 +6,8 @@ import {createWishlist} from "../../../redux/redux-features/wishlists/wishlistsS
 import {useSelector} from "react-redux";
 import {selectUser} from "../../../redux/redux-features/user/userSlice";
 import PlusCircleDotted from "../../../icons/PlusCircleDotted";
+import {v4 as uuidv4} from "uuid";
+
 
 const NewWishlist = ({show, setShow}) => {
     const ObjectID = require("bson-objectid");
@@ -15,7 +17,6 @@ const NewWishlist = ({show, setShow}) => {
     const [name, setName] = React.useState("");
     const [fields, setFields] = useState([])
     const [tableContent, setTableContent] = useState([])
-    console.log(fields);
     const createWishList = () => {
         console.log("submit form - save row")
         const newItemId = ObjectID();
@@ -37,12 +38,20 @@ const NewWishlist = ({show, setShow}) => {
         if (!field) {
             return;
         }
-        setFields([...fields, field])
+        const fieldId = generateFieldID();
+        const fieldObj = {id: fieldId, name: field}
+        setFields([...fields, fieldObj])
         const newTable = tableContent.map(item => {
-            return {...item, ...{[field]: ''}}
+            return {...item, ...{[fieldId]: ''}}
         })
         setTableContent(newTable)
         console.log("tableContent: " + JSON.stringify(tableContent))
+    }
+
+    function generateFieldID() {
+        const result = uuidv4().substr(0, 16);
+        console.log('result uuidv4' + result);
+        return result;
     }
 
     const resetTable = () => {
@@ -109,17 +118,13 @@ const NewWishlist = ({show, setShow}) => {
                         </div>
                     }
                 </div>
-                <div>
-                    {
-                    <NewWishlistTable
-                        fields={['Name', 'Link', 'Available/Booked']}
-                        setFields={setFields}
-                        tableContent={tableContent}
-                        setTableContent={setTableContent}
-                    />
-                    }
-                </div>
-
+                <NewWishlistTable
+                    fields={fields}
+                    setFields={setFields}
+                    tableContent={tableContent}
+                    setTableContent={setTableContent}
+                />
+                {/*<div contentEditable="true" role="textbox" style={{width: '100px', border: '1px solid black', pointer: 'cursor'}}></div>*/}
             </div>
         </div>
 
@@ -151,7 +156,7 @@ const FieldNames = ({addField}) => {
                                if (event.key === "Enter") {
                                    console.log('event.target.value: ' + event.target.value)
                                    setField(event.target.value)
-                                   addCustomField()
+                                   addCustomField(event);
                                }
                            }}
                            onChange={(event) => {
@@ -167,19 +172,21 @@ const FieldNames = ({addField}) => {
     </>)
 }
 
-
 const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) => {
     // const [headers, setHeaders] = useState(fields);
     // const [content, setContent] = useState([])
+    console.log('fields: ' + fields)
     const [columnWidths, setColumnWidths] = useState([]);
-    useEffect( () => {
-        addNewRow();
+    useEffect(() => {
+        if (fields.length === 0) {
+            addNewRow();
+        }
     }, []);
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log('rerender columnWidth')
         const newValue = [];
-        fields.forEach(() => newValue.push(95/fields.length));
+        fields.forEach(() => newValue.push(95 / fields.length));
         setColumnWidths(newValue);
         console.log('columnW: ' + columnWidths);
     }, [fields])
@@ -192,7 +199,8 @@ const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) =>
         //     console.log('after delete: ' + fields.length);
         //     return
         // }
-        fields[index] = e.target.value;
+        const fieldToEdit = fields[index];
+        fields[index] = {...fieldToEdit, name: e.target.value};
         setFields(fields);
     }
 
@@ -224,13 +232,14 @@ const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) =>
             {/*    <thead>*/}
             <div className="new-wl-header">
                 {/*todo: add onChange*/}
-                {fields.map((header, index) =>
+                {fields.map((value, index) =>
                     (
                         <input
+                            key={index}
                             type="text"
                             style={{width: `${columnWidths[index]}%`}}
                             onChange={(e) => editHeader(e, index)}
-                            defaultValue={header}
+                            defaultValue={value.name}
                         />
                     ))}
 
@@ -246,8 +255,9 @@ const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) =>
                             {
                                 fields.map((field, index2) =>
                                     <textarea
+                                        key={field.id}
                                         style={{width: `${columnWidths[index2]}%`}}
-                                        defaultValue={row[field]}
+                                        defaultValue={row[field.id]}
                                         onChange={e => editRowContent(index1, index2, e)}
                                         onKeyUp={e => resizeTextarea(e)}
                                     />

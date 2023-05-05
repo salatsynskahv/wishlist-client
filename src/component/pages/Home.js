@@ -16,7 +16,6 @@ export default function Home() {
             </div>
         ) :
         (<>
-            {/*describe why wishlists is important*!/*/}
             <div>
                 <p>
                     Remembering what you want: With so many things to buy or receive as a gift, it's easy to forget what you were interested in.

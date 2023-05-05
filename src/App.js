@@ -29,20 +29,12 @@ function App() {
 
     return (
         <div className="App">
-            {/*<AuthProvider>*/}
-
             <header>
                 <Navbar/>
             </header>
-            {/*todo: FIX this*/}
-            {
-                location.pathname === '/' && <Home/>
-            }
-            {location.pathname !== '/' && <Outlet/>
-            }
+            <Outlet/>
             <footer className="footer">
             </footer>
-            {/*</AuthProvider>*/}
         </div>
     );
 }
