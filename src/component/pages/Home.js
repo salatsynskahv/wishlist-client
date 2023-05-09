@@ -43,9 +43,9 @@ export default function Home() {
                     <div className="inner">
                         <div>
                             <br/>
-                            <h1 className="home-title"><i>Personalize</i> your wish list with ease </h1>
+                            <h1 className="home-title"><i>Create</i> Your Wish List With Ease </h1>
                             <br/>
-                            <h2 className="home-title"> <i>Discover </i> and exchange wish lists with friends </h2>
+                            <h2 className="home-title">  <i>Exchange</i> Your Wish Lists With Friends </h2>
                         </div>
                     </div>
 

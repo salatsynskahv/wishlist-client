@@ -3,7 +3,6 @@ import Navbar from "./component/Navbar";
 import React, {useEffect} from "react";
 import {Outlet, useLocation} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import Home from "./component/pages/Home"
 import {login, logout} from "./redux/redux-features/user/userSlice";
 import {auth, onAuthStateChanged} from "./firebase";
 

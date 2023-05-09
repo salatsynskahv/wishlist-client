@@ -142,7 +142,14 @@ span.user {
 
       .home-page-banner {
         margin: 0;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap ;
+        height: 100%;
+
       }
+
 
       .home-page-banner:before {
         content: "";
@@ -165,7 +172,7 @@ span.user {
       //margin: -1px;
 
       div {
-        width: 70%;
+        width: 75%;
         display: grid;
         justify-content: center;
         align-items: center;
@@ -179,8 +186,9 @@ span.user {
 
         button {
           padding: 10px 10px;
+          border-radius: 20px;
           margin: 0 10px;
-          font-size: 16px;
+          font-size: 18px;
           background: $secondary-blue;
         }
       }
@@ -195,13 +203,6 @@ span.user {
         grid-template-columns: 4fr 1fr;
       }
     }
-  }
-
-  .home-page-banner .inner {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    padding: 100px;
   }
 }
 
@@ -485,7 +486,6 @@ textarea::-webkit-scrollbar {
   background: none;
 
 }
-
 /*fwl - friends wishlist*/
 
 .fwl-container {
@@ -518,6 +518,16 @@ textarea::-webkit-scrollbar {
   line-height: 1.5rem;
   padding: 5px 5px;
 }
+
+.add-row {
+  visibility: hidden;
+}
+
+.editable-div:focus + .add-row,
+.editable-div:active + .add-row {
+  visibility: visible;
+}
+
 
 .error {
   color: red;
@@ -576,3 +586,4 @@ textarea::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
 }
+

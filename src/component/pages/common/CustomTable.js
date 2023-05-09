@@ -5,7 +5,6 @@ import {useLocation} from "react-router-dom"
 import {useAuth} from "../../../contexts/AuthContext";
 import {useSelector} from "react-redux";
 import Dot3Icon from "../../../icons/Dots3Icon";
-import PlusCircleDotted from "../../../icons/PlusCircleDotted";
 import store from "../../../redux/store";
 import {
     addColumnAfterInCurrentWishlist,
@@ -177,31 +176,6 @@ const WishlistTable = ({currentWishlistIndex}) => {
         )
     }
 
-    const rowMenuCell = (index1) => {
-        return (
-            <div className="btn-group">
-                <button type="button"
-                        className="btn btn-link"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    <Dot3Icon/>
-                </button>
-                <ul className="dropdown-menu">
-                    <li>
-                        <a className="dropdown-item" href="#"
-                           onClick={() => addTableRow(index1)}>
-                            Add row below
-                        </a>
-                    </li>
-                    <li><a className="dropdown-item" href="#"
-                           onClick={() => deleteTableRow(index1)}> Delete current row </a>
-                    </li>
-                    {/*<li><a className="dropdown-item" href="#">Add column after</a></li>*/}
-                    {/*<li><a className="dropdown-item" href="#">Change cell type</a></li>*/}
-                </ul>
-            </div>
-        );
-    }
 
     const resizeTextarea = (e) => {
         e.target.style.height = 'inherit';
@@ -210,8 +184,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
 
     const tableRow = (wishlist, item, columnIndex) => {
 
-        return <>
-            {wishlist.fields.map((field, rowIndex) =>
+        return wishlist.fields.map((field, rowIndex) =>
                 (
                     <Editable
                         html={item[field.id]}
@@ -221,12 +194,11 @@ const WishlistTable = ({currentWishlistIndex}) => {
                     />
                 )
             )
-            }
-        </>
+
     }
 
     return (
-        <>
+        wishlist && <>
             <div className="mb-4">
                 <h3 className="align-items-center fw-bold"> {wishlist && wishlist.name} </h3>
             </div>
@@ -277,4 +249,8 @@ const WishlistTable = ({currentWishlistIndex}) => {
     )
 }
 
-export {WishlistTable};
+export
+{
+    WishlistTable
+}
+    ;
