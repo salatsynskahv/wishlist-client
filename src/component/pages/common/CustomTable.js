@@ -166,16 +166,19 @@ const WishlistTable = ({currentWishlistIndex}) => {
         setNeedTableSave(true);
     }
 
-    const tableHeader = (index, field) => {
-        const handleChange = (e) => handleFieldNameChange(index, e);
+    const tableHeader = (wishlist) => {
         return (
-            <Editable
-                html={field.name}
-                handleChange={handleChange}
-            />
+            <span className="wl-row">
+                {wishlist.fields.map((field, index) =>
+                    <Editable
+                        html={field.name}
+                        handleChange={(e) => handleFieldNameChange(index, e)}
+                    />
+                )}
+                <button className="btn add-row"><Dot3Icon/></button>
+            </span>
         )
-    }
-
+    };
 
     const resizeTextarea = (e) => {
         e.target.style.height = 'inherit';
@@ -184,7 +187,8 @@ const WishlistTable = ({currentWishlistIndex}) => {
 
     const tableRow = (wishlist, item, columnIndex) => {
 
-        return wishlist.fields.map((field, rowIndex) =>
+        return <span className="wl-row">
+            {wishlist.fields.map((field, rowIndex) =>
                 (
                     <Editable
                         html={item[field.id]}
@@ -193,14 +197,32 @@ const WishlistTable = ({currentWishlistIndex}) => {
                         handleChange={(e) => handleInputTableChange(columnIndex, rowIndex, field, e)}
                     />
                 )
-            )
+            )}
+            <button className="btn add-row"><Dot3Icon/></button>
+        </span>
 
     }
 
     return (
-        wishlist && <>
-            <div className="mb-4">
+        wishlist &&
+        <>
+            <div className="wishlist-table">
                 <h3 className="align-items-center fw-bold"> {wishlist && wishlist.name} </h3>
+                <div className="bordered"
+                     style={{width: `${wishlist.fields.length * 200}px`}}
+                     onMouseLeave={(e) => handleUpdateAndSave()}>
+                    <div>
+                        {
+                            tableHeader(wishlist)
+                        }
+
+                        {
+                            wishlist.content && wishlist.content.map((item, index1) => {
+                                return tableRow(wishlist, item, index1)
+                            })
+                        }
+                    </div>
+                </div>
             </div>
             <div className="modal fade" id="addColumnModal" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog">
@@ -228,22 +250,6 @@ const WishlistTable = ({currentWishlistIndex}) => {
                         </form>
                     </div>
                 </div>
-            </div>
-            <div className="wishlist-table bordered"
-                 onMouseLeave={(e) => handleUpdateAndSave()}
-                 style={{gridTemplateColumns: `repeat( ${wishlist.fields.length} ,auto)`}}
-            >
-                {
-                    wishlist.fields.map((field, index) => {
-                            return tableHeader(index, field)
-                        }
-                    )
-                }
-                {
-                    wishlist.content && wishlist.content.map((item, index1) => {
-                        return tableRow(wishlist, item, index1)
-                    })
-                }
             </div>
         </>
     )

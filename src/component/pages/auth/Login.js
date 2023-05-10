@@ -63,28 +63,28 @@ export default function Login() {
 
     return (
         <div className="login-main">
-            <div className="login-container">
-                    <h2 className="text-center mb-4"> Login </h2>
-                    {error && <Alert variant="danger"> {error} </Alert>}
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required>
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required>
-                            </Form.Control>
-                        </Form.Group>
-                        <br/>
-                        <Button disabled={loading} type="submit" className="w-100">Log in</Button>
-                    </Form>
 
-                    <div className="social-login">
-                        <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
-                        <button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>
-                    </div>
+            <div className="login-container">
+                <div className="social-login">
+                    <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
+                    <button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>
+                </div>
+                {error && <Alert variant="danger"> {error} </Alert>}
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group id="email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" ref={emailRef} required>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group id="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" ref={passwordRef} required>
+                        </Form.Control>
+                    </Form.Group>
+                    <br/>
+                    <Button disabled={loading} type="submit" className="w-100">Login</Button>
+                </Form>
+
             </div>
         </div>)
 }

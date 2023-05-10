@@ -6,21 +6,22 @@ import {selectUser} from "../redux/redux-features/user/userSlice";
 export default function Navbar() {
     const currentUser = useSelector(selectUser);
     const elNavLinks = currentUser ? (
-            <ul className="menu">
-                <li><Link to="/wishlist"><span>My wishlist</span></Link></li>
-                <li><Link to="/friends"><span>Friends</span></Link></li>
-                <li><Link to="/logout"><span>Log out</span></Link></li>
-            </ul>) :
+            <>
+                <div className="d-flex">
+                    <Link to="/wishlist"><span>My wishlist</span></Link>
+                    <Link to="/friends"><span>Friends</span></Link>
+                </div>
+                <Link to="/logout"><span>Log out</span></Link>
+            </>
+        ) :
         (
-            <ul className="menu">
-                <li><Link to="/logout"><span>Sign up</span></Link></li>
-            </ul>
+            <Link to="/logout"><span>Login</span></Link>
         );
 
     return (<>
-        <nav className="nav">
+        <nav className="menu">
             <div className="home-logo">
-                <Link to="/home">
+                <Link to="/">
                     <div className="wishlist-logo"></div>
                 </Link>
                 {currentUser && <span className="user"> {currentUser.email} </span>}

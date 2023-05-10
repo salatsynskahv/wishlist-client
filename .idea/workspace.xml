@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/common/CustomTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.scss" afterDir="false" />
     </list>
@@ -48,7 +48,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wishlist-back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../udemy/sass" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -188,7 +188,7 @@
       <workItem from="1683035880618" duration="5355000" />
       <workItem from="1683100846677" duration="109000" />
       <workItem from="1683189458798" duration="1710000" />
-      <workItem from="1683275083772" duration="6010000" />
+      <workItem from="1683275083772" duration="12392000" />
     </task>
     <servers />
   </component>
@@ -218,7 +218,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/Navbar.js</url>
-          <line>38</line>
+          <line>39</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -263,7 +263,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/common/CustomTable.js</url>
-          <line>188</line>
+          <line>191</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
