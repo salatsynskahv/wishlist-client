@@ -67,7 +67,7 @@ export default function Login() {
             <div className="login-container">
                 <div className="social-login">
                     <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
-                    <button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>
+                    {/*<button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>*/}
                 </div>
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <Form onSubmit={handleSubmit}>

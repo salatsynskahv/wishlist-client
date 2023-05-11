@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/redux-features/user/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-features/user/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +187,7 @@
       <workItem from="1683100846677" duration="109000" />
       <workItem from="1683189458798" duration="1710000" />
       <workItem from="1683275083772" duration="15453000" />
-      <workItem from="1683781571507" duration="1621000" />
+      <workItem from="1683781571507" duration="5308000" />
     </task>
     <servers />
   </component>

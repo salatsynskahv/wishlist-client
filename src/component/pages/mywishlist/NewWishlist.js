@@ -17,6 +17,14 @@ const NewWishlist = ({show, setShow}) => {
     const [name, setName] = React.useState("");
     const [fields, setFields] = useState([])
     const [tableContent, setTableContent] = useState([])
+
+    useEffect(() => {
+        const fieldNameObj = {id: generateFieldID(), name: 'Name'}
+        const fieldLinkObj = {id: generateFieldID(), name: 'Link'}
+        const defaultFields = [fieldNameObj, fieldLinkObj];
+        setFields(defaultFields);
+    }, []);
+
     const createWishList = () => {
         console.log("submit form - save row")
         const newItemId = ObjectID();
@@ -34,23 +42,22 @@ const NewWishlist = ({show, setShow}) => {
         resetTable();
     }
 
-    const addField = (field) => {
-        if (!field) {
+    const addField = (fieldName) => {
+        if (!fieldName) {
             return;
         }
         const fieldId = generateFieldID();
-        const fieldObj = {id: fieldId, name: field}
+        const fieldObj = {id: fieldId, name: fieldName}
         setFields([...fields, fieldObj])
         const newTable = tableContent.map(item => {
             return {...item, ...{[fieldId]: ''}}
         })
         setTableContent(newTable)
-        console.log("tableContent: " + JSON.stringify(tableContent))
     }
 
     function generateFieldID() {
         const result = uuidv4().substr(0, 16);
-        console.log('result uuidv4' + result);
+        console.log('result uuidv4: ' + result);
         return result;
     }
 
@@ -206,7 +213,7 @@ const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) =>
 
     const addNewRow = () => {
         const newRow = {}
-        fields.forEach(item => newRow[item] = '')
+        fields.forEach(item => newRow[item.id] = '')
         setTableContent([...tableContent, newRow]);
     }
 
