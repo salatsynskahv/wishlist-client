@@ -17,8 +17,10 @@ export default function MyWishlists() {
 
     useEffect(() => {
         console.log(wishlists)
+        console.log(currentUser)
         //TODO: AFTER FIX remove currentUser FROM Condition
         if (!wishlists && currentUser) {
+            console.log('if (!wishlists && currentUser) - passed!!!!')
             axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlists/${currentUser.email}`,)
                 .then((response) => {
                     store.dispatch(initWishlists({initValue: response.data}));

@@ -11,7 +11,7 @@ export default function Logout() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        setTimeout(handleLogout, 1000)
+        handleLogout();
     }, [])
 
     async function handleLogout() {
@@ -30,7 +30,7 @@ export default function Logout() {
 
     return (
         <div className="container">
-            <span>Logging out ... </span>
+            <span>Log out ... </span>
             {error && <p>{error}</p>}
         </div>
     )
