@@ -2,17 +2,17 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {useParams} from "react-router-dom";
 import axios from "axios"
 import {useLocation} from "react-router-dom"
-import {useAuth} from "../../../contexts/AuthContext";
+import {useAuth} from "../../../../contexts/AuthContext";
 import {useSelector} from "react-redux";
-import Dot3Icon from "../../../icons/Dots3Icon";
-import store from "../../../redux/store";
+import Dot3Icon from "../../../../icons/Dots3Icon";
+import store from "../../../../redux/store";
 import {
     addColumnAfterInCurrentWishlist,
     addRowBelowInCurrentWishlist, deleteColumnInCurrentWishlist,
     deleteRowInCurrentWishlist, updateFieldNameInCurrentWishlist,
     updateValueInCurrentWishlist,
     updateWishlist
-} from "../../../redux/redux-features/wishlists/wishlistsSlice";
+} from "../../../../redux/redux-features/wishlists/wishlistsSlice";
 import ContentEditable from "react-contenteditable";
 import Editable from "./Editable";
 
@@ -166,16 +166,38 @@ const WishlistTable = ({currentWishlistIndex}) => {
         setNeedTableSave(true);
     }
 
+    const threeDotedMenu = (rowIndex) => {
+        return (
+            <div className="btn-group dropend">
+                <button type="button" className="btn dropdown-toggle add-row"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <Dot3Icon/>
+                </button>
+                <ul className="dropdown-menu">
+                    <li><a className="dropdown-item" href="#" onClick={() => addTableRow(rowIndex)}> Add row below</a>
+                    </li>
+                    <li><a className="dropdown-item" href="#" onClick={() => deleteTableRow(rowIndex)}> Delete current</a></li>
+                </ul>
+            </div>
+        )
+    }
+
+
     const tableHeader = (wishlist) => {
         return (
             <span className="wl-row">
-                {wishlist.fields.map((field, index) =>
-                    <Editable
-                        html={field.name}
-                        handleChange={(e) => handleFieldNameChange(index, e)}
-                    />
-                )}
-                <button className="btn add-row"><Dot3Icon/></button>
+                {
+                    wishlist.fields.map((field, index) =>
+                        <Editable
+                            html={field.name}
+                            handleChange={(e) => handleFieldNameChange(index, e)}
+                        />
+                    )
+                }
+                {
+                    threeDotedMenu(0)
+                }
+
             </span>
         )
     };
@@ -185,20 +207,18 @@ const WishlistTable = ({currentWishlistIndex}) => {
         e.target.style.height = `${e.target.scrollHeight}px`;
     }
 
-    const tableRow = (wishlist, item, columnIndex) => {
+    const tableRow = (wishlist, item, rowIndex) => {
 
         return <span className="wl-row">
-            {wishlist.fields.map((field, rowIndex) =>
+            {wishlist.fields.map((field, columnIndex) =>
                 (
                     <Editable
                         html={item[field.id]}
-                        field={field.name}
-                        index1={columnIndex}
-                        handleChange={(e) => handleInputTableChange(columnIndex, rowIndex, field, e)}
+                        handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
                     />
                 )
             )}
-            <button className="btn add-row"><Dot3Icon/></button>
+            {threeDotedMenu(rowIndex)}
         </span>
 
     }
@@ -224,33 +244,33 @@ const WishlistTable = ({currentWishlistIndex}) => {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="addColumnModal" tabIndex="-1" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <form>
-                            <div className="modal-body">
-                                <label htmlFor="name">Name</label>
-                                <input type="text"
-                                       className="form-control"
-                                       id="name"
-                                       ref={newColumnNameInputRef}
-                                />
+            {/*<div className="modal fade" id="addColumnModal" tabIndex="-1" aria-hidden="true">*/}
+            {/*    <div className="modal-dialog">*/}
+            {/*        <div className="modal-content">*/}
+            {/*            <form>*/}
+            {/*                <div className="modal-body">*/}
+            {/*                    <label htmlFor="name">Name</label>*/}
+            {/*                    <input type="text"*/}
+            {/*                           className="form-control"*/}
+            {/*                           id="name"*/}
+            {/*                           ref={newColumnNameInputRef}*/}
+            {/*                    />*/}
 
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel
-                                </button>
-                                <button type="submit"
-                                        className="btn btn-primary"
-                                        onClick={addTableColumn}
-                                        data-bs-dismiss="modal">
-                                    Add
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            {/*                </div>*/}
+            {/*                <div className="modal-footer">*/}
+            {/*                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel*/}
+            {/*                    </button>*/}
+            {/*                    <button type="submit"*/}
+            {/*                            className="btn btn-primary"*/}
+            {/*                            onClick={addTableColumn}*/}
+            {/*                            data-bs-dismiss="modal">*/}
+            {/*                        Add*/}
+            {/*                    </button>*/}
+            {/*                </div>*/}
+            {/*            </form>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </>
     )
 }
@@ -258,5 +278,4 @@ const WishlistTable = ({currentWishlistIndex}) => {
 export
 {
     WishlistTable
-}
-    ;
+};

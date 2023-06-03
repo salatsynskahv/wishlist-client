@@ -104,7 +104,7 @@ span.user {
 
 .home-title {
   color: $primary;
-  font-size: 3rem;
+  font-size: clamp(2rem, 1rem + 3vw, 5rem);
   font-weight: bold;
   letter-spacing: 2px;
   word-spacing: 6px;
@@ -134,35 +134,54 @@ span.user {
       height: 80vh;
 
       .home-page-banner {
-        margin: 0;
+        margin: auto;
         display: flex;
         align-content: center;
         justify-content: center;
         flex-wrap: wrap;
         height: 100%;
+        width: 90vw;
+        border-radius: 20px;
+
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
 
       }
 
 
-      .home-page-banner:before {
-        content: "";
-        background: url("../images/sectionA-background.jpg") no-repeat center center/cover;
-        opacity: 0.3;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
+      //.home-page-banner:before {
+      //  content: "";
+      //  background: url("../images/sectionA-background.jpg") no-repeat center center/cover;
+      //  opacity: 0.3;
+      //  position: absolute;
+      //  top: 0;
+      //  left: 0;
+      //  width: 100%;
+      //  height: 100%;
+      //  z-index: -1;
+      //}
 
     }
 
     &-b {
-      background: $primary;
-      color: #fff;
-      overflow: auto;
-      //margin: -1px;
+      //background: $primary;
+      //color: #fff;
+    ///  overflow: auto;
+    //margin: -1px;
+      box-sizing: content-box;
 
       div {
         width: 75%;
@@ -170,7 +189,7 @@ span.user {
         justify-content: center;
         align-items: center;
         font-size: 1.5em;
-        margin: 40px 20px;
+        margin: 50px 20px;
         padding: 20px;
 
         p {
@@ -417,6 +436,7 @@ table {
 }
 
 .new-wl-header {
+  display: flex;
 
 }
 
@@ -467,8 +487,8 @@ textarea::-webkit-scrollbar {
 
 .new-wl-table .addRow {
   border: none;
-  margin-right: 20px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   cursor: pointer;
 }
@@ -476,7 +496,6 @@ textarea::-webkit-scrollbar {
 .btn-popover {
   border: none;
   background: none;
-
 }
 
 /*fwl - friends wishlist*/
@@ -504,6 +523,11 @@ textarea::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
   margin: auto;
+
+  //remove inherited right arrow
+  .dropend .dropdown-toggle::after {
+    display: none;
+  }
 }
 
 .editable-div {
@@ -519,7 +543,7 @@ textarea::-webkit-scrollbar {
   visibility: hidden;
 }
 
-.wl-row:focus-within .add-row {
+.wl-row:focus-within .add-row, .wl-row:hover .add-row {
   visibility: visible;
 }
 
@@ -557,20 +581,19 @@ textarea::-webkit-scrollbar {
 }
 
 .footer {
-  position: fixed;
-  margin-top: 50px;
-  left: 0;
-  bottom: 0;
   background: $primary;
-  height: 6%;
-  width: 100vw;
-  z-index: -10;
+  //position: fixed;
+  //margin-top: 50px;
+  //left: 0;
+  //bottom: 0;
+  //background: $primary;
+  //height: 6%;
+  //width: 100vw;
+  //z-index: -10;
 }
 
 .footer div {
-  position: absolute;
-  left: 10%;
-  bottom: 0;
+  background: $primary;
 }
 
 .d-inline-block {

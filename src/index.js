@@ -12,7 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import UpdateProfile from "./component/pages/auth/UpdateProfile";
 import Friends from "./component/pages/friends/Friends";
 import MyWishlists from "./component/pages/mywishlist/MyWishlists";
-import CustomTable from "./component/pages/common/CustomTable";
+import CustomTable from "./component/pages/mywishlist/common/CustomTable";
 import Signup from "./component/pages/auth/Signup";
 import Login from "./component/pages/auth/Login";
 import ForgotPassword from "./component/pages/auth/ForgotPassword";

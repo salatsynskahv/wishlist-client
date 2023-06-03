@@ -1,5 +1,5 @@
 import React from "react";
-import {WishlistTable} from "../common/CustomTable";
+import {WishlistTable} from "../mywishlist/common/CustomTable";
 
 const FriendsWishlist = ({wishlist}) => {
     const maxWidth = 350;

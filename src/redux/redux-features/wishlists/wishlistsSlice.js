@@ -5,7 +5,7 @@ import axios from "axios";
 export const createWishlist =
     createAsyncThunk('wishlists/createWishlist',
         async (payload) => {
-            const response = axios.post(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, payload.newList);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, payload.newList);
             return response.data;
         });
 
@@ -61,8 +61,11 @@ export const wishlistsSlice = createSlice(
             },
 
             addRowBelowInCurrentWishlist(state, action) {
+                const wishlist = state.wishlists[action.payload.currentWishlistIndex];
+                const newRow = {};
+                wishlist.fields.forEach(field => newRow[field.id] = '');
                 state.wishlists[action.payload.currentWishlistIndex]
-                    .content.splice(action.payload.rowIndex + 1, 0, {})
+                    .content.splice(action.payload.rowIndex + 1, 0, newRow)
             },
 
             deleteRowInCurrentWishlist(state, action) {

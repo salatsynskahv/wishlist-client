@@ -12,18 +12,17 @@ import {v4 as uuidv4} from "uuid";
 const NewWishlist = ({show, setShow}) => {
     const ObjectID = require("bson-objectid");
     const currentUser = useSelector(selectUser);
-    const defaultNewTableBtnRef = useRef(null);
     const wishlistNameRef = useRef(null);
     const [name, setName] = React.useState("");
     const [fields, setFields] = useState([])
     const [tableContent, setTableContent] = useState([])
 
-    useEffect(() => {
-        const fieldNameObj = {id: generateFieldID(), name: 'Name'}
-        const fieldLinkObj = {id: generateFieldID(), name: 'Link'}
-        const defaultFields = [fieldNameObj, fieldLinkObj];
-        setFields(defaultFields);
-    }, []);
+    // useEffect(() => {
+    //     const fieldNameObj = {id: generateFieldID(), name: 'Name'}
+    //     const fieldLinkObj = {id: generateFieldID(), name: 'Link'}
+    //     const defaultFields = [fieldNameObj, fieldLinkObj];
+    //     setFields(defaultFields);
+    // }, []);
 
     const createWishList = () => {
         console.log("submit form - save row")
@@ -55,11 +54,7 @@ const NewWishlist = ({show, setShow}) => {
         setTableContent(newTable)
     }
 
-    function generateFieldID() {
-        const result = uuidv4().substr(0, 16);
-        console.log('result uuidv4: ' + result);
-        return result;
-    }
+
 
     const resetTable = () => {
         setName('');
@@ -138,6 +133,12 @@ const NewWishlist = ({show, setShow}) => {
     )
 }
 
+function generateFieldID() {
+    const result = uuidv4().substr(0, 16);
+    console.log('result uuidv4: ' + result);
+    return result;
+}
+
 const FieldNames = ({addField}) => {
     const [field, setField] = useState("")
     const addCustomField = (event) => {
@@ -182,11 +183,19 @@ const FieldNames = ({addField}) => {
 const NewWishlistTable = ({fields, setFields, tableContent, setTableContent}) => {
     // const [headers, setHeaders] = useState(fields);
     // const [content, setContent] = useState([])
-    console.log('fields: ' + fields)
+    console.log('NewWishlistTable')
     const [columnWidths, setColumnWidths] = useState([]);
     useEffect(() => {
+        //     const fieldNameObj = {id: generateFieldID(), name: 'Name'}
+        //     const fieldLinkObj = {id: generateFieldID(), name: 'Link'}
+        //     const defaultFields = [fieldNameObj, fieldLinkObj];
+        //     setFields(defaultFields);
         if (fields.length === 0) {
-            addNewRow();
+                const fieldNameObj = {id: generateFieldID(), name: 'Name'}
+                const fieldLinkObj = {id: generateFieldID(), name: 'Link'}
+                const defaultFields = [fieldNameObj, fieldLinkObj];
+                setFields(defaultFields);
+            // addNewRow();
         }
     }, []);
 
