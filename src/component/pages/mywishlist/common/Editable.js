@@ -1,10 +1,10 @@
 import ContentEditable from 'react-contenteditable';
 
-const Editable = ({html, handleChange}) => {
-     console.log('html :' + html);
+const Editable = ({html, handleChange, width}) => {
     return (
         <ContentEditable
             className="editable-div"
+            style={{minWidth: `${width}px`}}
             onChange={(e) => handleChange(e)}
             html={html}/>
     )

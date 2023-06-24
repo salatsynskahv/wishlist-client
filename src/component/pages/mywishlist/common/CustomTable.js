@@ -74,7 +74,15 @@ const WishlistTable = ({currentWishlistIndex}) => {
     const [currentFocusValue, setCurrentFocusValue] = useState();
     const [cellToEdit, setCellToEdit] = useState({})
     const [needTableSave, setNeedTableSave] = useState(false);
+    const [columnWidth, setColumnWidth] = useState([]);
     const newColumnNameInputRef = useRef();
+    const defaultColumnWidth = 300;
+
+    useEffect(() => {
+        const newColumnWidth = []
+        wishlist.fields.forEach(() => newColumnWidth.push(defaultColumnWidth));
+        setColumnWidth(newColumnWidth)
+    }, [wishlist]);
 
     const handleUpdateAndSave = () => {
         if (needTableSave) {
@@ -176,7 +184,8 @@ const WishlistTable = ({currentWishlistIndex}) => {
                 <ul className="dropdown-menu">
                     <li><a className="dropdown-item" href="#" onClick={() => addTableRow(rowIndex)}> Add row below</a>
                     </li>
-                    <li><a className="dropdown-item" href="#" onClick={() => deleteTableRow(rowIndex)}> Delete current</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => deleteTableRow(rowIndex)}> Delete
+                        current</a></li>
                 </ul>
             </div>
         )
@@ -189,6 +198,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
                 {
                     wishlist.fields.map((field, index) =>
                         <Editable
+                            width={columnWidth[index] || '300px'}
                             html={field.name}
                             handleChange={(e) => handleFieldNameChange(index, e)}
                         />
@@ -202,10 +212,10 @@ const WishlistTable = ({currentWishlistIndex}) => {
         )
     };
 
-    const resizeTextarea = (e) => {
-        e.target.style.height = 'inherit';
-        e.target.style.height = `${e.target.scrollHeight}px`;
-    }
+    // const resizeTextarea = (e) => {
+    //     e.target.style.height = 'inherit';
+    //     e.target.style.height = `${e.target.scrollHeight}px`;
+    // }
 
     const tableRow = (wishlist, item, rowIndex) => {
 
@@ -213,6 +223,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
             {wishlist.fields.map((field, columnIndex) =>
                 (
                     <Editable
+                        width={columnWidth[columnIndex] || '300px'}
                         html={item[field.id]}
                         handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
                     />
@@ -224,12 +235,12 @@ const WishlistTable = ({currentWishlistIndex}) => {
     }
 
     return (
-        wishlist &&
+        wishlist && columnWidth.length>0 &&
         <>
             <div className="wishlist-table">
                 <h3 className="align-items-center fw-bold"> {wishlist && wishlist.name} </h3>
                 <div className="bordered"
-                     style={{width: `${wishlist.fields.length * 200}px`}}
+                     style={{width: `${columnWidth.reduce((prev, current) => prev + current)}px`}}
                      onMouseLeave={(e) => handleUpdateAndSave()}>
                     <div>
                         {

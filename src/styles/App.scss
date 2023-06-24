@@ -1,5 +1,6 @@
 /* Color variables */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;1,300&display=swap');
+@import "Loader";
 
 $font-family-sans-serif: "Open Sans", sans-serif;
 $primary: #2C3E50;
@@ -40,7 +41,9 @@ $theme-colors: (
   justify-content: space-between;
   align-items: stretch;
   gap: 2em;
-  padding: 0 1rem;
+  width: 90vw;
+  margin: auto;
+  padding: 1rem 0;
 
   ul {
     padding: 0;
@@ -181,6 +184,10 @@ span.user {
       //color: #fff;
     ///  overflow: auto;
     //margin: -1px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       box-sizing: content-box;
 
       div {
@@ -202,6 +209,7 @@ span.user {
           margin: 0 10px;
           font-size: 18px;
           background: $secondary-blue;
+          border: none;
         }
       }
 
@@ -536,7 +544,7 @@ textarea::-webkit-scrollbar {
   font-size: 1.1rem;
   line-height: 1.5rem;
   padding: 5px 5px;
-  flex-basis: 200px;
+  //min-width: 200px;
 }
 
 .add-row {
