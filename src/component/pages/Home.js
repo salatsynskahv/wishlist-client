@@ -18,8 +18,10 @@ export default function Home() {
         (<>
             <div>
                 <p>
-                    Remembering what you want: With so many things to buy or receive as a gift, it's easy to forget what you were interested in.
-                    A wishlist helps you keep track of everything you want in one place, so you don't have to worry about forgetting.
+                    Remembering what you want: With so many things to buy or receive as a gift, it's easy to forget what
+                    you were interested in.
+                    A wishlist helps you keep track of everything you want in one place, so you don't have to worry
+                    about forgetting.
                 </p>
                 <button className="btn btn-primary" onClick={() => navigate('/wishlist')}> Create Your Wishlists
                 </button>
@@ -29,7 +31,8 @@ export default function Home() {
                 </button>
                 <p>
                     Sharing with others: A wishlist is a great way to share your interests with others.
-                    Whether it's for a birthday, holiday, or other occasion, you can share your wishlist with friends and family to let them know what you'd like to receive as a gift.
+                    Whether it's for a birthday, holiday, or other occasion, you can share your wishlist with friends
+                    and family to let them know what you'd like to receive as a gift.
                 </p>
 
             </div>
@@ -39,17 +42,34 @@ export default function Home() {
     return (
         <div className="home-page">
             <section className="section section-a">
-                <div className="home-page-banner">
-                    <div className="inner">
-                        <div>
-                            <br/>
-                            <h1 className="home-title"><i>Create</i> Your Wish List With Ease </h1>
-                            <br/>
-                            <h2 className="home-title">  <i>Exchange</i> Your Wish Lists With Friends </h2>
-                        </div>
-                    </div>
+                <h1>WishMagic</h1>
+
+                <div className="section-a-text">
+                    <h5>
+                        Welcome to WishMagic, the most fantastic way to organize and discover wish lists for your
+                        friends and family!
+                        Say goodbye to terrible gift choices – with our platform, you'll grant wishes like a genie
+                    </h5>
+                </div>
+
+                <div className="container-buttons">
+                    <button>Start Wishing</button>
+                    <button>Share with Friends</button>
+                </div>
+                <div className="image-lights">
 
                 </div>
+                {/*<div className="home-page-banner">*/}
+                {/*    <div className="inner">*/}
+                {/*        <div>*/}
+                {/*            <br/>*/}
+                {/*            <h1 className="home-title"><i>Create</i> Your Wish List With Ease </h1>*/}
+                {/*            <br/>*/}
+                {/*            <h2 className="home-title">  <i>Exchange</i> Your Wish Lists With Friends </h2>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+
+                {/*</div>*/}
 
             </section>
             <section className="section section-b">

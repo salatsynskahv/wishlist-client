@@ -20,6 +20,7 @@ import Logout from "./component/pages/auth/Logout";
 import Home from "./component/pages/Home";
 import {Provider} from "react-redux";
 import store from "./redux/store";
+import ShareWishlist from "./component/pages/ShareWishlist";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<App/>}>
@@ -29,6 +30,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='/wishlist' element={<MyWishlists/>}>
             <Route path='/wishlist/:wishListId' element={<CustomTable/>}/>
         </Route>
+        <Route path='/share-wishlist/:wishlistId' element={<ShareWishlist/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/forgot-password' element={<ForgotPassword/>}/>

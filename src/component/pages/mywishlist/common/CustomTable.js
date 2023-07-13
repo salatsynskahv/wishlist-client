@@ -13,8 +13,10 @@ import {
     updateValueInCurrentWishlist,
     updateWishlist
 } from "../../../../redux/redux-features/wishlists/wishlistsSlice";
-import ContentEditable from "react-contenteditable";
 import Editable from "./Editable";
+import {PiShareFatDuotone, PiShareFatThin} from "react-icons/pi";
+import {RxCopy} from "react-icons/rx";
+import Linkify from 'react-linkify';
 
 export default function CustomTable() {
     const location = useLocation();
@@ -75,6 +77,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
     const [cellToEdit, setCellToEdit] = useState({})
     const [needTableSave, setNeedTableSave] = useState(false);
     const [columnWidth, setColumnWidth] = useState([]);
+    const [copyLink, setCopyLink] = useState([]);
     const newColumnNameInputRef = useRef();
     const defaultColumnWidth = 300;
 
@@ -97,19 +100,26 @@ const WishlistTable = ({currentWishlistIndex}) => {
     }
 
     const handleInputTableChange = (rowIndex, columnIndex, field, e) => {
-        // console.log('e: ' + e.target.value);
-        // console.log('wishlist.content[columnIndex][rowIndex]: ' + wishlist.content[rowIndex][field]);
+        console.log('e: ' + e.target.value);
+        console.log('wishlist.content[columnIndex][rowIndex]: ' + wishlist.content[rowIndex][field]);
         // console.log('columnIndex: ' + columnIndex);
         // console.log('rowIndex: ' + rowIndex);
 
         if (e.target.value === wishlist.content[rowIndex][field.id]) {
             return;
         }
-
+        const linkRegExp = new RegExp("(https?:\/\/[^\s]+)");
+        let newValue = e.target.value;
+        //
+        console.log(newValue)
+        if(newValue.indexOf('<a href=') < 0 && linkRegExp.test(newValue) ) {
+            console.log("MATCH REGEX")
+            newValue = "<a href="+{newValue}+">"+ {newValue}+"</a>";
+        }
 
         store.dispatch(updateValueInCurrentWishlist(
             {
-                newValue: e.target.value,
+                newValue,
                 currentWishlistIndex,
                 index: rowIndex,
                 field
@@ -194,7 +204,8 @@ const WishlistTable = ({currentWishlistIndex}) => {
 
     const tableHeader = (wishlist) => {
         return (
-            <span className="wl-row">
+            // <span className="wl-row">
+            <>
                 {
                     wishlist.fields.map((field, index) =>
                         <Editable
@@ -204,13 +215,11 @@ const WishlistTable = ({currentWishlistIndex}) => {
                         />
                     )
                 }
-                {
-                    threeDotedMenu(0)
-                }
-
-            </span>
+                {threeDotedMenu(0)}
+            </>
+            // </span>
         )
-    };
+    }
 
     // const resizeTextarea = (e) => {
     //     e.target.style.height = 'inherit';
@@ -219,40 +228,76 @@ const WishlistTable = ({currentWishlistIndex}) => {
 
     const tableRow = (wishlist, item, rowIndex) => {
 
-        return <span className="wl-row">
-            {wishlist.fields.map((field, columnIndex) =>
-                (
-                    <Editable
-                        width={columnWidth[columnIndex] || '300px'}
-                        html={item[field.id]}
-                        handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
-                    />
-                )
-            )}
-            {threeDotedMenu(rowIndex)}
-        </span>
+        return (
+            // <span className="wl-row">
+            <>
+                {wishlist.fields.map((field, columnIndex) =>
+                    (
+                        <Editable
+                            width={columnWidth[columnIndex] || '300px'}
+                            html={item[field.id]}
+                            handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
+                        />
+                    )
+                )}
+                {threeDotedMenu(rowIndex)}
+            </>
+            // </span>
+        )
 
     }
 
+    const showShareModal = () => {
+        const currentOrigin = window.location.origin;
+        setCopyLink(`${currentOrigin}/share-wishlist/${wishlist._id}`);
+    }
+
+    const copyLinkToClipboard = (e) => {
+        e.preventDefault();
+    }
+
     return (
-        wishlist && columnWidth.length>0 &&
+        wishlist && columnWidth.length > 0 &&
         <>
+            <div className="share-container btn-group dropstart">
+                <button className="btn btn-share" data-bs-toggle="modal" data-bs-target="#copyLink"
+                        onClick={() => showShareModal()}
+                >
+                    <PiShareFatDuotone size="1.5em" className="orange-icon"/>
+                </button>
+                <div className="modal fade" id="copyLink" tabIndex="-1" aria-labelledby="copyLinkModalLabel"
+                     aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="copy-link-container">
+                                <a href={copyLink} target="_blank" className="copy-link">{copyLink}</a>
+                                <button className="btn">
+                                    <RxCopy className="orange-icon"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div className="wishlist-table">
                 <h3 className="align-items-center fw-bold"> {wishlist && wishlist.name} </h3>
-                <div className="bordered"
-                     style={{width: `${columnWidth.reduce((prev, current) => prev + current)}px`}}
+                <div className="bordered grid-table"
+                    // style={{width: `${columnWidth.reduce((prev, current) => prev + current)}px`}}
+                     style={{gridTemplateColumns: `repeat(${wishlist.fields.length + 1}, auto)`}}
                      onMouseLeave={(e) => handleUpdateAndSave()}>
-                    <div>
-                        {
-                            tableHeader(wishlist)
-                        }
+                    {/*<div>*/}
+                    {
+                        tableHeader(wishlist)
+                    }
 
-                        {
-                            wishlist.content && wishlist.content.map((item, index1) => {
-                                return tableRow(wishlist, item, index1)
-                            })
-                        }
-                    </div>
+                    {
+                        wishlist.content && wishlist.content.map((item, index1) => {
+                            return tableRow(wishlist, item, index1)
+                        })
+                    }
+                    {/*</div>*/}
                 </div>
             </div>
             {/*<div className="modal fade" id="addColumnModal" tabIndex="-1" aria-hidden="true">*/}

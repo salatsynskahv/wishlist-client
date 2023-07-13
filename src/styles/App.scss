@@ -1,11 +1,15 @@
 /* Color variables */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Elsie&display=swap');
 @import "Loader";
+@import "~bootstrap";
 
-$font-family-sans-serif: "Open Sans", sans-serif;
+$font-family-sans-serif: "Work Sans", sans-serif;
 $primary: #2C3E50;
 $secondary-blue: #85C1E9;
-$secondary-orange: #F39C12;
+$secondary-orange: #f9844a;
+$yellow: #f9c74f;
 $secondary-gray: #BDC3C7;
 $success: #efdbe4;
 
@@ -33,17 +37,20 @@ $theme-colors: (
   padding: 0;
 }
 
+header {
+  background-color: $secondary-orange;
+}
 
 .menu {
-  background-color: #fff;
   //color: $success;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   gap: 2em;
   width: 90vw;
-  margin: auto;
+  //margin: auto;
   padding: 1rem 0;
+  font-family: "Work Sans", sans-serif;
 
   ul {
     padding: 0;
@@ -75,6 +82,7 @@ $theme-colors: (
     display: inline-block;
     color: #000;
     text-decoration: none;
+    letter-spacing: .3rem;
     text-align: center;
     text-transform: uppercase;
     height: 100%;
@@ -82,6 +90,7 @@ $theme-colors: (
     font-size: 1.4rem;
     margin: 0 10px;
   }
+
 
   .wishlist-logo {
     width: 50px;
@@ -101,7 +110,6 @@ $theme-colors: (
 
 span.user {
   display: inline-block;
-  margin-left: 20px;
   font-size: 1.2rem;
 }
 
@@ -134,35 +142,90 @@ span.user {
 
 
     &-a {
-      height: 80vh;
+      width: 100%;
+      height: 1100px;
+      background-color: $secondary-orange;
 
-      .home-page-banner {
-        margin: auto;
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        height: 100%;
-        width: 90vw;
-        border-radius: 20px;
+      h1 {
+        font-family: "Elsie", sans-serif;
+        font-size: 12rem;
+        font-height: 1.1rem;
+        text-align: center;
+        text-transform: uppercase;
+        color: black;
+      }
 
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
+      &-text {
+        width: 600px;
+        margin: 2.5rem auto;
 
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+        h5 {
+          text-align: center;
+          text-transform: uppercase;
         }
+      }
+
+      .container-buttons {
+        display: flex;
+        justify-content: center;
+
+        button {
+          margin: 2.5rem;
+          background-color: $yellow;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 10px;
+          text-transform: uppercase;
+        }
+      }
+
+      .image-lights {
+        width: 1000px;
+        height: 500px;
+        display: block;
+        -webkit-filter: grayscale(1);
+        filter: grayscale(1);
+        max-width: 100%;
+        overflow: hidden;
+        background: url('/images/hero-lights.jpg') no-repeat center;
+        //background-color: red;
+        background-size: cover;
+        position: absolute;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0
 
       }
+
+      //.home-page-banner {
+      //  margin: auto;
+      //  display: flex;
+      //  align-content: center;
+      //  justify-content: center;
+      //  flex-wrap: wrap;
+      //  height: 100%;
+      //  width: 90vw;
+      //  border-radius: 20px;
+      //
+      //  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      //  background-size: 400% 400%;
+      //  animation: gradient 15s ease infinite;
+      //
+      //  @keyframes gradient {
+      //    0% {
+      //      background-position: 0% 50%;
+      //    }
+      //    50% {
+      //      background-position: 100% 50%;
+      //    }
+      //    100% {
+      //      background-position: 0% 50%;
+      //    }
+      //  }
+      //
+      //}
 
 
       //.home-page-banner:before {
@@ -182,8 +245,8 @@ span.user {
     &-b {
       //background: $primary;
       //color: #fff;
-    ///  overflow: auto;
-    //margin: -1px;
+      ///  overflow: auto;
+      //margin: -1px;
       height: 80vh;
       display: flex;
       flex-direction: column;
@@ -302,6 +365,11 @@ table {
   border-spacing: 0;
   width: 600px;
   margin: 30px;
+}
+
+.grid-table {
+  display: grid;
+
 }
 
 .bordered {
@@ -506,6 +574,77 @@ textarea::-webkit-scrollbar {
   background: none;
 }
 
+
+.share-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+
+  .btn-share {
+    max-width: 50px;
+  }
+
+  .btn-share:hover {
+    border: none;
+  }
+
+  .copy-link-container {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    align-content: center;
+
+    .copy-link {
+      border: 0.5px grey solid;
+      border-radius: 5px;
+      padding: 5px;
+      width: max-content;
+    }
+
+
+
+  }
+
+
+  .orange-icon {
+    color: $secondary-orange
+  }
+}
+
+
+div.modal-content {
+  width: fit-content !important;
+}
+
+.share-wishlist-wrapper {
+  width: min(900px, 100% - 3rem);
+  margin-inline: auto;
+
+  table {
+    width: 100%;
+    //border-collapse: collapse;
+    border-radius: 20px;
+
+    td, th, caption {
+      padding: 1rem;
+    }
+
+    caption {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    th {
+      background: hsl(20  59.4 63.3 / 0.5);
+    }
+
+    tr:nth-of-type(2n) {
+      background: hsl(20 59.4 63.3 / 0.1);
+    }
+  }
+}
+
 /*fwl - friends wishlist*/
 
 .fwl-container {
@@ -534,9 +673,10 @@ textarea::-webkit-scrollbar {
 
   //remove inherited right arrow
   .dropend .dropdown-toggle::after {
-    display: none;
+    display: none !important;
   }
 }
+
 
 .editable-div {
   border-bottom: 1px solid #f0f0f0;
@@ -547,13 +687,13 @@ textarea::-webkit-scrollbar {
   //min-width: 200px;
 }
 
-.add-row {
-  visibility: hidden;
-}
-
-.wl-row:focus-within .add-row, .wl-row:hover .add-row {
-  visibility: visible;
-}
+//.add-row {
+//  visibility: hidden;
+//}
+//
+//.wl-row:focus-within .add-row, .wl-row:hover .add-row {
+//  visibility: visible;
+//}
 
 
 .wl-row {

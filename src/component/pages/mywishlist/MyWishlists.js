@@ -8,18 +8,37 @@ import {initWishlists} from "../../../redux/redux-features/wishlists/wishlistsSl
 import axios from "axios";
 import NewWishlist from "./NewWishlist";
 import {selectUser} from "../../../redux/redux-features/user/userSlice";
+import {useLocation, useParams} from "react-router-dom";
 
 
 export default function MyWishlists() {
     const currentUser = useSelector(selectUser);
+    const location = useLocation();
+
+    console.log(location.pathname);
+
     const wishlists = useSelector(state => state.wishlists.wishlists);
     const [showCreateNewWishlist, setShowCreateNewWishlist] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const reDigits = /(\d)+/;
+    const {wishListId} = useParams();
 
     useEffect(() => {
         console.log(wishlists)
         console.log(currentUser)
         //TODO: AFTER FIX remove currentUser FROM Condition
+        if (!currentUser && reDigits.test(location.pathname)) {
+            axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlist/${wishListId}`)
+                .then(
+                    (response) => {
+                        console.log(response.data);
+                        store.dispatch(initWishlists({initValue: response.data}));
+                        setLoading(false);
+                    }
+                    )
+        }
+
         if (!wishlists && currentUser) {
             setLoading(true);
             console.log('if (!wishlists && currentUser) - passed!!!!')
@@ -31,27 +50,27 @@ export default function MyWishlists() {
         }
         //TODO: TEMPORARY
 
-        if (wishlists) {
-            for (let i = 0; i < wishlists.length; i++) {
-                const wl = wishlists[i];
-                if (typeof wl.fields[0] === "string") {
-                    const newFields = wl.fields.map(field => {
-                        return {
-                            id: generateFieldID(field),
-                            name: field
-                        }
-                    });
-                    const newWL = {...wl, fields: newFields}
-                    console.log('new WL ' + JSON.stringify(newWL));
-                }
-            }
-
-            function generateFieldID(field) {
-                const result = uuidv4().substr(0, 16);
-                console.log('result uuidv4' + result);
-                return result;
-            }
-        }
+        // if (wishlists) {
+        //     for (let i = 0; i < wishlists.length; i++) {
+        //         const wl = wishlists[i];
+        //         if (typeof wl.fields[0] === "string") {
+        //             const newFields = wl.fields.map(field => {
+        //                 return {
+        //                     id: generateFieldID(field),
+        //                     name: field
+        //                 }
+        //             });
+        //             const newWL = {...wl, fields: newFields}
+        //             console.log('new WL ' + JSON.stringify(newWL));
+        //         }
+        //     }
+        //
+        //     function generateFieldID(field) {
+        //         const result = uuidv4().substr(0, 16);
+        //         console.log('result uuidv4' + result);
+        //         return result;
+        //     }
+        // }
 
 
     }, [])
