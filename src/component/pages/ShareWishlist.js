@@ -19,14 +19,14 @@ export default function ShareWishlist() {
     const formatLinks = (input) => {
         const regLinks = new RegExp("(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})");
 
-       const result = input.replace(regLinks, (match) => {
+        const result = input.replace(regLinks, (match) => {
             console.log("MAAAAAAA  " + match);
             return '<a href="' + match + '">' + match + '</a>'
         });
 
-       console.log(result);
+        console.log(result);
 
-       return result;
+        return result;
     }
 
 
@@ -35,35 +35,37 @@ export default function ShareWishlist() {
         {
             wishlist &&
             <div className="share-wishlist-wrapper">
-                <table>
-                    <thead>
-                    <caption>
-                        {wishlist.name}
-                    </caption>
-                    <tr> {wishlist.fields.map(field => (<th key={field.id}>{field.name}</th>))}
-                    <th>Booked</th></tr>
-                    </thead>
-                    <tbody>
-                    {
-                        wishlist.content.map(item =>
-                            (
-                                <tr key={item._id}>
-                                    {
-                                        wishlist.fields.map(field => (
-                                            (<td key={field.id}
-                                                 data-cell={field.name}
-                                                 dangerouslySetInnerHTML={{__html: formatLinks(item[field.id])}}>
-                                            </td>)
-                                        ))
-                                    }
-                                    <td style={{backgroundColor: 'green'}}></td>
-                                </tr>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                        <caption>
+                            {wishlist.name}
+                        </caption>
+                        <tr> {wishlist.fields.map(field => (<th key={field.id}>{field.name}</th>))}
+                            <th>Booked</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            wishlist.content.map(item =>
+                                (
+                                    <tr key={item._id}>
+                                        {
+                                            wishlist.fields.map(field => (
+                                                (<td key={field.id}
+                                                     data-cell={field.name}
+                                                     dangerouslySetInnerHTML={{__html: formatLinks(item[field.id])}}>
+                                                </td>)
+                                            ))
+                                        }
+                                        <td style={{backgroundColor: 'green'}}></td>
+                                    </tr>
+                                )
                             )
-                        )
-                    }
-                    </tbody>
-
-                </table>
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         }
     </>)
