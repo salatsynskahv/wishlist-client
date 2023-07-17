@@ -72,12 +72,13 @@ export default function CustomTable() {
 const WishlistTable = ({currentWishlistIndex}) => {
 
     const wishlist = useSelector(state => state.wishlists.wishlists[currentWishlistIndex]);
-    // console.log('rerender wishlist: ' + JSON.stringify(wishlist))
+    console.log('rerender wishlist: ' + JSON.stringify(wishlist))
     const [currentFocusValue, setCurrentFocusValue] = useState();
     const [cellToEdit, setCellToEdit] = useState({})
     const [needTableSave, setNeedTableSave] = useState(false);
     const [columnWidth, setColumnWidth] = useState([]);
     const [copyLink, setCopyLink] = useState([]);
+    const [showCopiedMsg, setShowCopiedMsg] = useState(false);
     const newColumnNameInputRef = useRef();
     const defaultColumnWidth = 300;
 
@@ -92,8 +93,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
             console.log("handle save");
             store.dispatch(updateWishlist(
                 {
-                    newWishlist: wishlist,
-                    currentWishlistIndex: currentWishlistIndex
+                    newWishlist: wishlist
                 }))
             setNeedTableSave(false);
         }
@@ -112,9 +112,9 @@ const WishlistTable = ({currentWishlistIndex}) => {
         let newValue = e.target.value;
         //
         console.log(newValue)
-        if(newValue.indexOf('<a href=') < 0 && linkRegExp.test(newValue) ) {
+        if (newValue.indexOf('<a href=') < 0 && linkRegExp.test(newValue)) {
             console.log("MATCH REGEX")
-            newValue = "<a href="+{newValue}+">"+ {newValue}+"</a>";
+            newValue = "<a href=" + {newValue} + ">" + {newValue} + "</a>";
         }
 
         store.dispatch(updateValueInCurrentWishlist(
@@ -252,8 +252,26 @@ const WishlistTable = ({currentWishlistIndex}) => {
         setCopyLink(`${currentOrigin}/share-wishlist/${wishlist._id}`);
     }
 
+    const copyText = async function (text) {
+        if ('clipboard' in navigator) {
+            return await navigator.clipboard.writeText(text);
+        } else {
+            return document.execCommand('copy', true, text)
+        }
+    }
+
     const copyLinkToClipboard = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        copyText(copyLink).then(() => {
+            setShowCopiedMsg(true);
+            setTimeout(() => {
+                setShowCopiedMsg(false)
+            }, 1500)
+        })
+            .catch((err) => {
+                console.log(err);
+            })
+
     }
 
     return (
@@ -271,9 +289,13 @@ const WishlistTable = ({currentWishlistIndex}) => {
                         <div className="modal-content">
                             <div className="copy-link-container">
                                 <a href={copyLink} target="_blank" className="copy-link">{copyLink}</a>
-                                <button className="btn">
-                                    <RxCopy className="orange-icon"/>
-                                </button>
+                                {!showCopiedMsg ? <button className="btn" onClick={() => {
+                                        copyLinkToClipboard()
+                                    }}>
+                                        <RxCopy className="orange-icon"/>
+                                    </button> :
+                                    (<span className="copied-link">Copied!</span>)
+                                }
                             </div>
                         </div>
                     </div>

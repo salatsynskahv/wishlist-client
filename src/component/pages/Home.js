@@ -53,8 +53,8 @@ export default function Home() {
                 </div>
 
                 <div className="container-buttons">
-                    <button>Start Wishing</button>
-                    <button>Share with Friends</button>
+                    <button onClick={() => navigate("/wishlist")}> Start Wishing </button>
+                    <button onClick={() => navigate("/friends")}> Share with Friends </button>
                 </div>
                 <div className="image-lights">
 
