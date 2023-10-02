@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import {auth, googleProvider} from "../../../firebase";
 import {login} from "../../../redux/redux-features/user/userSlice";
+import {FcGoogle} from "react-icons/fc";
 
 export default function Login() {
     const emailRef = useRef();
@@ -66,7 +67,9 @@ export default function Login() {
 
             <div className="login-container">
                 <div className="social-login">
-                    <button className="btn btn-outline-primary" onClick={handleGoogle}>Login with Google</button>
+                    <button className="btn btn-outline-primary" onClick={handleGoogle}>
+                        Login with Google    <FcGoogle size={25}/>
+                    </button>
                     {/*<button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>*/}
                 </div>
                 {error && <Alert variant="danger"> {error} </Alert>}

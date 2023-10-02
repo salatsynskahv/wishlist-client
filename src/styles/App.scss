@@ -7,7 +7,7 @@
 
 $font-family-sans-serif: "Work Sans", sans-serif;
 $primary: #2C3E50;
-$secondary-blue: #85C1E9;
+$secondary-blue: #277da1;
 $secondary-orange: #f9844a;
 $yellow: #f9c74f;
 $secondary-gray: #BDC3C7;
@@ -133,9 +133,24 @@ span.user {
 }
 
 .search-friend-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: max-content;
 }
 
+.find-friend-icon {
+  background-color: $secondary-gray;
+  border-radius: 20%;
+  color: $secondary-blue;
+  margin: 10px;
+  padding: 3px;
+}
+
+.find-friend-icon:hover {
+  color: white;
+}
 
 .home-page {
   .section {
@@ -247,44 +262,78 @@ span.user {
       //color: #fff;
       ///  overflow: auto;
       //margin: -1px;
-      height: 80vh;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       box-sizing: content-box;
 
-      div {
-        width: 75%;
-        display: grid;
+      .grey-box {
+        border-radius: 40px;
+        height: min-content;
+        background-color: #f2f2f2;
+        width: 85%;
+        display: flex;
         justify-content: center;
         align-items: center;
         font-size: 1.5em;
         margin: 50px 20px;
         padding: 20px;
 
-        p {
-          margin: 25px;
-        }
 
-        button {
-          padding: 10px 10px;
+        .first-image {
+          flex: 2;
+          display: block;
+          width: 300px;
+          height: 300px;
+          filter: grayscale(1);
+          background: url('https://source.unsplash.com/EMZxDosijJ4') no-repeat center center/cover;
           border-radius: 20px;
-          margin: 0 10px;
-          font-size: 18px;
-          background: $secondary-blue;
-          border: none;
         }
+
+        .second-image {
+          flex: 2;
+          display: block;
+          width: 300px;
+          height: 300px;
+          filter: grayscale(1);
+          background: url('https://source.unsplash.com/FtL07GM9Q7Y') no-repeat center center/cover;
+          border-radius: 20px;
+        }
+
+        .text-box {
+          flex: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          padding: 10px;
+          text-align: justify;
+        }
+
       }
 
-      div:nth-child(even) {
-        margin: auto;
-        grid-template-columns: 1fr 4fr;
+      p {
+        margin: 25px;
       }
 
-      div:nth-child(odd) {
-        margin-left: 10%;
-        grid-template-columns: 4fr 1fr;
+      button {
+        padding: 10px 10px;
+        border-radius: 20px;
+        margin: 0 10px;
+        font-size: 18px;
+        background: $secondary-blue;
+        border: none;
       }
+
+
+      //div:nth-child(even) {
+      //  margin: auto;
+      //}
+      //
+      //div:nth-child(odd) {
+      //  margin-left: 5%;
+      //
+      //}
     }
   }
 }
@@ -358,13 +407,6 @@ span.user {
   width: 100em;
   top: 15%;
   left: 20%;
-}
-
-table {
-  border-collapse: separate !important;
-  border-spacing: 0;
-  width: 600px;
-  margin: 30px;
 }
 
 .grid-table {
@@ -463,6 +505,14 @@ table {
   color: #5c636a;
   text-decoration: none;
 
+}
+
+.login-notification {
+  font-size: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .default-table-btn {
@@ -629,6 +679,17 @@ div.modal-content {
     overflow-x: scroll;
   }
 
+  select#booked {
+    border: 1px solid $secondary-orange;
+    border-radius: 15px;
+    padding: 4px 3px;
+    box-shadow:  2px 2px 3px  #cccccc;
+
+    option {
+      padding: 15px;
+    }
+  }
+
   table {
 
     width: 100%;
@@ -641,8 +702,8 @@ div.modal-content {
     }
 
     td:has(a) {
-         max-width: 400px;
-         word-break: break-all;
+      max-width: 400px;
+      word-break: break-all;
     }
 
 
@@ -686,6 +747,26 @@ div.modal-content {
     }
   }
 }
+
+
+.common-table {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px #cccccc;
+  table-layout: auto;
+  width: 100%;
+
+  th, td {
+    //border-bottom: 0.25px solid #cccccc;
+    text-autospace: none;
+    text-wrap: balance;
+  }
+
+  td:last-child {
+    width: 40px;
+  }
+}
+
 
 /*fwl - friends wishlist*/
 
@@ -748,7 +829,8 @@ div.modal-content {
 }
 
 .box {
-  margin: 10px;
+  margin: 1% 2%;
+
   display: inline;
   float: left;
 }
@@ -758,6 +840,15 @@ div.modal-content {
   margin: 30px 40px 40px 40px;
   display: block;
   float: left;
+
+  .menu-flex {
+    display: flex;
+
+    .wishlist-column {
+      flex: 3;
+      margin: 30px;
+    }
+  }
 }
 
 .fl-right {
@@ -768,22 +859,6 @@ div.modal-content {
 .fl-left {
   display: block;
   float: left;
-}
-
-.footer {
-  background: $primary;
-  //position: fixed;
-  //margin-top: 50px;
-  //left: 0;
-  //bottom: 0;
-  //background: $primary;
-  //height: 6%;
-  //width: 100vw;
-  //z-index: -10;
-}
-
-.footer div {
-  background: $primary;
 }
 
 .d-inline-block {

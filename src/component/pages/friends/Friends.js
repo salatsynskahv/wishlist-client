@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addFriend, deleteFriend} from "../../../redux/redux-features/friends/friendsSlice";
 import store from "../../../redux/store";
 import {selectUser} from "../../../redux/redux-features/user/userSlice";
+import {RiFindReplaceLine} from "react-icons/ri";
 
 export default function Friends() {
     const searchFriendRef = useRef();
@@ -69,18 +70,18 @@ export default function Friends() {
 
     return (
         <div className="mt-3">
-            <div className="container w-50">
+            {/*<div className="container w-50">*/}
 
-                <div className="input-group">
-                    <input type="text"
-                           className="form-control"
-                           onClick={handleShow}
-                           onKeyDown={handleShow}
-                           placeholder="Search friend"/>
-                    {/*<button className="btn btn-outline-secondary" onClick={handleSearchFriend} type="button">*/}
-                    {/*    <SearchIcon/></button>*/}
-                </div>
-            </div>
+            {/*    <div className="input-group">*/}
+            {/*        <input type="text"*/}
+            {/*               className="find-friend-input form-control"*/}
+            {/*               onClick={handleShow}*/}
+            {/*               onKeyDown={handleShow}*/}
+            {/*               placeholder="Find a friend"/>*/}
+            {/*        /!*<button className="btn btn-outline-secondary" onClick={handleSearchFriend} type="button">*!/*/}
+            {/*        /!*    <SearchIcon/></button>*!/*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <Modal show={show} onHide={handleClose} className="search-friend-modal">
                 <Modal.Header closeButton>
                     <form onSubmit={handleSearchFriend}>
@@ -88,7 +89,7 @@ export default function Friends() {
                             <input type="text"
                                    className="form-control"
                                    ref={searchFriendRef}
-                                   placeholder="Search friend"
+                                   placeholder="Please, enter friends email"
                             />
                             <button className="btn btn-outline-secondary" type="submit">
                                 <SearchIcon/></button>
@@ -134,9 +135,18 @@ export default function Friends() {
                 <div className="box" style={{maxWidth: '30%'}}>
                     <div className="card">
                         <div className="card-header">
-                            <h6>My friends </h6>
+                            <h6>
+                                My friends
+                                <RiFindReplaceLine
+                                    className="find-friend-icon"
+                                    size={30}
+                                    onClick={handleShow}
+                                />
+                            </h6>
+
                         </div>
                         <div className="card-body">
+                            {currentFriendsList.length < 1 && <p>No friends, yet</p>}
                             <FriendsAccordion
                                 currentFriendsList={currentFriendsList}
                                 setCurrentFriendsList={setCurrentFriendsList}
@@ -146,7 +156,7 @@ export default function Friends() {
                     </div>
                 </div>
                 <div className="box" style={{width: '68%'}}>
-                    {!selectedList && <div> No lists </div>}
+                    {!selectedList && <div> Please, select friend and after select friend's list </div>}
                     {selectedList && <FriendsWishlist wishlist={selectedList}/>}
                 </div>
             </div>

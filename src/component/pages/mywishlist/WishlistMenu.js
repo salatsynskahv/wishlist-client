@@ -20,7 +20,7 @@ const WishlistMenu = ({wishlists, show, setShow}) => {
 
     return (
         <div className="container" style={{marginTop: '30px'}}>
-            <div className="row">
+            <div className="menu-flex">
                 <div className="col-auto">
                     <div className="card">
                         <div className="card-header">
@@ -72,7 +72,7 @@ const WishlistMenu = ({wishlists, show, setShow}) => {
                         </div>
                     </div>
                 </div>
-                <div className="col">
+                <div className="wishlist-column m-3">
                     <Outlet/>
                 </div>
             </div>

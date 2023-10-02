@@ -48,31 +48,6 @@ export default function MyWishlists() {
                     setLoading(false);
                 });
         }
-        //TODO: TEMPORARY
-
-        // if (wishlists) {
-        //     for (let i = 0; i < wishlists.length; i++) {
-        //         const wl = wishlists[i];
-        //         if (typeof wl.fields[0] === "string") {
-        //             const newFields = wl.fields.map(field => {
-        //                 return {
-        //                     id: generateFieldID(field),
-        //                     name: field
-        //                 }
-        //             });
-        //             const newWL = {...wl, fields: newFields}
-        //             console.log('new WL ' + JSON.stringify(newWL));
-        //         }
-        //     }
-        //
-        //     function generateFieldID(field) {
-        //         const result = uuidv4().substr(0, 16);
-        //         console.log('result uuidv4' + result);
-        //         return result;
-        //     }
-        // }
-
-
     }, [])
 
     return (
@@ -87,13 +62,20 @@ export default function MyWishlists() {
                     </div>
                     :
                     <>
+                        {
+                            !currentUser &&
+                            <div className="login-notification">
+                                Please, <a href="/login">login</a> for creating personal wishlists
+                            </div>
+                        }
                         <NewWishlist show={showCreateNewWishlist} setShow={setShowCreateNewWishlist}/>
                         <div className="container my-wishlist-menu">
-                            {wishlists &&
-                            <WishlistMenu
-                                wishlists={wishlists}
-                                show={showCreateNewWishlist}
-                                setShow={setShowCreateNewWishlist}
+                            {
+                                wishlists &&
+                                <WishlistMenu
+                                    wishlists={wishlists}
+                                    show={showCreateNewWishlist}
+                                    setShow={setShowCreateNewWishlist}
                             />}
                         </div>
                     </>

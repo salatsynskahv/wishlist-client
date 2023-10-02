@@ -32,8 +32,6 @@ function App() {
                 <Navbar/>
             </header>
             <Outlet/>
-            <footer className="footer">
-            </footer>
         </div>
     );
 }

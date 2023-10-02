@@ -8,33 +8,34 @@ export default function Home() {
     console.log('currentUser: ' + JSON.stringify(currentUser));
     const navigate = useNavigate();
 
-    const elBannerButtons = !currentUser ? (
-            <div>
-                <button className="btn btn-primary">
-                    Log in to Get More
-                </button>
-            </div>
-        ) :
+    const elBannerButtons =
         (<>
-            <div>
-                <p>
-                    Remembering what you want: With so many things to buy or receive as a gift, it's easy to forget what
-                    you were interested in.
-                    A wishlist helps you keep track of everything you want in one place, so you don't have to worry
-                    about forgetting.
-                </p>
-                <button className="btn btn-primary" onClick={() => navigate('/wishlist')}> Create Your Wishlists
-                </button>
+            <div className="container grey-box">
+                <div className="first-image"></div>
+                <div className="text-box">
+                    <p>
+                        Remembering what you want: With so many things to buy or receive as a gift, it's easy to forget
+                        what
+                        you were interested in.
+                        A wishlist helps you keep track of everything you want in one place, so you don't have to worry
+                        about forgetting.
+                    </p>
+                    <button className="btn btn-primary" onClick={() => navigate('/wishlist')}> Create Your Wishlists
+                    </button>
+                </div>
             </div>
-            <div>
-                <button className="btn btn-primary" onClick={() => navigate('/friends')}> Find Friends Wishlists
-                </button>
-                <p>
-                    Sharing with others: A wishlist is a great way to share your interests with others.
-                    Whether it's for a birthday, holiday, or other occasion, you can share your wishlist with friends
-                    and family to let them know what you'd like to receive as a gift.
-                </p>
-
+            <div className="container grey-box">
+                <div className="text-box">
+                    <button className="btn btn-primary" onClick={() => navigate('/friends')}> Find Friends Wishlists
+                    </button>
+                    <p>
+                        Sharing with others: A wishlist is a great way to share your interests with others.
+                        Whether it's for a birthday, holiday, or other occasion, you can share your wishlist with
+                        friends
+                        and family to let them know what you'd like to receive as a gift.
+                    </p>
+                </div>
+                <div className="second-image"></div>
             </div>
 
         </>);
@@ -53,12 +54,10 @@ export default function Home() {
                 </div>
 
                 <div className="container-buttons">
-                    <button onClick={() => navigate("/wishlist")}> Start Wishing </button>
-                    <button onClick={() => navigate("/friends")}> Share with Friends </button>
+                    <button onClick={() => navigate("/wishlist")}> Start Wishing</button>
+                    <button onClick={() => navigate("/friends")}> Share with Friends</button>
                 </div>
-                <div className="image-lights">
-
-                </div>
+                <div className="image-lights"></div>
                 {/*<div className="home-page-banner">*/}
                 {/*    <div className="inner">*/}
                 {/*        <div>*/}

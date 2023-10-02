@@ -31,7 +31,7 @@ export default function ShareWishlist() {
         const regLinks = new RegExp("(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})");
 
         const result = input && input.replace(regLinks, (match) => {
-            return '<a href="' + match + '">' + match + '</a>'
+            return '<a href="' + match + '">' + match.slice(0,30) + '...</a>'
         });
         return result;
     }
@@ -59,7 +59,7 @@ export default function ShareWishlist() {
                                 wishlist.fields.map(field =>
                                     (<th key={field.id}>{field.name}</th>))
                             }
-                            <th>Booked</th>
+                              <th>Booked</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/component/helpers/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/ShareWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/ShareWishlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/FriendsWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/FriendsWishlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,24 +43,38 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="29iAhQfkwdRZh3quyZh9q5XmmN6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "main",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gannasalatsynska/Projects/wishlist-client&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Projects\wishlist-client\src\images" />
@@ -207,6 +230,13 @@
       <workItem from="1688588041115" duration="4076000" />
       <workItem from="1688629935466" duration="14121000" />
       <workItem from="1689058580136" duration="24180000" />
+      <workItem from="1689589926647" duration="25791000" />
+      <workItem from="1692630793359" duration="11838000" />
+      <workItem from="1692885353896" duration="803000" />
+      <workItem from="1695899218876" duration="41000" />
+      <workItem from="1695899501493" duration="796000" />
+      <workItem from="1696251538615" duration="20000" />
+      <workItem from="1696251569898" duration="1000" />
     </task>
     <servers />
   </component>
@@ -245,22 +275,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/friends/Friends.js</url>
-          <line>132</line>
+          <line>133</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/friends/Friends.js</url>
-          <line>128</line>
+          <line>129</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/friends/Friends.js</url>
-          <line>69</line>
+          <line>70</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/Home.js</url>
-          <line>85</line>
+          <line>84</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -270,22 +300,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/auth/Login.js</url>
-          <line>44</line>
+          <line>45</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>71</line>
+          <line>72</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>212</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>142</line>
+          <line>137</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -295,7 +320,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>223</line>
+          <line>221</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>

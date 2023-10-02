@@ -17,6 +17,7 @@ import Editable from "./Editable";
 import {PiShareFatDuotone, PiShareFatThin} from "react-icons/pi";
 import {RxCopy} from "react-icons/rx";
 import Linkify from 'react-linkify';
+import {formatLinks} from "../../../helpers/utils";
 
 export default function CustomTable() {
     const location = useLocation();
@@ -76,17 +77,10 @@ const WishlistTable = ({currentWishlistIndex}) => {
     const [currentFocusValue, setCurrentFocusValue] = useState();
     const [cellToEdit, setCellToEdit] = useState({})
     const [needTableSave, setNeedTableSave] = useState(false);
-    const [columnWidth, setColumnWidth] = useState([]);
     const [copyLink, setCopyLink] = useState([]);
     const [showCopiedMsg, setShowCopiedMsg] = useState(false);
     const newColumnNameInputRef = useRef();
-    const defaultColumnWidth = 300;
 
-    useEffect(() => {
-        const newColumnWidth = []
-        wishlist.fields.forEach(() => newColumnWidth.push(defaultColumnWidth));
-        setColumnWidth(newColumnWidth)
-    }, [wishlist]);
 
     const handleUpdateAndSave = () => {
         if (needTableSave) {
@@ -108,13 +102,14 @@ const WishlistTable = ({currentWishlistIndex}) => {
         if (e.target.value === wishlist.content[rowIndex][field.id]) {
             return;
         }
-        const linkRegExp = new RegExp("(https?:\/\/[^\s]+)");
+        const linkRegExp = new RegExp("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)(?![^<]*>|[^<>]*<\\/a>)")
         let newValue = e.target.value;
         //
         console.log(newValue)
-        if (newValue.indexOf('<a href=') < 0 && linkRegExp.test(newValue)) {
-            console.log("MATCH REGEX")
-            newValue = "<a href=" + {newValue} + ">" + {newValue} + "</a>";
+        if (linkRegExp.test(newValue)) {
+            newValue = newValue && newValue.replace(linkRegExp, (match) => {
+                return '<div contenteditable="false" ><a href="' + match + '" target="_blank">' + match.slice(0,30) + '...</a></div>'
+            })
         }
 
         store.dispatch(updateValueInCurrentWishlist(
@@ -208,14 +203,17 @@ const WishlistTable = ({currentWishlistIndex}) => {
             <>
                 {
                     wishlist.fields.map((field, index) =>
-                        <Editable
-                            width={columnWidth[index] || '300px'}
-                            html={field.name}
-                            handleChange={(e) => handleFieldNameChange(index, e)}
-                        />
+                        <th key={field.id}>
+                            <Editable
+                                html={field.name}
+                                handleChange={(e) => handleFieldNameChange(index, e)}
+                            />
+                        </th>
                     )
                 }
-                {threeDotedMenu(0)}
+                <th>
+                    {threeDotedMenu(0)}
+                </th>
             </>
             // </span>
         )
@@ -229,20 +227,23 @@ const WishlistTable = ({currentWishlistIndex}) => {
     const tableRow = (wishlist, item, rowIndex) => {
 
         return (
-            // <span className="wl-row">
-            <>
-                {wishlist.fields.map((field, columnIndex) =>
-                    (
-                        <Editable
-                            width={columnWidth[columnIndex] || '300px'}
-                            html={item[field.id]}
-                            handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
-                        />
+            <tr>
+                {
+                    wishlist.fields.map((field, columnIndex) =>
+                        (
+                            <td>
+                                <Editable
+                                    html={item[field.id]}
+                                    handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
+                                />
+                            </td>
+                        )
                     )
-                )}
-                {threeDotedMenu(rowIndex)}
-            </>
-            // </span>
+                }
+                <td>
+                    {threeDotedMenu(rowIndex)}
+                </td>
+            </tr>
         )
 
     }
@@ -275,12 +276,11 @@ const WishlistTable = ({currentWishlistIndex}) => {
     }
 
     return (
-        wishlist && columnWidth.length > 0 &&
+        wishlist &&
         <>
             <div className="share-container btn-group dropstart">
                 <button className="btn btn-share" data-bs-toggle="modal" data-bs-target="#copyLink"
-                        onClick={() => showShareModal()}
-                >
+                        onClick={() => showShareModal()}>
                     <PiShareFatDuotone size="1.5em" className="orange-icon"/>
                 </button>
                 <div className="modal fade" id="copyLink" tabIndex="-1" aria-labelledby="copyLinkModalLabel"
@@ -299,56 +299,25 @@ const WishlistTable = ({currentWishlistIndex}) => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <div className="wishlist-table">
-                <h3 className="align-items-center fw-bold"> {wishlist && wishlist.name} </h3>
-                <div className="bordered grid-table"
-                    // style={{width: `${columnWidth.reduce((prev, current) => prev + current)}px`}}
-                     style={{gridTemplateColumns: `repeat(${wishlist.fields.length + 1}, auto)`}}
-                     onMouseLeave={(e) => handleUpdateAndSave()}>
-                    {/*<div>*/}
-                    {
-                        tableHeader(wishlist)
-                    }
-
-                    {
-                        wishlist.content && wishlist.content.map((item, index1) => {
-                            return tableRow(wishlist, item, index1)
+            <table className="common-table">
+                <thead>
+                <tr>
+                    { tableHeader(wishlist) }
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    wishlist.content && wishlist.content.map((item, index1) => {
+                               return tableRow(wishlist, item, index1)
                         })
-                    }
-                    {/*</div>*/}
-                </div>
-            </div>
-            {/*<div className="modal fade" id="addColumnModal" tabIndex="-1" aria-hidden="true">*/}
-            {/*    <div className="modal-dialog">*/}
-            {/*        <div className="modal-content">*/}
-            {/*            <form>*/}
-            {/*                <div className="modal-body">*/}
-            {/*                    <label htmlFor="name">Name</label>*/}
-            {/*                    <input type="text"*/}
-            {/*                           className="form-control"*/}
-            {/*                           id="name"*/}
-            {/*                           ref={newColumnNameInputRef}*/}
-            {/*                    />*/}
+                }
 
-            {/*                </div>*/}
-            {/*                <div className="modal-footer">*/}
-            {/*                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel*/}
-            {/*                    </button>*/}
-            {/*                    <button type="submit"*/}
-            {/*                            className="btn btn-primary"*/}
-            {/*                            onClick={addTableColumn}*/}
-            {/*                            data-bs-dismiss="modal">*/}
-            {/*                        Add*/}
-            {/*                    </button>*/}
-            {/*                </div>*/}
-            {/*            </form>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+                </tbody>
+            </table>
+
         </>
     )
 }
