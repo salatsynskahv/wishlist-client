@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {updateWishlist} from "../../redux/redux-features/wishlists/wishlistsSlice";
+import {updateWishlist} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 
 export default function ShareWishlist() {
     const {wishlistId} = useParams();

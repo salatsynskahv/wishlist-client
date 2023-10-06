@@ -20,7 +20,7 @@ import Logout from "./component/pages/auth/Logout";
 import Home from "./component/pages/Home";
 import {Provider} from "react-redux";
 import store from "./redux/store";
-import ShareWishlist from "./component/pages/ShareWishlist";
+import ShareWishlist from "./component/pages/mywishlist/ShareWishlist";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<App/>}>

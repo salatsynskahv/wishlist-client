@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {logout} from "../../../redux/redux-features/user/userSlice";
-import {signOut} from "firebase/auth";
 import {auth} from "../../../firebase";
+import {clearWishlists, initWishlists} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 
 export default function Logout() {
     const navigate = useNavigate();
@@ -18,8 +18,9 @@ export default function Logout() {
         try {
             auth.signOut().then(() => {
                 dispatch(logout);
-            })
-            navigate('/login');
+                dispatch(initWishlists({initValue: null}));
+                navigate('/login');
+            });
         } catch (e) {
             //todo: make nice error message
             console.log('Failed logout' + e);

@@ -526,29 +526,38 @@ span.user {
 
 
 .new-wl-container {
-  display: flex;
-  //height: 100%;
+  padding: 30px;
+
+  form {
+    justify-self: start;
+    padding-left: 20px;
+  }
+
+  .new-wl-item {
+
+    height: 100%;
+    margin-top: 10px;
+
+    .inner {
+      display: flex;
+      justify-content: center;
+
+      .wishlist-name {
+        min-width: 250px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: solid 1.5px $border-color;
+      }
+    }
+  }
+
+  .submit-button-container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.new-wl-container form {
-  justify-self: start;
-  padding-left: 20px;
-}
-
-.new-wl-item {
-  flex-grow: 2;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 100%;
-  margin-top: 10px;
-  //flex-wrap: wrap;
-}
-
-.new-wl-item .inner {
-  display: flex;
-  justify-content: center;
-}
 
 .new-wl-item div:first-child {
   justify-items: start;
@@ -683,7 +692,7 @@ div.modal-content {
     border: 1px solid $secondary-orange;
     border-radius: 15px;
     padding: 4px 3px;
-    box-shadow:  2px 2px 3px  #cccccc;
+    box-shadow: 2px 2px 3px #cccccc;
 
     option {
       padding: 15px;
@@ -756,14 +765,19 @@ div.modal-content {
   table-layout: auto;
   width: 100%;
 
+  .three-dot-button::after {
+    display: none;
+  }
+
   th, td {
     //border-bottom: 0.25px solid #cccccc;
     text-autospace: none;
     text-wrap: balance;
   }
 
-  td:last-child {
-    width: 40px;
+  th:last-child, td:last-child {
+    width: 50px;
+    max-width: 55px;
   }
 }
 

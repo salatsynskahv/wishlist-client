@@ -4,8 +4,9 @@ import ListItem from "../../helpers/ListItem";
 import {Outlet} from "react-router";
 import {deleteWishlist} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 import {useDispatch, useSelector} from "react-redux";
+import NewWishlist from "./NewWishlist";
 
-const WishlistMenu = ({wishlists, show, setShow}) => {
+const WishlistMenu = ({wishlists}) => {
     const dispatch = useDispatch();
     const [selectedRow, setSelectedRow] = useState({});
 
@@ -26,9 +27,10 @@ const WishlistMenu = ({wishlists, show, setShow}) => {
                         <div className="card-header">
                             <span
                                 style={{fontSize: 'large', fontWeight: '600', marginLeft: '50px', marginRight: '50px'}}> My lists </span>
-                            <button className="btn btn-primary" onClick={() => setShow(true)} hidden={show}>
+                            <button className="btn" data-bs-toggle="modal" data-bs-target="#newWishlist">
                                 <i className="d-flex"><PlusCircleDotted/></i>
                             </button>
+                            <NewWishlist/>
 
                         </div>
                         <div className="card-body">

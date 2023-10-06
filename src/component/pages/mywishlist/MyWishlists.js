@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from "react";
 import store from "../../../redux/store";
-import {v4 as uuidv4} from 'uuid';
 
 import WishlistMenu from "./WishlistMenu";
 import {useSelector} from "react-redux";
 import {initWishlists} from "../../../redux/redux-features/wishlists/wishlistsSlice";
 import axios from "axios";
-import NewWishlist from "./NewWishlist";
 import {selectUser} from "../../../redux/redux-features/user/userSlice";
 import {useLocation, useParams} from "react-router-dom";
 
@@ -18,7 +16,6 @@ export default function MyWishlists() {
     console.log(location.pathname);
 
     const wishlists = useSelector(state => state.wishlists.wishlists);
-    const [showCreateNewWishlist, setShowCreateNewWishlist] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const reDigits = /(\d)+/;
@@ -68,15 +65,11 @@ export default function MyWishlists() {
                                 Please, <a href="/login">login</a> for creating personal wishlists
                             </div>
                         }
-                        <NewWishlist show={showCreateNewWishlist} setShow={setShowCreateNewWishlist}/>
+
                         <div className="container my-wishlist-menu">
                             {
                                 wishlists &&
-                                <WishlistMenu
-                                    wishlists={wishlists}
-                                    show={showCreateNewWishlist}
-                                    setShow={setShowCreateNewWishlist}
-                            />}
+                                <WishlistMenu wishlists={wishlists}/>}
                         </div>
                     </>
             }
