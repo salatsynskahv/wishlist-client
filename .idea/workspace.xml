@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/helpers/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/ShareWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/ShareWishlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/Friends.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/friends/FriendsWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/friends/FriendsWishlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/MyWishlists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +59,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -82,11 +71,11 @@
       <recent name="C:\Projects\wishlist-client\src\icons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/component/pages/mywishlist" />
       <recent name="C:\Projects\wishlist-client\src\component\pages\mywishlist" />
       <recent name="C:\Projects\wishlist-client\src\redux" />
       <recent name="C:\Projects\wishlist-client\src\styles" />
       <recent name="C:\Projects\wishlist-client\src\component\pages\common" />
-      <recent name="C:\Projects\wishlist-client" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -237,6 +226,9 @@
       <workItem from="1695899501493" duration="796000" />
       <workItem from="1696251538615" duration="20000" />
       <workItem from="1696251569898" duration="1000" />
+      <workItem from="1696251580031" duration="5711000" />
+      <workItem from="1696335935548" duration="963000" />
+      <workItem from="1696532573350" duration="10957000" />
     </task>
     <servers />
   </component>
@@ -251,7 +243,7 @@
             <State>
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
-                  <entry key="Show.Git.Branches" value="true" />
+                  <entry key="Show.Git.Branches" value="false" />
                 </map>
               </option>
             </State>
@@ -295,7 +287,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/WishlistMenu.js</url>
-          <line>49</line>
+          <line>51</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -305,12 +297,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>72</line>
+          <line>70</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>137</line>
+          <line>121</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -319,9 +311,16 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>221</line>
-          <option name="timeStamp" value="27" />
+          <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
+          <line>15</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
+          <line>33</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
