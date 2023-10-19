@@ -71,7 +71,7 @@ export default function ShareWishlist() {
                                             wishlist.fields.map(field => (
                                                 (<td key={field.id}
                                                      data-cell={field.name}
-                                                     dangerouslySetInnerHTML={{__html: formatLinks(item[field.id])}}>
+                                                     dangerouslySetInnerHTML={{__html: item[field.id]}}>
                                                 </td>)
                                             ))
                                         }

@@ -89,15 +89,13 @@ const WishlistTable = ({currentWishlistIndex}) => {
         }
     }
 
-    const handleInputTableChange = (rowIndex, columnIndex, field, e) => {
-        console.log('e: ' + e.target.value);
-        console.log('wishlist.content[columnIndex][rowIndex]: ' + wishlist.content[rowIndex][field]);
+    const handleInputTableChange = (rowIndex, columnIndex, field, value) => {
 
-        if (e.target.value === wishlist.content[rowIndex][field.id]) {
+        if (value === wishlist.content[rowIndex][field.id]) {
             return;
         }
         const linkRegExp = new RegExp("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)(?![^<]*>|[^<>]*<\\/a>)")
-        let newValue = e.target.value;
+        let newValue = value;
         //
         console.log(newValue)
         if (linkRegExp.test(newValue)) {

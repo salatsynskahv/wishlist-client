@@ -229,6 +229,8 @@
       <workItem from="1696251580031" duration="5711000" />
       <workItem from="1696335935548" duration="963000" />
       <workItem from="1696532573350" duration="10957000" />
+      <workItem from="1697039617774" duration="988000" />
+      <workItem from="1697540702161" duration="204000" />
     </task>
     <servers />
   </component>
@@ -313,13 +315,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
           <line>15</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
           <line>33</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
