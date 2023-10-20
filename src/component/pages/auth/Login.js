@@ -1,11 +1,12 @@
 import React, {useRef, useState} from 'react'
-import {Alert, Button, Card, Col, Container, Form, Row} from "react-bootstrap";
-import {Link, useNavigate} from "react-router-dom"
+import {Alert, Button, Form} from "react-bootstrap";
+import {useNavigate} from "react-router-dom"
 import {useDispatch} from "react-redux";
 import {signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import {auth, googleProvider} from "../../../firebase";
 import {login} from "../../../redux/redux-features/user/userSlice";
 import {FcGoogle} from "react-icons/fc";
+import FacebookLogin from "./FacebookLogin";
 
 export default function Login() {
     const emailRef = useRef();
@@ -70,7 +71,8 @@ export default function Login() {
                     <button className="btn btn-outline-primary" onClick={handleGoogle}>
                         Login with Google    <FcGoogle size={25}/>
                     </button>
-                    {/*<button className="btn btn-outline-primary" disabled="true">Login with Facebook</button>*/}
+                    <FacebookLogin />
+                    {/*<button className="btn btn-outline-primary" disabled="true">Login with FacebookLogin</button>*/}
                 </div>
                 {error && <Alert variant="danger"> {error} </Alert>}
                 <Form onSubmit={handleSubmit}>

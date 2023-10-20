@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/component/pages/auth/FacebookLogin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/ShareWishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/ShareWishlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,6 +235,8 @@
       <workItem from="1696532573350" duration="10957000" />
       <workItem from="1697039617774" duration="988000" />
       <workItem from="1697540702161" duration="204000" />
+      <workItem from="1697721743395" duration="10263000" />
+      <workItem from="1697785216021" duration="5705000" />
     </task>
     <servers />
   </component>
@@ -294,7 +300,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/auth/Login.js</url>
-          <line>45</line>
+          <line>46</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -304,12 +310,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js</url>
-          <line>121</line>
+          <line>119</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/common/Editable.js</url>
-          <line>12</line>
+          <line>24</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -321,6 +327,11 @@
           <url>file://$PROJECT_DIR$/src/component/pages/mywishlist/NewWishlist.js</url>
           <line>33</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/firebase.js</url>
+          <line>29</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

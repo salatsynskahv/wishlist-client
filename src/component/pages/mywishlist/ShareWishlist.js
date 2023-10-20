@@ -7,17 +7,20 @@ import {updateWishlist} from "../../../redux/redux-features/wishlists/wishlistsS
 export default function ShareWishlist() {
     const {wishlistId} = useParams();
     const [wishlist, setWishlist] = useState();
-    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlist/${wishlistId}`).then(
             result => {
                 const wishlist = result.data;
-                if (wishlist.fields.indexOf(field => field.id === 'booked') < -1) {
-                    console.log("Find");
-                    wishlist.fields.push({id: 'booked', name: 'Booked'});
-                }
-                setWishlist(result.data);
+                // console.log(wishlist.fields.indexOf(field => {
+                //         return field.id === 'booked'
+                //     }
+                // ));
+                // if (wishlist.fields.indexOf(field => field.id === 'booked') < 0) {
+                //     console.log("Find");
+                //     wishlist.fields.push({id: 'booked', name: 'Booked'});
+                // }
+                setWishlist(wishlist);
                 console.log(result.data);
             }
         );
@@ -25,13 +28,13 @@ export default function ShareWishlist() {
     }, []);
 
     const formatLinks = (input) => {
-        if(!input) {
-            return ;
+        if (!input) {
+            return;
         }
         const regLinks = new RegExp("(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})");
 
         const result = input && input.replace(regLinks, (match) => {
-            return '<a href="' + match + '">' + match.slice(0,30) + '...</a>'
+            return '<a href="' + match + '">' + match.slice(0, 30) + '...</a>'
         });
         return result;
     }
@@ -40,7 +43,12 @@ export default function ShareWishlist() {
         // console.log(item);
         // console.log(e.target.value);
         item['booked'] = 'booked' === e.target.value;
-        dispatch(updateWishlist({newWishlist: wishlist}));
+        const params = {
+            _id: wishlistId,
+            fields: wishlist.fields,
+            content: wishlist.content
+        };
+        axios.put(`${process.env.REACT_APP_SERVER_HOST}/wishlist`, params);
     }
 
     return (<>
@@ -48,18 +56,19 @@ export default function ShareWishlist() {
         {
             wishlist &&
             <div className="share-wishlist-wrapper">
+               <h3>{wishlist.name}</h3>
                 <div className="table-container">
                     <table>
-                        <caption>
-                            {wishlist.name}
-                        </caption>
+                        {/*<caption>*/}
+                        {/*    {wishlist.name}*/}
+                        {/*</caption>*/}
                         <thead>
                         <tr>
                             {
                                 wishlist.fields.map(field =>
-                                    (<th key={field.id}>{field.name}</th>))
+                                    (<th key={field.id}>{field.name}</th>)
+                                )
                             }
-                              <th>Booked</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,25 +77,34 @@ export default function ShareWishlist() {
                                 (
                                     <tr key={item._id}>
                                         {
-                                            wishlist.fields.map(field => (
-                                                (<td key={field.id}
-                                                     data-cell={field.name}
-                                                     dangerouslySetInnerHTML={{__html: item[field.id]}}>
-                                                </td>)
-                                            ))
+                                            wishlist.fields.map(field => {
+                                                if (field.name === 'Booked') {
+                                                    return (<td>
+                                                        <select name="booked"
+                                                                id="booked"
+                                                                value={item[field]}
+                                                                onChange={(e) => updateAvailability(e, item)}
+                                                        >
+                                                            <option value="available"
+                                                                    style={{backgroundColor: "green"}}>
+                                                                Available
+                                                            </option>
+                                                            <option value="booked"
+                                                                    selected={item.booked && JSON.parse(item.booked)}
+                                                                    style={{backgroundColor: "red"}}>
+                                                                Booked
+                                                            </option>
+                                                        </select>
+                                                    </td>)
+                                                } else {
+                                                    return (
+                                                        <td key={field.id}
+                                                            data-cell={field.name}
+                                                            dangerouslySetInnerHTML={{__html: item[field.id]}}></td>
+                                                    )
+                                                }
+                                            })
                                         }
-                                        <td>
-                                            <select name="booked"
-                                                    id="booked"
-                                                    onChange={(e) => updateAvailability(e, item)}
-                                            >
-                                                <option value="available" style={{backgroundColor: "green"}}>Available
-                                                </option>
-                                                <option value="booked" selected={item.booked && JSON.parse(item.booked)}
-                                                        style={{backgroundColor: "red"}}>Booked
-                                                </option>
-                                            </select>
-                                        </td>
                                     </tr>
                                 )
                             )
