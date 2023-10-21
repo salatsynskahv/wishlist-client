@@ -12,14 +12,14 @@ export default function ShareWishlist() {
         axios.get(`${process.env.REACT_APP_SERVER_HOST}/wishlist/${wishlistId}`).then(
             result => {
                 const wishlist = result.data;
-                // console.log(wishlist.fields.indexOf(field => {
-                //         return field.id === 'booked'
-                //     }
-                // ));
-                // if (wishlist.fields.indexOf(field => field.id === 'booked') < 0) {
-                //     console.log("Find");
-                //     wishlist.fields.push({id: 'booked', name: 'Booked'});
-                // }
+                console.log(wishlist.fields.indexOf(field => {
+                        return field.id === 'booked'
+                    }
+                ));
+                if (!wishlist.fields.find(field => field.id === 'booked')) {
+                    console.log("Find");
+                    wishlist.fields.push({id: 'booked', name: 'Booked'});
+                }
                 setWishlist(wishlist);
                 console.log(result.data);
             }
