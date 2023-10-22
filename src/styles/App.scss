@@ -97,6 +97,28 @@ header {
     height: 50px;
     background: url("../images/wish-list-icon.svg") no-repeat center center/cover;
   }
+
+  .menu-links {
+    display: flex;
+
+  }
+
+  .menu-links-mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-menu-icon {
+    display: none;
+  }
+
+  span.user {
+    display: inline-block;
+    font-size: 1.2rem;
+  }
 }
 
 .home-logo {
@@ -108,10 +130,33 @@ header {
   }
 }
 
-span.user {
-  display: inline-block;
-  font-size: 1.2rem;
+
+@media (max-width: 600px) {
+
+  .menu {
+    width: 100%;
+    flex-direction: column;
+    .home-logo {
+      justify-content: space-between;
+    }
+
+    .mobile-menu-icon {
+      display: block;
+      border: none;
+      background: none;
+    }
+
+    .menu-links {
+      display: none;
+    }
+
+    span.user {
+      display: none;
+    }
+  }
 }
+
+
 
 .home-title {
   color: $primary;

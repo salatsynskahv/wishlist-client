@@ -183,7 +183,7 @@ const WishlistTable = ({currentWishlistIndex}) => {
         return (<tr>
                 {wishlist.fields.map((field, columnIndex) => (<td>
                         <Editable
-                            html={item[field.id]}
+                            html={item[field.id] || ''}
                             handleChange={(e) => handleInputTableChange(rowIndex, columnIndex, field, e)}
                         />
                     </td>))}

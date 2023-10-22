@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1bea5330-a63c-4f05-a0d0-0408eaf9663c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/pages/mywishlist/common/CustomTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/App.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +235,9 @@
       <workItem from="1697039617774" duration="988000" />
       <workItem from="1697540702161" duration="204000" />
       <workItem from="1697721743395" duration="10263000" />
-      <workItem from="1697785216021" duration="7580000" />
+      <workItem from="1697785216021" duration="10311000" />
+      <workItem from="1698002126544" duration="819000" />
+      <workItem from="1698005598906" duration="2011000" />
     </task>
     <servers />
   </component>
@@ -261,7 +266,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/component/Navbar.js</url>
-          <line>39</line>
+          <line>53</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
